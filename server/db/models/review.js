@@ -13,4 +13,4 @@ const Review = db.define('review', {
 })
 
 
-export default Review;
+module.exports = Review;

@@ -25,15 +25,14 @@ const getOneProduct = (product) => ({
 //THUNKAROOOS
 export const fetchProducts = () => {
     return async (dispatch) => {
-        const {data} = await axios.get('./api/products')
+        const {data} = await axios.get('/api/products')
         dispatch(getProducts(data))
     }
 }
 
-
-export const fetchAProduct = (category) => {
+export const fetchAProduct = id => {
     return async (dispatch) => {
-        const {data} = await axios.get(`./api/products/${category}`)
+        const {data} = await axios.get(`/api/products/${id}`)
         dispatch(getOneProduct(data))
     }
 }

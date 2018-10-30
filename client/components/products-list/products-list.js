@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Product from './product'
 import FilterBar from './filter-bar'
+import SearchBar from './search-bar'
 
 const theProducts = [
   { id: 1, category: "charcuterie board", name: "large charcuterie board", description: "this board includes 10 cheeses and 10 meats, and will feed up to 20 people.", price: 150, imageURL: 'https://image.ibb.co/jyrCNf/no-image-avaliable.png', stock: 5340 },
@@ -17,17 +18,21 @@ export default class ProductsList extends Component {
       filterTitle: 'All Products',
       products: []
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.searchOnChange = this.searchOnChange.bind(this)
   }
 
   componentDidMount() {
+    console.log("PRODCTS", theProducts)
     this.setState({ products: theProducts })
   }
 
   render() {
+    console.log("STATE", this.state)
     return (
       <div>
         <FilterBar handleChange={this.handleChange} />
+        <SearchBar searchOnChange={this.searchOnChange} />
         <h1>{this.state.filterTitle}</h1>
         <div id="outer-products-div">
           <div className="products">
@@ -42,6 +47,11 @@ export default class ProductsList extends Component {
   handleChange(whatToFilter) {
     console.log('whatToFilter', whatToFilter)
     this.setState({ products: filter(whatToFilter), filterTitle: filterTitle(whatToFilter) })
+  }
+  searchOnChange(searchVal) {
+    console.log("searchVal:", searchVal);
+    searchFilter(searchVal);
+    //this.setState({products: searchFilter(searchVal), filterTitle: searchTitle(searchVal)})
   }
 }
 
@@ -69,4 +79,16 @@ function filterTitle(whatToFilter) {
   else return 'All Extras'
 }
 
+function searchFilter(searchVal) {
+  const productSearchMatch = (searchVal, product) => {
+    const productArr = product.description.toLowerCase().split(' ').concat(product.name.toLowerCase().split(" ")).concat(product.category.split(" "));
+    console.log(searchVal.toLowerCase());
+    //return searchVal.toLowerCase() ? true : false;
+  }
+  theProducts.map(product => productSearchMatch(searchVal, product))
+}
+
+function searchTitle(searchVal) {
+  return `Search Results For: ${searchVal}`
+}
 

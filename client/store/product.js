@@ -31,10 +31,11 @@ const filterProducts = (filteredProducts) => ({
 //THUNKAROOOS
 export const fetchProducts = () => {
     return async (dispatch) => {
-        const {data} = await axios.get('./api/products')
+        const {data} = await axios.get('/api/products')
         dispatch(getProducts(data))
     }
 }
+
 
 export const filterProduct = (category) => {
     return async (dispatch) => {

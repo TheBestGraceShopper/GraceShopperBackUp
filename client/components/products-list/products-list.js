@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Product from './product'
 import FilterBar from './filter-bar'
+import { connect } from 'react-redux'
+import { fetchProducts } from '../../store/product'
 
 const theProducts = [
   { id: 1, category: "charcuterie board", name: "large charcuterie board", description: "this board includes 10 cheeses and 10 meats, and will feed up to 20 people.", price: 150, imageURL: 'https://image.ibb.co/jyrCNf/no-image-avaliable.png', stock: 5340 },
@@ -10,7 +12,7 @@ const theProducts = [
   { id: 5, category: "meat", name: "pepperoni", description: "this is 1lb. of pepperoni", price: 100, imageURL: 'https://image.ibb.co/jyrCNf/no-image-avaliable.png', stock: 2543 }
 ]
 
-export default class ProductsList extends Component {
+class ProductsListComp extends Component {
   constructor() {
     super()
     this.state = {
@@ -21,7 +23,13 @@ export default class ProductsList extends Component {
   }
 
   componentDidMount() {
-    this.setState({ products: theProducts })
+    // this.setState({ products: theProducts })
+
+    const products = this.props.fetchProducts()
+    this.setState({
+      products: this.props.products
+    })
+    console.log('this.props.products', this.props)
   }
 
   render() {
@@ -40,7 +48,6 @@ export default class ProductsList extends Component {
     )
   }
   handleChange(whatToFilter) {
-    console.log('whatToFilter', whatToFilter)
     this.setState({ products: filter(whatToFilter), filterTitle: filterTitle(whatToFilter) })
   }
 }
@@ -69,4 +76,15 @@ function filterTitle(whatToFilter) {
   else return 'All Extras'
 }
 
+const mapStateToProps = (state) => {
+  console.log("STATE!!!!!:", state)
+  return {products: state.productsReducer.products}
+}
 
+const mapDispatchToProps = (dispatch) => ({
+  fetchProducts: () => dispatch(fetchProducts())
+});
+
+const ProductsList = connect(mapStateToProps, mapDispatchToProps)(ProductsListComp)
+
+export default ProductsList

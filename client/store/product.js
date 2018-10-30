@@ -7,7 +7,7 @@ const GET_ONE_PRODUCT = 'GET_ONE_PRODUCT'
 
 // INITIAL STATE
 const productsState = {
-    products: null,
+    products: [],
     selectedProduct: {name: '', price: '', description: '', imageURL: ''}
 }
 

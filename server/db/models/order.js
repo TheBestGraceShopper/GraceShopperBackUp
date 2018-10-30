@@ -17,4 +17,4 @@ const Order = db.define('order', {
 })
 
 
-export default Order;
+module.exports = Order;

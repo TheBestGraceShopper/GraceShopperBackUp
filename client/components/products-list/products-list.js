@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Product from './product'
 import FilterBar from './filter-bar'
 import { connect } from 'react-redux'
-import { fetchProducts, filterProducts } from '../../store/product'
+import { fetchProducts } from '../../store/product'
 
 
 class ProductsListComp extends Component {
@@ -44,7 +44,7 @@ class ProductsListComp extends Component {
       </div>
     )
   }
-  async handleChange(whatToFilter) {
+  handleChange(whatToFilter) {
     this.setState({filterTitle: filterTitle(whatToFilter) })
   }
 }

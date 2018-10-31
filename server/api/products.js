@@ -44,7 +44,11 @@ router.post('/admin', async (req, res, next) => {
 })
 
 // PUT /products/admin/:productId
-router.put('/:productId', async (req, res, next) => {
+
+//I think we need to take another look here
+//need to return update so store can be updated?
+//need a res.send or something?
+router.put('admin/:productId', async (req, res, next) => {
     try {
         const productToUpdate = await Product.findById(req.params.productId)
         if (productToUpdate) {
@@ -61,11 +65,11 @@ router.put('/:productId', async (req, res, next) => {
 })
 
 // DELETE /products/admin/:productId
-router.delete('/:productId', async (req, res, mext) => {
+router.delete('admin/:productId', async (req, res, next) => {
     try {
         await Product.destroy({
             where: {
-                id: productId
+                id: req.params.productId
             }
         })
         res.sendStatus(204)

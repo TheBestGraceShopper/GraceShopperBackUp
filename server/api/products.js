@@ -62,9 +62,10 @@ router.put('admin/:productId', authorize, async (req, res, next) => {
     catch (err) {
         next(err)
     }
-}) 
+})
 
 // DELETE /products/admin/:productId
+
 router.delete('admin/:productId', authorize, async (req, res, next) => {
     try {
         await Product.destroy({

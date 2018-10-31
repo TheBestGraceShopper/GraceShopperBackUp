@@ -13,8 +13,6 @@ class EditProduct extends React.Component {
     async componentDidMount() {
       await this.props.getAProduct(this.props.match.params.productId);
       this.setState({currentProduct: this.props.selectedProduct})
-      console.log("state", this.state);
-      console.log(this.props.selectedProduct);
     }
     render () {
         return (

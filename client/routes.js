@@ -8,6 +8,7 @@ import ProductsList from './components/products-list/products-list'
 import SingleProduct from './components/singleproduct/SingleProduct'
 import SingleProductAdmin from './components/singleproduct/SingleProductAdmin'
 import CreateProduct from './components/CreateProduct'
+import EditProduct from './components/EditProduct'
 
 /**
  * COMPONENT
@@ -24,6 +25,7 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path='/products/add' component={CreateProduct} />
+        <Route exact path='/products/edit/:productId' component={EditProduct} />
         <Route exact path='/products/:productId' component={SingleProduct} />
         <Route path="/products" component={ProductsList} />
         <Route path="/login" component={Login} />
@@ -37,6 +39,7 @@ class Routes extends Component {
         )}
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
+        <Route exact path="/cart" component={Cart} />
       </Switch>
     )
   }

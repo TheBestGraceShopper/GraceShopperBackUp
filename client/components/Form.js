@@ -3,21 +3,16 @@ import React from 'react'
 export default class Form extends React.Component {
     constructor () {
         super()
-        this.state = {
-            category: '',
-            name: '',
-            description: '',
-            price: '',
-            stock: '',
-            imageURL: ''
-        }
+        this.state = {};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this)
     }
-
+    componentDidMount() {
+      this.setState(this.props.state);
+    }
     handleChange (e) {
-        [e.target.name] = e.target.value
+        this.setState({[e.target.name]:e.target.value})
     }
 
     handleSubmit (e) {

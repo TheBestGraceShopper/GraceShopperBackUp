@@ -33,7 +33,7 @@ const User = db.define('user', {
       isIn: [['admin', 'user', 'guest']]
     }
   }
-}
+})
 
 module.exports = User
 

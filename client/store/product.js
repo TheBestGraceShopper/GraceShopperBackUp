@@ -38,14 +38,14 @@ export const fetchProducts = () => {
 
 export const filterProduct = (category) => {
     return async (dispatch) => {
-        const {data} = await axios.get(`./api/products/${category}`)
+        const {data} = await axios.get(`/api/products/${category}`)
         dispatch(filterProducts(data))
     }
 }
 
 export const fetchAProduct = (id) => {
     return async (dispatch) => {
-        const {data} = await axios.get(`./api/products/${id}`)
+        const {data} = await axios.get(`/api/products/${id}`)
         dispatch(getOneProduct(data))
     }
 }

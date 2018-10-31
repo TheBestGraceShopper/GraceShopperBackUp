@@ -14,7 +14,6 @@ class ProductsListComp extends Component {
       products: [],
     }
     this.handleChange = this.handleChange.bind(this);
-    this.searchOnChange = this.searchOnChange.bind(this);
   }
 
   async componentDidMount() {
@@ -31,12 +30,17 @@ class ProductsListComp extends Component {
       else if (this.state.filterTitle === 'All Cheeses') filteredProducts = this.state.products.filter(product => product.category === 'cheese')
       else if (this.state.filterTitle === 'All Meats') filteredProducts = this.state.products.filter(product => product.category === 'meat')
       else filteredProducts = this.state.products.filter(product => product.category === 'extras')
-      // this.setState({products: filteredProducts});
+
+      const searchOnChange = (searchVal) => {
+        filteredProducts = searchFilter(searchVal, this.state.products);
+        console.log(filteredProducts);
+        this.searchTitle(searchVal);
+      }
 
     return (
       <div>
         <FilterBar handleChange={this.handleChange} />
-        <SearchBar searchOnChange={this.searchOnChange} />
+        <SearchBar searchOnChange={searchOnChange} />
         <h1>{this.state.filterTitle}</h1>
         <div id="outer-products-div">
           <div className="products">
@@ -51,9 +55,8 @@ class ProductsListComp extends Component {
   handleChange(whatToFilter) {
     this.setState({filterTitle: filterTitle(whatToFilter) })
   }
-  searchOnChange(searchVal) {
-    const products = this.state.products;
-    this.setState({products: searchFilter(searchVal, products), filterTitle: searchTitle(searchVal)});
+  searchTitle(searchVal) {
+    this.setState({filterTitle: `Search Results For: ${searchVal}` })
   }
 }
 
@@ -71,16 +74,16 @@ function searchFilter(searchVal,products) {
     const productArr = product.description.toLowerCase().split(' ').concat(product.name.toLowerCase().split(" ")).concat(product.category.split(" "));
     if (productArr.includes(searchLowerCase)) return true;
     for (let i=0; i<productArr.length; i++) {
-      if (productArr[i].toLowerCase().indexOf(searchLowerCase) > -1) return true;
+      if (productArr[i].toLowerCase().indexOf(searchLowerCase) > -1) {
+        return true;
+      }
     }
     return false;
   }
-  return products.slice().filter(product => productSearchMatch(searchVal, product));
+  return [...products].filter(product => productSearchMatch(searchVal, product));
 }
 
-function searchTitle(searchVal) {
-  return `Search Results For: ${searchVal}`
-}
+
 const mapStateToProps = (state) => {
   return {products: state.productsReducer.products}
 }

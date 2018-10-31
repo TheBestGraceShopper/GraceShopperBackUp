@@ -28,9 +28,12 @@ const User = db.define('user', {
     type: Sequelize.STRING
   },
  userType:{
-   type: Sequelize.ENUM['admin', 'user', 'guest']
+   type: Sequelize.STRING,
+   validation: {
+     isIn: [['admin', 'user', 'guest']]
+   }
  }
-  }
+
 })
 
 module.exports = User

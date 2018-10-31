@@ -32,9 +32,8 @@ const User = db.define('user', {
     validation: {
       isIn: [['admin', 'user', 'guest']]
     }
- }
-
-})
+  }
+}
 
 module.exports = User
 

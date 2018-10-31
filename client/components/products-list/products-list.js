@@ -12,6 +12,7 @@ class ProductsListComp extends Component {
     this.state = {
       filterTitle: 'All Products',
       products: [],
+      searchProducts: []
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -33,7 +34,7 @@ class ProductsListComp extends Component {
 
       const searchOnChange = (searchVal) => {
         filteredProducts = searchFilter(searchVal, this.state.products);
-        console.log(filteredProducts);
+        this.setState({searchProducts: filteredProducts})
         this.searchTitle(searchVal);
       }
 
@@ -44,9 +45,7 @@ class ProductsListComp extends Component {
         <h1>{this.state.filterTitle}</h1>
         <div id="outer-products-div">
           <div className="products">
-            {filteredProducts.map(product => {
-              return <Product key={product.id} product={product} />
-            })}
+    {this.state.searchProducts.length ? this.state.searchProducts.map(product => <Product key={product.id} product={product} />) : filteredProducts.map(product => <Product key={product.id} product={product} /> )}
           </div>
         </div>
       </div>
@@ -68,7 +67,7 @@ function filterTitle(whatToFilter) {
   else return 'All Extras'
 }
 
-function searchFilter(searchVal,products) {
+function searchFilter(searchVal, products) {
   const productSearchMatch = (searchVal, product) => {
     const searchLowerCase = searchVal.toLowerCase();
     const productArr = product.description.toLowerCase().split(' ').concat(product.name.toLowerCase().split(" ")).concat(product.category.split(" "));

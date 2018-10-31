@@ -32,7 +32,7 @@ export default class ProductsList extends Component {
     return (
       <div>
         <FilterBar handleChange={this.handleChange} />
-        <SearchBar searchOnChange={this.searchOnChange} />
+        <SearchBar searchOnChange={this.searchOnChange} products={theProducts} />
         <h1>{this.state.filterTitle}</h1>
         <div id="outer-products-div">
           <div className="products">
@@ -49,9 +49,7 @@ export default class ProductsList extends Component {
     this.setState({ products: filter(whatToFilter), filterTitle: filterTitle(whatToFilter) })
   }
   searchOnChange(searchVal) {
-    console.log("searchVal:", searchVal);
-    searchFilter(searchVal);
-    //this.setState({products: searchFilter(searchVal), filterTitle: searchTitle(searchVal)})
+    this.setState({products: searchFilter(searchVal), filterTitle: searchTitle(searchVal)});
   }
 }
 
@@ -81,11 +79,15 @@ function filterTitle(whatToFilter) {
 
 function searchFilter(searchVal) {
   const productSearchMatch = (searchVal, product) => {
+    const searchLowerCase = searchVal.toLowerCase();
     const productArr = product.description.toLowerCase().split(' ').concat(product.name.toLowerCase().split(" ")).concat(product.category.split(" "));
-    console.log(searchVal.toLowerCase());
-    //return searchVal.toLowerCase() ? true : false;
+    if (productArr.includes(searchLowerCase)) return true;
+    for (let i=0; i<productArr.length; i++) {
+      if (productArr[i].toLowerCase().indexOf(searchLowerCase) > -1) return true;
+    }
+    return false;
   }
-  theProducts.map(product => productSearchMatch(searchVal, product))
+  return theProducts.filter(product => productSearchMatch(searchVal, product));
 }
 
 function searchTitle(searchVal) {

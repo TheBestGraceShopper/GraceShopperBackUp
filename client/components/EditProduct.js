@@ -10,15 +10,17 @@ class EditProduct extends React.Component {
         currentProduct: {}
       }
     }
-    componentDidMount() {
-      this.props.getAProduct(this.props.match.params.productId);
+    async componentDidMount() {
+      await this.props.getAProduct(this.props.match.params.productId);
+      this.setState({currentProduct: this.props.selectedProduct})
+      console.log("state", this.state);
+      console.log(this.props.selectedProduct);
     }
     render () {
-      const currentProduct = this.props.selectedProduct;
         return (
             <div>
                 <h1>Update Product: </h1>
-                <Form state={this.state.currentProduct} />
+                <Form />
             </div>
         )
     }

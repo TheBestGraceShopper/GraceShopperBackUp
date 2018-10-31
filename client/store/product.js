@@ -78,8 +78,8 @@ export const addAProduct = (newProductData) => {
 
 export const updatedAProduct = (id, updates) => {
   return async (dispatch) => {
-    const {data: updatedProduct} = await axios.put(`api/products/admin/${id}`, updates)
-    dispatch(updateProduct(id, updatedProduct))
+    const response = await axios.put(`/api/products/admin/${id}`, updates);
+    dispatch(updateProduct(id, response.data))
   }
 }
 

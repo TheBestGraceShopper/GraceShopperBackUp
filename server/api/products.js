@@ -48,11 +48,13 @@ router.post('/admin', authorize, async (req, res, next) => {
 
 // PUT /products/admin/:productId
 
-router.put('admin/:productId', authorize, async (req, res, next) => {
+router.put('/admin/:productId', authorize, async (req, res, next) => {
     try {
         const productToUpdate = await Product.findById(req.params.productId)
-            const updatedProduct = await productToUpdate.update(req.body)
-            res.status(200).json(updatedProduct)
+
+        const updatedProduct = await productToUpdate.update(req.body)
+        res.status(200).json(updatedProduct);
+
     }
     catch (err) {
         next(err)

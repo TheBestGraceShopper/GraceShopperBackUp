@@ -8,7 +8,7 @@ const Order = db.define('order', {
         allowNull: false
     },
     totalPrice: {
-        type:Sequelize.DECIMAL(0,100),
+        type:Sequelize.INTEGER,
         defaultValue: 0
     },
     item:{
@@ -20,7 +20,6 @@ const Order = db.define('order', {
 Order.prototype.getPrice = async function() {
     //find the products within this order
     try {
-
       const products = await Product.findAll({
         where: {orderId: this.id}
       })

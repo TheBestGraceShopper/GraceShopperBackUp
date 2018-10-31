@@ -25,6 +25,7 @@ class ProductsListComp extends Component {
   }
 
   render() {
+    console.log('test');
       let filteredProducts = this.state.products;
       if (this.state.filterTitle === 'All Products') filteredProducts = this.state.products
       else if (this.state.filterTitle === 'All Charcuterie Boards') filteredProducts = this.state.products.filter(product => product.category === 'charcuterie board')

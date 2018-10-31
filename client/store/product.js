@@ -36,7 +36,6 @@ export const fetchProducts = () => {
     }
 }
 
-
 export const filterProduct = (category) => {
     return async (dispatch) => {
         const {data} = await axios.get(`./api/products/${category}`)

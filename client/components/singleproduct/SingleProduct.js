@@ -27,7 +27,7 @@ class SingleProduct extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    selectedProduct: state.productReducer.selectedProduct
+    selectedProduct: state.productsReducer.selectedProduct
 })
 
 const mapDispatchToProps = dispatch => ({

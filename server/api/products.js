@@ -27,18 +27,19 @@ router.get('/:productId', async (req, res, next) => {
 
 // ADMIN ROUTES
 
-// POST /products/admin
+// POST api/products/admin
 router.post('/admin', authorize, async (req, res, next) => {
     try {
         const newProduct = await Product.create({
             category: req.body.category,
             name: req.body.name,
             description: req.body.description,
-            price: req.body.description,
-            stock: req.body.stock,
+            price: Number(req.body.price),
+            stock: Number(req.body.stock),
             imageURL: req.body.imageURL
         })
         res.status(201).json(newProduct)
+
     }
     catch (err) {
         next(err)
@@ -50,14 +51,8 @@ router.post('/admin', authorize, async (req, res, next) => {
 router.put('admin/:productId', authorize, async (req, res, next) => {
     try {
         const productToUpdate = await Product.findById(req.params.productId)
-        if (productToUpdate) {
             const updatedProduct = await productToUpdate.update(req.body)
             res.status(200).json(updatedProduct)
-        }
-        else {
-            console.error(err)
-            next(err)
-        }
     }
     catch (err) {
         next(err)

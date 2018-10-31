@@ -27,14 +27,13 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING
   },
-
   userType:{
     type: Sequelize.STRING,
     validation: {
       isIn: [['admin', 'user', 'guest']]
     }
   }
-}
+})
 
 module.exports = User
 

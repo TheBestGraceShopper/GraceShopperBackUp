@@ -18,7 +18,7 @@ const Product = db.define('product', {
           type: Sequelize.TEXT,
       },
       price: {
-          type: Sequelize.DECIMAL(0,100),
+          type: Sequelize.INTEGER,
           allowNull: false,
           validate: {
               notEmpty: true
@@ -30,7 +30,10 @@ const Product = db.define('product', {
       },
       imageURL: {
           type: Sequelize.STRING,
-          defaultValue: 'https://ibb.co/fVU6Vq'
+          defaultValue: 'https://image.ibb.co/dJjsQ0/image-not-avaliable.png'
+          // validate: {
+          //   isUrl: true
+          // }
       }
 })
 

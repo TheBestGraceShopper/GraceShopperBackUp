@@ -42,7 +42,7 @@ class ProductsListComp extends Component {
       <div>
         <FilterBar handleChange={this.handleChange} />
         <SearchBar searchOnChange={searchOnChange} />
-        <h1>{this.state.filterTitle}</h1>
+        <h2>{this.state.filterTitle}</h2>
         <div id="outer-products-div">
           <div className="products">
     {this.state.searchProducts.length ? this.state.searchProducts.map(product => <Product key={product.id} product={product} />) : filteredProducts.map(product => <Product key={product.id} product={product} /> )}

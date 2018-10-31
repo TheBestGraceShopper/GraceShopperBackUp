@@ -3,11 +3,12 @@ import axios from 'axios'
 // ACTION TYPES
 const GET_PRODUCTS = 'GET_PRODUCTS'
 const GET_ONE_PRODUCT = 'GET_ONE_PRODUCT'
-
+const FILTER_PRODUCT = 'FILTER_PRODUCT'
 
 // INITIAL STATE
 const productsState = {
-    products: null,
+    products: [],
+    filteredProducts: [],
     selectedProduct: {name: '', price: '', description: '', imageURL: ''}
 }
 
@@ -22,18 +23,30 @@ const getOneProduct = (product) => ({
     product
 })
 
+const filterProducts = (filteredProducts) => ({
+    type: FILTER_PRODUCT,
+    filteredProducts
+})
+
 //THUNKAROOOS
 export const fetchProducts = () => {
     return async (dispatch) => {
-        const {data} = await axios.get('./api/products')
+        const {data} = await axios.get('/api/products')
         dispatch(getProducts(data))
     }
 }
 
 
-export const fetchAProduct = (category) => {
+export const filterProduct = (category) => {
     return async (dispatch) => {
         const {data} = await axios.get(`./api/products/${category}`)
+        dispatch(filterProducts(data))
+    }
+}
+
+export const fetchAProduct = (id) => {
+    return async (dispatch) => {
+        const {data} = await axios.get(`./api/products/${id}`)
         dispatch(getOneProduct(data))
     }
 }
@@ -46,6 +59,9 @@ const productsReducer = (state = productsState, action) => {
 
         case GET_ONE_PRODUCT:
           return{...state, selectedProduct: action.product}
+
+        case FILTER_PRODUCT:
+          return {...state, filteredProducts: action.filteredProducts}
 
         default:
           return state

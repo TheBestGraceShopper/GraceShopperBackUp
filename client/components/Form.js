@@ -30,7 +30,7 @@ const Form = props => {
                         type="text"
                         name="description"
                         onChange={props.handleChange}
-                        value={props.state.currentProduct.description}
+                        value={props.state.description}
                     />
                 </div>
 

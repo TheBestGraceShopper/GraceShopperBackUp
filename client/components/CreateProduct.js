@@ -1,12 +1,12 @@
 import React from 'react'
 import Form from './Form'
 import {connect} from 'react-redux'
-import {addAProduct} from '../store/product'
+import {addAProduct} from '../store'
 
 class CreateProduct extends React.Component {
   constructor() {
     super()
-    this.stat  = {
+    this.state  = {
         category: '',
         name: '',
         description: '',
@@ -14,10 +14,9 @@ class CreateProduct extends React.Component {
         stock: '',
         imageURL: ''
       }
-    }
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange (e) {
@@ -30,14 +29,12 @@ class CreateProduct extends React.Component {
     e.preventDefault();
     this.props.addProduct(this.state)
     this.setState({
-      currentProduct: {
         category: '',
         name: '',
         description: '',
         price: '',
-          stock: '',
+        stock: '',
         imageURL: ''
-      }
     })
   }
 

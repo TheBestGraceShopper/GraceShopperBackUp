@@ -27,6 +27,17 @@ router.get('/:productId', async (req, res, next) => {
 
 // ADMIN ROUTES
 
+// GET /admin/products/:productId
+router.get('/:productId', authorize, async (req, res, next) => {
+  try {
+    const product = await Product.findById(req.params.productId)
+    res.status(200).json(product)
+  }
+  catch (err) {
+    next(err)
+  }
+})
+
 // POST /products/admin
 router.post('/admin', authorize, async (req, res, next) => {
     try {
@@ -47,17 +58,11 @@ router.post('/admin', authorize, async (req, res, next) => {
 
 // PUT /products/admin/:productId
 
-router.put('admin/:productId', authorize, async (req, res, next) => {
+router.put('/:productId', authorize, async (req, res, next) => {
     try {
         const productToUpdate = await Product.findById(req.params.productId)
-        if (productToUpdate) {
-            const updatedProduct = await productToUpdate.update(req.body)
-            res.status(200).json(updatedProduct)
-        }
-        else {
-            console.error(err)
-            next(err)
-        }
+        const updatedProduct = await productToUpdate.update(req.body)
+        res.status(200).json(updatedProduct)
     }
     catch (err) {
         next(err)

@@ -9,6 +9,7 @@ import SingleProduct from './components/singleproduct/SingleProduct'
 import SingleProductAdmin from './components/singleproduct/SingleProductAdmin'
 import CreateProduct from './components/CreateProduct'
 import EditProduct from './components/EditProduct'
+import Cart from './components/cart'
 
 /**
  * COMPONENT

@@ -3,7 +3,7 @@ import Product from './product'
 import FilterBar from './filter-bar'
 import SearchBar from './search-bar'
 import { connect } from 'react-redux'
-import { fetchProducts, filterProducts } from '../../store/product'
+import { fetchProducts } from '../../store/product'
 
 
 class ProductsListComp extends Component {

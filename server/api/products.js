@@ -47,14 +47,12 @@ router.post('/admin', authorize, async (req, res, next) => {
 
 // PUT /products/admin/:productId
 
-//I think we need to take another look here
-//need to return update so store can be updated?
-//need a res.send or something?
 router.put('admin/:productId', authorize, async (req, res, next) => {
     try {
         const productToUpdate = await Product.findById(req.params.productId)
         if (productToUpdate) {
             const updatedProduct = await productToUpdate.update(req.body)
+            res.status(200).json(updatedProduct)
         }
         else {
             console.error(err)
@@ -68,8 +66,7 @@ router.put('admin/:productId', authorize, async (req, res, next) => {
 
 // DELETE /products/admin/:productId
 
-router.delete('admin/:productId', async (req, res, next) => {
-
+router.delete('admin/:productId', authorize, async (req, res, next) => {
     try {
         await Product.destroy({
             where: {

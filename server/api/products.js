@@ -1,5 +1,7 @@
 const router = require('express').Router()
-const {Product} = require('../db/models')
+const {Product, User} = require('../db/models')
+const authorize = require ('./authorize')
+
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -26,7 +28,7 @@ router.get('/:productId', async (req, res, next) => {
 // ADMIN ROUTES
 
 // POST /products/admin
-router.post('/admin', async (req, res, next) => {
+router.post('/admin', authorize, async (req, res, next) => {
     try {
         const newProduct = await Product.create({
             category: req.body.category,
@@ -48,7 +50,7 @@ router.post('/admin', async (req, res, next) => {
 //I think we need to take another look here
 //need to return update so store can be updated?
 //need a res.send or something?
-router.put('admin/:productId', async (req, res, next) => {
+router.put('admin/:productId', authorize, async (req, res, next) => {
     try {
         const productToUpdate = await Product.findById(req.params.productId)
         if (productToUpdate) {
@@ -65,7 +67,9 @@ router.put('admin/:productId', async (req, res, next) => {
 })
 
 // DELETE /products/admin/:productId
+
 router.delete('admin/:productId', async (req, res, next) => {
+
     try {
         await Product.destroy({
             where: {

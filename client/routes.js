@@ -23,9 +23,8 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path='/products/:productId' component={SingleProduct} />
-        <Route exact path='/products/:productId/admin' component={SingleProductAdmin} />
         <Route exact path='/products/add' component={CreateProduct} />
+        <Route exact path='/products/:productId' component={SingleProduct} />
         <Route path="/products" component={ProductsList} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
@@ -33,6 +32,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route exact path='/products/:productId/admin' component={SingleProductAdmin} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

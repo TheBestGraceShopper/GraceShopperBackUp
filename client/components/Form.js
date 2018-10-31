@@ -95,6 +95,10 @@ export default class Form extends React.Component {
                             value={this.state.imageURL}
                         />
                     </div>
+
+                    <div>
+                        <button type="submit" className="submitButton">Submit</button>
+                    </div>
                 </form>
             </div>
         )

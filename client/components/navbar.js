@@ -25,7 +25,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       )}
     </nav>
-
+  </div>
 )
 
 /**

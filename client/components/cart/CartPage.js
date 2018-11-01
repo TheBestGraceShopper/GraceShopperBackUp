@@ -3,8 +3,9 @@ import {Link, Redirect} from 'react-router-dom'
 import CheckoutPage from './CheckoutPage'
 
 const CartPage = () => {
-  const cartItems = JSON.parse(localStorage.cart)
-
+  const cartItems = JSON.parse(localStorage.getItem('cart'))
+    console.log('localstorage', localStorage.getItem('cart'))
+    console.log('cartitems', cartItems)
   return (
     <div>
          <ol>

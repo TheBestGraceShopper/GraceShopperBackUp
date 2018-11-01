@@ -31,7 +31,7 @@ Order.prototype.getPrice = async function() {
       console.log(error)
     }
   }
-  
+
 // what about promoCode?
       // if(promoCode === ""){
       //   totalValue = price - (price * (Number(Bowl.getElemebById(promoCode).value)/100))

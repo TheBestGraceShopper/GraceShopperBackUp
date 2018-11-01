@@ -1,6 +1,8 @@
 import React from 'react'
 
+
 const Form = props => {
+  console.log('props.handleSubmit', props.handleSubmit)
     return (
         <div>
             <form id="form" onSubmit={props.handleSubmit}>
@@ -30,7 +32,7 @@ const Form = props => {
                         type="text"
                         name="description"
                         onChange={props.handleChange}
-                        value={props.state.currentProduct.description}
+                        value={props.state.description}
                     />
                 </div>
 

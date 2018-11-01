@@ -71,20 +71,21 @@ export const fetchAProduct = (id) => {
 export const addAProduct = (newProductData) => {
   return async (dispatch) => {
     const {data: newProduct} = await axios.post('/api/products/admin', newProductData)
+    console.log("newProduct!!!", newProduct)
     dispatch(addProduct(newProduct))
   }
 }
 
 export const updatedAProduct = (id, updates) => {
   return async (dispatch) => {
-    const {data: updatedProduct} = await axios.put(`api/products/admin/${id}`, updates)
-    dispatch(updateProduct(id, updatedProduct))
+    const response = await axios.put(`/api/products/admin/${id}`, updates);
+    dispatch(updateProduct(id, response.data))
   }
 }
 
 export const removeAProduct = (id) => {
   return async (dispatch) =>{
-    await axios.delete(`api/products/admin/${id}`)
+    await axios.delete(`/api/products/admin/${id}`)
     dispatch(removeProduct(id))
   }
 }

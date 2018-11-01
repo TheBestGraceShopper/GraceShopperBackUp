@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-
 import {fetchOrder} from '../store/order'
 import axios from 'axios'
 
@@ -10,8 +9,6 @@ class Cart extends Component {
         this.props.fetchOrder()
     }
 }
-
-
 
 const mapStateToProps = state => ({
     cart: state.cart

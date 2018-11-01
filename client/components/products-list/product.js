@@ -1,14 +1,19 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-const Product = ({product}) => {
+const Product = ({ product, admin, removeProduct }) => {
   return (
+
     <div className="product-small">
-      <img className="product-image" src={product.imageURL} />
-      <Link to={`/products/${product.id}`}><h2 className="product-name">{product.name}</h2></Link>
-      <p>${product.price}</p>
-      {product.stock ? <p className="in-stock">In Stock</p> : <p className="out-of-stock">Out Of Stock</p>}
+      <Link to={admin ? `/admin/products/${product.id}` : `/products/${product.id}`}>
+        <img className="product-image" src={product.imageURL} />
+        <h2 className="product-name">{product.name}</h2>
+        <p>${product.price}</p>
+        {product.stock ? <p className="in-stock">In Stock</p> : <p className="out-of-stock">Out Of Stock</p>}
+      </Link>
+      <button type="button" onClick={() => removeProduct(product.id)}>Delete</button>
     </div>
+
   )
 }
 

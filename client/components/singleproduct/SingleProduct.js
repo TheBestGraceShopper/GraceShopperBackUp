@@ -4,9 +4,9 @@ import {fetchAProduct} from '../../store'
 
 class SingleProduct extends React.Component {
     componentDidMount() {
-        this.props.getAProduct(this.props.match.params.productId)
+      this.props.getAProduct(this.props.match.params.productId)
     }
- 
+
     render() {
         const {selectedProduct} = this.props
 

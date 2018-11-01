@@ -9,8 +9,8 @@ import SingleProduct from './components/singleproduct/SingleProduct'
 import SingleProductAdmin from './components/singleproduct/SingleProductAdmin'
 import CreateProduct from './components/CreateProduct'
 import EditProduct from './components/EditProduct'
-import Cart from './components/cart/CartPage'
 import ProductsListAdmin from './components/products-list/ProductListAdmin'
+import CartPage from './components/cart/CartPage';
 
 /**
  * COMPONENT
@@ -26,7 +26,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path='/admin/products/add' component={CreateProduct} />
+        <Route exact path='/admin/products/add' component={CreateProduct} />q2
         <Route path='/admin/products/:productId' component={EditProduct} />
         <Route exact path='/products/:productId' component={SingleProduct} />
         <Route path="/products" render={routeProps => <ProductsList {...routeProps} admin={false} />} />
@@ -42,7 +42,7 @@ class Routes extends Component {
         )}
         {/* Displays our Login component as a fallback */}
         {/* <Route component={Login} /> */}
-        <Route exact path="/cart" component={Cart} />
+        <Route exact path="/cart" component={CartPage} />
       </Switch>
     )
   }

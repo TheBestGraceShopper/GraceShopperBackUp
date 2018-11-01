@@ -8,7 +8,7 @@ const initialState = {
 
 const GET_CART = 'GET_CART'
 const ADD_PRODUCT = 'ADD_PRODUCT'
-const REMOVE_PRODUCT = 'REMOVE_PRODUCT' 
+const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 
 // ACTION CREATORS
 
@@ -39,9 +39,9 @@ export const fetchCart = userId => async dispatch => {
     }
 }
 
-export const addProduct = product => async dispatch => {
+export const addProduct = (product,userId) => async dispatch => {
     try {
-        const response = await axios.post('/api/cart', product)
+        const response = await axios.post(`/api/cart/${userId}`, product)
         const newProduct = response.data
         const action = addProductToCart(newProduct)
         dispatch(action)

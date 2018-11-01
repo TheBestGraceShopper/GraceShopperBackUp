@@ -4,6 +4,8 @@ import FilterBar from './filter-bar'
 import SearchBar from './search-bar'
 import { connect } from 'react-redux'
 import { fetchProducts, removeAProduct } from '../../store/product'
+import { addProduct } from '../../store/order'
+import { me } from '../../store/user'
 
 class ProductsListComp extends Component {
   constructor() {
@@ -53,7 +55,7 @@ class ProductsListComp extends Component {
         <h2>{this.state.filterTitle}</h2>
         <div id="outer-products-div">
           <div className="products">
-    {this.state.searchProducts.length ? this.state.searchProducts.map(product => <Product key={product.id} product={product} />) : filteredProducts.map(product => <Product key={product.id} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct}/> )}
+              {this.state.searchProducts.length ? this.state.searchProducts.map(product => <Product key={product.id} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser}/>) : filteredProducts.map(product => <Product key={product.id} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser}/> )}
           </div>
         </div>
       </div>
@@ -61,7 +63,6 @@ class ProductsListComp extends Component {
   }
 
   handleChange(whatToFilter) {
-console.log(whatToFilter,'event');
     this.setState({filterTitle: filterTitle(whatToFilter) })
   }
   searchTitle(searchVal) {
@@ -95,12 +96,14 @@ function searchFilter(searchVal, products) {
 
 
 const mapStateToProps = (state) => {
-  return {products: state.productsReducer.products}
+  return {products: state.productsReducer.products,
+          currentUser: state.user.id}
 }
 
 const mapDispatchToProps = (dispatch) => ({
   fetchProducts: () => dispatch(fetchProducts()),
-  removeProduct: (id) => dispatch(removeAProduct(id))
+  removeProduct: (id) => dispatch(removeAProduct(id)),
+  addProduct: (product, userId) => dispatch(addProduct(product, userId))
 });
 
 const ProductsList = connect(mapStateToProps, mapDispatchToProps)(ProductsListComp)

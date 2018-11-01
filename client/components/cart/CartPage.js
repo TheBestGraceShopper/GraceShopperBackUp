@@ -3,7 +3,7 @@ import {Link, Redirect} from 'react-router-dom'
 import Checkout from './Checkout'
 
 const CartPage = () => {
-  const cartItems = JSON.parse(localStorage.cart)
+  const cartItems = JSON.parse(localStorage.getItem('cart'))
 
   return (
     <div>

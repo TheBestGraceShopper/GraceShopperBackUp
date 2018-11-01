@@ -21,7 +21,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    const {isLoggedIn} = this.props // <= Look at this!!!!!
 
     return (
       <Switch>

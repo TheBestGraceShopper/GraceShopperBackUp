@@ -34,7 +34,8 @@ class EditProduct extends React.Component {
     e.preventDefault();
   }
   handleDelete () {
-    this.props.removeAProduct(this.state.id)
+    this.props.removeAProduct(this.state.id);
+    this.props.history.push('/admin/products');
    // redirect to all producs
   }
 

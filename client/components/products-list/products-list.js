@@ -60,6 +60,14 @@ class ProductsListComp extends Component {
     )
   }
 
+  handleChange(whatToFilter) {
+console.log(whatToFilter,'event');
+    this.setState({filterTitle: filterTitle(whatToFilter) })
+  }
+  searchTitle(searchVal) {
+    this.setState({filterTitle: `Search Results For: ${searchVal}` })
+  }
+
 }
 
 function filterTitle(whatToFilter) {

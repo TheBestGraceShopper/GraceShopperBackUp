@@ -5,6 +5,7 @@ const initialState = {
 }
 
 // ACTION TYPES
+
 const GET_CART = 'GET_CART'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT' 
@@ -27,10 +28,12 @@ const removeProductToCart = productId => ({
 })
 
 // THUNKAROOS
+
 export const fetchCart = userId => async dispatch => {
     try {
         const {data} = await axios.get(`/api/cart/${userId}`)
         dispatch(getCart(data))
+
     } catch(err){
         console.log(err)
     }
@@ -72,4 +75,6 @@ export default (state = initialState, action) => {
       default:
         return state
     }
+
 }
+

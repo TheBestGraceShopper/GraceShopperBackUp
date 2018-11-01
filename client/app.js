@@ -1,8 +1,6 @@
 import React from 'react'
 
-import {NavigationBar} from './components'
-import {NavBar} from './components'
-import {Footer }from './components'
+import {NavigationBar, NavBar, Footer} from './components'
 import Routes from './routes'
 
 const App = () => {

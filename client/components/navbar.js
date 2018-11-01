@@ -8,15 +8,21 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 
   <div>
     <h1>Let It Brie</h1>
+    <div id='navbar' className='column'>
+          <Link to="/products">Shop</Link> <br>
+          </br>
+          <Link to="/our-story">Our Story</Link> <br>
+          </br>
+          <Link to="/help">Contact Us!</Link>
+    </div>
     <nav>
       {isLoggedIn ? (
-        <div>
-          <Link to="/home">Home</Link>
+       <div>
+       <Link to="/home">Home</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
-        </div>
-      ) : (
+        </div>   ) : (
           <div>
             {/* The navbar will show these links before you log in */}
 

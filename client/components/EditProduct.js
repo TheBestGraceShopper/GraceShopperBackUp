@@ -1,7 +1,7 @@
 import React from 'react'
 import Form from './Form'
 import {connect} from 'react-redux'
-import {fetchAProduct, updatedAProduct} from '../store'
+import {fetchAProduct, updatedAProduct, removeAProduct} from '../store'
 import SingleProduct from './singleproduct/SingleProduct';
 
 class EditProduct extends React.Component {
@@ -17,7 +17,8 @@ class EditProduct extends React.Component {
       }
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
   async componentDidMount() {
     await this.props.getAProduct(this.props.match.params.productId);
@@ -31,14 +32,17 @@ class EditProduct extends React.Component {
   handleSubmit (e) {
     this.props.updateProduct(this.state.id, this.state);
     e.preventDefault();
-
+  }
+  handleDelete () {
+    this.props.removeAProduct(this.state.id)
+   // redirect to all producs
   }
 
   render () {
         // const id = this.state.id;
         return (
             <div>
-                <h3>Product Name: {this.state.name} </h3>
+                <h3>Product Name: {this.state.name} </h3> <button onClick={this.handleDelete}>Delete</button>
                 <img src={this.state.imageURL}/>
                 <h4>Current stock: {this.state.stock} units</h4>
                 <h1>Update Product: </h1>
@@ -57,7 +61,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   getAProduct: (id) => dispatch(fetchAProduct(id)),
-  updateProduct: (id, updates) => dispatch(updatedAProduct(id, updates))
+  updateProduct: (id, updates) => dispatch(updatedAProduct(id, updates)),
+  removeAProduct: (id) => dispatch(removeAProduct(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProduct);

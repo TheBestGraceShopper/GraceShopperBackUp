@@ -57,8 +57,11 @@ router.put('/admin/:productId', authorize, async (req, res, next) => {
     }
 })
 
-// DELETE /api/products/admin/:productId
-router.delete('admin/:productId', authorize, async (req, res, next) => {
+
+// DELETE /products/admin/:productId
+
+router.delete('/admin/:productId', authorize, async (req, res, next) => {
+
     try {
         await Product.destroy({
             where: {

@@ -10,6 +10,7 @@ import SingleProductAdmin from './components/singleproduct/SingleProductAdmin'
 import CreateProduct from './components/CreateProduct'
 import EditProduct from './components/EditProduct'
 import Cart from './components/cart'
+import ProductsListAdmin from './components/products-list/ProductListAdmin'
 
 /**
  * COMPONENT
@@ -28,7 +29,8 @@ class Routes extends Component {
         <Route exact path='/admin/products/add' component={CreateProduct} />
         <Route path='/admin/products/:productId' component={EditProduct} />
         <Route exact path='/products/:productId' component={SingleProduct} />
-        <Route path="/products" component={ProductsList} />
+        <Route path="/products" render={routeProps => <ProductsList {...routeProps} admin={false} />} />
+        <Route path="/admin/products" render={routeProps => <ProductsListAdmin {...routeProps} admin={true} />} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         {isLoggedIn && (

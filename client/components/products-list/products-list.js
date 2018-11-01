@@ -3,8 +3,7 @@ import Product from './product'
 import FilterBar from './filter-bar'
 import SearchBar from './search-bar'
 import { connect } from 'react-redux'
-import { fetchProducts } from '../../store/product'
-
+import { fetchProducts, removeAProduct } from '../../store/product'
 
 class ProductsListComp extends Component {
   constructor() {
@@ -12,7 +11,8 @@ class ProductsListComp extends Component {
     this.state = {
       filterTitle: 'All Products',
       products: [],
-      searchProducts: []
+      searchProducts: [],
+      filteredProducts: []
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -24,8 +24,14 @@ class ProductsListComp extends Component {
     })
   }
 
+  handleChange(whatToFilter) {
+    this.setState({filterTitle: filterTitle(whatToFilter) })
+  }
+  searchTitle(searchVal) {
+    this.setState({filterTitle: `Search Results For: ${searchVal}` })
+  }
+
   render() {
-    console.log('test');
       let filteredProducts = this.state.products;
       if (this.state.filterTitle === 'All Products') filteredProducts = this.state.products
       else if (this.state.filterTitle === 'All Charcuterie Boards') filteredProducts = this.state.products.filter(product => product.category === 'charcuterie board')
@@ -40,24 +46,28 @@ class ProductsListComp extends Component {
       }
 
     return (
+
       <div>
         <FilterBar handleChange={this.handleChange} />
         <SearchBar searchOnChange={searchOnChange} />
         <h2>{this.state.filterTitle}</h2>
         <div id="outer-products-div">
           <div className="products">
-    {this.state.searchProducts.length ? this.state.searchProducts.map(product => <Product key={product.id} product={product} />) : filteredProducts.map(product => <Product key={product.id} product={product} /> )}
+    {this.state.searchProducts.length ? this.state.searchProducts.map(product => <Product key={product.id} product={product} />) : filteredProducts.map(product => <Product key={product.id} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct}/> )}
           </div>
         </div>
       </div>
     )
   }
+
   handleChange(whatToFilter) {
+console.log(whatToFilter,'event');
     this.setState({filterTitle: filterTitle(whatToFilter) })
   }
   searchTitle(searchVal) {
     this.setState({filterTitle: `Search Results For: ${searchVal}` })
   }
+
 }
 
 function filterTitle(whatToFilter) {
@@ -89,7 +99,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchProducts: () => dispatch(fetchProducts())
+  fetchProducts: () => dispatch(fetchProducts()),
+  removeProduct: (id) => dispatch(removeAProduct(id))
 });
 
 const ProductsList = connect(mapStateToProps, mapDispatchToProps)(ProductsListComp)

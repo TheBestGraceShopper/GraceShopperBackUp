@@ -85,7 +85,7 @@ export const updatedAProduct = (id, updates) => {
 
 export const removeAProduct = (id) => {
   return async (dispatch) =>{
-    await axios.delete(`api/products/admin/${id}`)
+    await axios.delete(`/api/products/admin/${id}`)
     dispatch(removeProduct(id))
   }
 }

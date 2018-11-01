@@ -7,7 +7,7 @@ import { addAProduct } from '../store/product'
 class CreateProduct extends React.Component {
   constructor() {
     super()
-<<<<<<< HEAD
+
     this.state  = {
         category: '',
         name: '',
@@ -16,8 +16,7 @@ class CreateProduct extends React.Component {
         stock: '',
         imageURL: ''
       }
-=======
-
+    
     this.state = {
       category: '',
       name: '',
@@ -26,7 +25,6 @@ class CreateProduct extends React.Component {
       stock: '',
       imageURL: ''
     }
->>>>>>> fee1e737eb4051a648c89de47068084a4c3d355f
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)

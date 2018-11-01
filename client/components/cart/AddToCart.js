@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 
 class AddToCart extends Component {
 
-    addToCart(product){
-        let cart = this.props.cart
+    addCart(product){
+        console.log('PROPS', this.props)
+        let cart = [this.props]      
         cart.push(product)
         localStorage.setItem('cart', JSON.stringify(cart))
         this.setState(cart)
@@ -11,7 +12,7 @@ class AddToCart extends Component {
 
     render(){
         return (
-            <button type='button' onClick={() => this.addToCart(this.props.prodcuts)}>
+            <button type='button' onClick={() => this.addCart(this.props.products)}>
             Add To Cart
             </button>
         )

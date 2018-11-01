@@ -5,7 +5,6 @@ import SearchBar from './search-bar'
 import { connect } from 'react-redux'
 import { fetchProducts } from '../../store/product'
 
-
 class ProductsListComp extends Component {
   constructor() {
     super()
@@ -53,6 +52,7 @@ class ProductsListComp extends Component {
     )
   }
   handleChange(whatToFilter) {
+console.log(whatToFilter,'event');
     this.setState({filterTitle: filterTitle(whatToFilter) })
   }
   searchTitle(searchVal) {

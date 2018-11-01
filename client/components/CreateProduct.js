@@ -17,7 +17,6 @@ class CreateProduct extends React.Component {
       imageURL: ''
     }
 
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -32,12 +31,12 @@ class CreateProduct extends React.Component {
     e.preventDefault();
     this.props.addProduct(this.state)
     this.setState({
-      category: '',
-      name: '',
-      description: '',
-      price: '',
-      stock: '',
-      imageURL: ''
+        category: '',
+        name: '',
+        description: '',
+        price: '',
+        stock: '',
+        imageURL: ''
     })
     this.props.history.push('/products')
   }

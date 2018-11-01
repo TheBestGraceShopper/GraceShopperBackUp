@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // ACTION TYPES
 const GET_ORDER = 'GET_ORDER'
-// const REMOVE_ORDER = 'REMOVE_ORDER' 
+// const REMOVE_ORDER = 'REMOVE_ORDER'
 
 // ACTION CREATORS
 const getOrder = order => ({
@@ -11,9 +11,9 @@ const getOrder = order => ({
 })
 
 // THUNKAROOS
-export const fetchOrder = () => async dispatch => {
+export const fetchOrder = (id) => async dispatch => {
     try {
-        const {data} = await axios.get('SOME ROUTE STRING HERE')
+        const {data} = await axios.get('SOME ROUTE STRING HERE'/{id})
         dispatch(getOrder(data))
     } catch(err){
         console.log(err)

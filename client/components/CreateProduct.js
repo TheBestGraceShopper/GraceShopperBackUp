@@ -8,6 +8,15 @@ class CreateProduct extends React.Component {
   constructor() {
     super()
 
+    this.state  = {
+        category: '',
+        name: '',
+        description: '',
+        price: '',
+        stock: '',
+        imageURL: ''
+      }
+    
     this.state = {
       category: '',
       name: '',

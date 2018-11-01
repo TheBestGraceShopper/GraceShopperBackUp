@@ -20,7 +20,6 @@ const Order = db.define('order', {
 Order.prototype.getPrice = async function() {
     //find the products within this order
     try {
-
       const products = await Product.findAll({
         where: {orderId: this.id}
       })

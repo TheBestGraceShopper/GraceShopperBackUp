@@ -24,6 +24,7 @@ class ProductsListComp extends Component {
   }
 
   render() {
+    console.log('test');
       let filteredProducts = this.state.products;
       if (this.state.filterTitle === 'All Products') filteredProducts = this.state.products
       else if (this.state.filterTitle === 'All Charcuterie Boards') filteredProducts = this.state.products.filter(product => product.category === 'charcuterie board')
@@ -41,7 +42,7 @@ class ProductsListComp extends Component {
       <div>
         <FilterBar handleChange={this.handleChange} />
         <SearchBar searchOnChange={searchOnChange} />
-        <h1>{this.state.filterTitle}</h1>
+        <h2>{this.state.filterTitle}</h2>
         <div id="outer-products-div">
           <div className="products">
     {this.state.searchProducts.length ? this.state.searchProducts.map(product => <Product key={product.id} product={product} />) : filteredProducts.map(product => <Product key={product.id} product={product} /> )}

@@ -8,4 +8,4 @@
       next()
   }
 
-  module.exports =authorize
+  module.exports = authorize;

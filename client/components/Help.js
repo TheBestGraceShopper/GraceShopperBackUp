@@ -1,21 +1,7 @@
 import React, { Component } from 'react'
 
 
-const reactFormContainer = document.querySelector('.react-form-container')
-
-class ReactFormLabel extends Component {
- constructor(props) {
-  super(props)
- }
-
- render() {
-  return(
-   <label htmlFor={this.props.htmlFor}>{this.props.title}</label>
-  )
- }
-}
-
-class ReactForm extends Component {
+class ContactUsForm extends Component {
  constructor(props) {
   super(props)
 
@@ -121,4 +107,4 @@ class ReactForm extends Component {
  }
 }
 
-export default 
+export default ContactUsForm;

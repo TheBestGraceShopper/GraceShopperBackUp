@@ -12,7 +12,7 @@ const Product = require('./product')
  
 /**
  * We'll export all of our models here, so that any time a module needs a model,
- * we can just require it from 'db/models'
+ * we can just require it from 'db/model
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */

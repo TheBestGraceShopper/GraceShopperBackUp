@@ -69,3 +69,9 @@ form div {
 .out-of-stock {
   color: red;
 }
+
+/* ======================== single product ==================================== */
+
+.single-product img {
+  height: 400px;
+}

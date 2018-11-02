@@ -1,7 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchAProduct} from '../../store'
+
+import Review from './Review'
 import AddToCart from '../cart/AddToCart'
+
 
 class SingleProduct extends React.Component {
     componentDidMount() {
@@ -17,13 +20,18 @@ class SingleProduct extends React.Component {
 
         return (
             selectedProduct.id &&
-            <div>
+        <div>
+            <div className="single-product">
                 <h1>Name: {selectedProduct.name}</h1>
                 <img src={selectedProduct.imageURL} />
                 <p>Description: {selectedProduct.description}</p>
                 <h2>Price: {selectedProduct.price}</h2>
                 <AddToCart selectedProduct={selectedProduct} />
             </div>
+            <div>
+              <Review productId={selectedProduct.id}/>
+            </div>
+        </div>
         )
     }
 }

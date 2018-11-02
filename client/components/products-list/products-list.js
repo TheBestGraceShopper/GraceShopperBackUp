@@ -13,7 +13,8 @@ class ProductsListComp extends Component {
     this.state = {
       products: [],
       searchProducts: [],
-      filteredProducts: 'all'
+      filteredProducts: 'all',
+      filtered: []
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -32,21 +33,10 @@ class ProductsListComp extends Component {
     this.setState({filteredProducts: `Search Results For: ${searchVal}` })
   }
 
-
   render() {
 
-      let filteredProducts = this.state.products;
-      switch (this.state.filteredProducts) {
-        case 'all':
-          filteredProducts = this.state.products
-          break;
-        default:
-        filteredProducts = this.state.products.filter(product => product.category === this.state.filteredProducts)
-      }
-
-
       const searchOnChange = (searchVal) => {
-        filteredProducts = searchFilter(searchVal, this.state.products);
+        let filteredProducts = searchFilter(searchVal, this.state.products);
         this.setState({searchProducts: filteredProducts})
         this.searchTitle(searchVal);
       }
@@ -54,12 +44,17 @@ class ProductsListComp extends Component {
     return (
 
       <div>
+        <button type="submit" form="test" value="Submit">Submit</button>
         <FilterBar handleChange={this.handleChange} products={this.state.products}/>
         <SearchBar searchOnChange={searchOnChange} />
         <h2>{this.state.filteredProducts}</h2>
         <div id="outer-products-div">
           <div className="products">
-              {this.state.searchProducts.length ? this.state.searchProducts.map(product => <Product key={product.id} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser}/>) : filteredProducts.map(product => <Product key={product.id} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser}/> )}
+              {this.state.searchProducts.length ? this.state.searchProducts.map(product =>
+              <Product key={product.id} history={this.props.history} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser}/>)
+              : (this.state.filteredProducts === 'all' ? this.props.products
+              : this.props.products.filter(product => product.category === this.state.filteredProducts)).map(product =>
+              <Product key={product.id} history={this.props.history} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser}/> )}
           </div>
         </div>
       </div>

@@ -39,9 +39,9 @@ export const fetchCart = userId => async dispatch => {
     }
 }
 
-export const addProduct = (product,userId) => async dispatch => {
+export const addProduct = (product, userId, orderId) => async dispatch => {
     try {
-        const response = await axios.post(`/api/cart/${userId}`, product)
+        const response = await axios.post(`/api/cart/${userId}`, product, orderId)
         const newProduct = response.data
         const action = addProductToCart(newProduct)
         dispatch(action)

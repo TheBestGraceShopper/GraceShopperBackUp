@@ -3,8 +3,7 @@ import React, {Component} from 'react'
 class AddToCart extends Component {
 
     addCart(product){
-        console.log('PROPS', this.props)
-        let cart = [this.props]      
+        let cart = [this.props]
         cart.push(product)
         localStorage.setItem('cart', JSON.stringify(cart))
         this.setState(cart)

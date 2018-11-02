@@ -2,6 +2,11 @@
   margin: 0
 }
 
+img {
+  width: 400px;
+  height: 400px;
+}
+
 body {
   font-family: sans-serif;
 }
@@ -71,7 +76,3 @@ form div {
 }
 
 /* ======================== single product ==================================== */
-
-.single-product img {
-  height: 400px;
-}

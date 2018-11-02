@@ -4,6 +4,7 @@ class AddToCart extends Component {
 
     addToCart(product){
         let cart = this.props.cart
+
         cart.push(product)
         localStorage.setItem('cart', JSON.stringify(cart))
         this.setState(cart)

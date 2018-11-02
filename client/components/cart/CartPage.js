@@ -4,7 +4,7 @@ import CheckoutPage from './CheckoutPage'
 
 const CartPage = () => {
   const cartItems = JSON.parse(localStorage.getItem('cart'))
-  console.log('cartItems=============', localStorage)
+
   return (
     <div>
          <ol>
@@ -27,7 +27,5 @@ const CartPage = () => {
     </div>
     )
   }
-
-
 
 export default CartPage;

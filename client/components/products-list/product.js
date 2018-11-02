@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Product = ({ product, admin, removeProduct }) => {
+const Product = ({ product, admin, removeProduct, addProductToCart, userId }) => {
   return (
 
     <div className="product-small">
@@ -12,11 +12,12 @@ const Product = ({ product, admin, removeProduct }) => {
         {product.stock ? <p className="in-stock">In Stock</p> : <p className="out-of-stock">Out Of Stock</p>}
       </Link>
       <button type="button" onClick={() => removeProduct(product.id)}>Delete</button>
+      <button type="button" onClick={() => addProductToCart(product, userId)}>Add To Cart</button>
     </div>
 
   )
 }
-
+//
 export default Product
 
 

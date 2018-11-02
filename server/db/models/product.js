@@ -30,10 +30,7 @@ const Product = db.define('product', {
       },
       imageURL: {
           type: Sequelize.STRING,
-          defaultValue: 'https://image.ibb.co/dJjsQ0/image-not-avaliable.png'
-          // validate: {
-          //   isUrl: true
-          // }
+          defaultValue: 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg'
       }
 })
 

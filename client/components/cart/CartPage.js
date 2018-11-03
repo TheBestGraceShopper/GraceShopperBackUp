@@ -5,8 +5,8 @@ import CheckoutPage from './CheckoutPage'
 
 
 const CartPage = () => {
-  const cartItems = JSON.parse(localStorage.getItem('cart')).slice(1)
-console.log('CART ITEMS', cartItems)
+  const cartItems =  JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : []
+  
   return (
     
     <div>
@@ -18,7 +18,7 @@ console.log('CART ITEMS', cartItems)
                   <br />
                   Price: {`${products.price}`}
                   <br />
-                  <img src={products.imageUrl} />
+                  <img src={products.imageURL} />
                 </li>
                 <br />
               </div>

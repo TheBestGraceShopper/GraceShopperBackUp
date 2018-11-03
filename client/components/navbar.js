@@ -17,11 +17,13 @@ const Navbar = ({handleClick, isLoggedIn}) => (
     </div>
     <div>
       <CartButton />
+
     </div>
-    <nav>
+    <nav className = 'login-nav'>
       {isLoggedIn ? (
         <div>
           <Link to="/home">Home</Link>
+
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -34,6 +36,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
+
     </nav>
   </div>
 )
@@ -64,3 +67,5 @@ Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
+
+

@@ -5,11 +5,12 @@ import CheckoutPage from './CheckoutPage'
 
 
 const CartPage = () => {
-  const cartItems =  JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : []
+  const cartItems = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : []
   
   return (
-    
+
     <div>
+      <h3>Your Shopping Cart</h3>
          <ol>
             {cartItems.map((products) => (
               <div key={products.id}>

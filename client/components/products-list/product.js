@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+console.log('test')
 
 const Product = ({ product, admin, removeProduct, addProductToCart, userId, history }) => {
   return (

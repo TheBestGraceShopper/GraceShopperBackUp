@@ -11,6 +11,7 @@ import CreateProduct from './components/CreateProduct'
 import EditProduct from './components/EditProduct'
 import ProductsListAdmin from './components/products-list/ProductListAdmin'
 import CartPage from './components/cart/CartPage';
+import OurStory from './components/OurStory'
 /**
  * COMPONENT
  */
@@ -32,6 +33,7 @@ class Routes extends Component {
         <Route path="/admin/products" render={routeProps => <ProductsListAdmin {...routeProps} admin={true} />} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/our-story" component={OurStory} />
         <Route exact path="/cart" component={CartPage} />
         {isLoggedIn && (
           <Switch>

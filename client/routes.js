@@ -11,7 +11,6 @@ import CreateProduct from './components/CreateProduct'
 import EditProduct from './components/EditProduct'
 import ProductsListAdmin from './components/products-list/ProductListAdmin'
 import CartPage from './components/cart/CartPage';
-
 /**
  * COMPONENT
  */
@@ -33,6 +32,7 @@ class Routes extends Component {
         <Route path="/admin/products" render={routeProps => <ProductsListAdmin {...routeProps} admin={true} />} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route exact path="/cart" component={CartPage} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -42,7 +42,6 @@ class Routes extends Component {
         )}
         {/* Displays our Login component as a fallback */}
         {/* <Route component={Login} /> */}
-        <Route exact path="/cart" component={CartPage} />
       </Switch>
     )
   }

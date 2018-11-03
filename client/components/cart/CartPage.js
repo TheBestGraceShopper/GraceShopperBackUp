@@ -5,8 +5,8 @@ import CheckoutPage from './CheckoutPage'
 
 
 const CartPage = () => {
-  const cartItems = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [];
-console.log('CART ITEMS', cartItems)
+  const cartItems = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : []
+  
   return (
 
     <div>

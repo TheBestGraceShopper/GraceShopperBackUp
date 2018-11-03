@@ -59,7 +59,8 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     validation: {
       isIn: [['admin', 'user', 'guest']]
-    }
+    },
+    defaultValue: 'guest'
   }
 })
 

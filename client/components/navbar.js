@@ -3,31 +3,38 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../store'
+import CartButton from './CartButton'
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
 
-  <div>
+  <div className = 'navbar'>
     <h1>Let It Brie</h1>
-    <div id='navbar' className='column'>
-          <Link to="/products">Shop</Link> <br>
-          </br>
-          <Link to="/our-story">Our Story</Link> <br>
-          </br>
-          <Link to="/help">Contact Us!</Link>
+    <div className = 'menu'>
+      <div className='row'>
+        <Link to="/products">Shop</Link>
+        <br />
+        <Link to="/our-story">Our Story</Link>
+        <br />
+        <Link to="/help">Contact Us!</Link>
+      </div>
+
     </div>
-    <nav>
+    <nav className = 'login-nav'>
       {isLoggedIn ? (
-       <div>
+        <div>
           <Link to="/home">Home</Link>
           <a href="#" onClick={handleClick}>Logout </a>
-        </div>   ) : (
-        <div>
+        </div>) : (
+          <div className='loginbutton'>
             {/* The navbar will show these links before you log in */}
 
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
-        </div>
+          </div>
         )}
+      <div className='cart-butt'>
+        <CartButton />
+      </div>
     </nav>
   </div>
 )
@@ -58,3 +65,5 @@ Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
+
+

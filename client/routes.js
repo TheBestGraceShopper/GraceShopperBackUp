@@ -12,6 +12,7 @@ import EditProduct from './components/EditProduct'
 import ProductsListAdmin from './components/products-list/ProductListAdmin'
 import CartPage from './components/cart/CartPage';
 import CheckoutForm from './components/cart/CheckoutForm'
+import OurStory from './components/OurStory'
 
 /**
  * COMPONENT
@@ -35,6 +36,8 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart/checkout" component={CheckoutForm} />
+        <Route path="/our-story" component={OurStory} />
+        <Route exact path="/cart" component={CartPage} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -44,7 +47,6 @@ class Routes extends Component {
         )}
         {/* Displays our Login component as a fallback */}
         {/* <Route component={Login} /> */}
-        <Route exact path="/cart" component={CartPage} />
       </Switch>
     )
   }

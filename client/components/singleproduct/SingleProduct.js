@@ -5,6 +5,7 @@ import { fetchAProduct, fetchReviews, postReview} from '../../store'
 
 import Review from './Review'
 import AddToCart from '../cart/AddToCart'
+import CartPage from '../cart/CartPage';
 
 
 class SingleProduct extends React.Component {
@@ -30,13 +31,17 @@ class SingleProduct extends React.Component {
       await this.props.getReviews(productId);
       this.setState({userId: this.props.userId, productId: productId});
       this.getLocalStorage();
-      this.addToCart(this.props.selectedProduct)
+      
+      localStorage.getItem('cart') && this.setState({
+        cart: JSON.parse(localStorage.getItem('cart'))
+      })
+      // this.addToCart(this.props.selectedProduct)
     }
 
     handleSubmit (e) {
       e.preventDefault(e);
       const review = {text: this.state.text, rating: Number(this.state.rating), userId: this.state.userId, productId: this.state.productId}
-      console.log(review)
+      // console.log(review)
       this.props.addReview(review);
     }
     handleChange (e) {
@@ -59,18 +64,19 @@ class SingleProduct extends React.Component {
       }
 
       addToCart(product) {
-        let cart = this.state.cart
+        let cart = [...this.state.cart]
         cart.push(product)
-        localStorage.setItem('cart', JSON.stringify(product))
+        // localStorage.getItem('cart', JSON.parse(cart))
+        localStorage.setItem('cart', JSON.stringify(cart))
         var cartValue = localStorage.getItem('cart')
         var cartObj = JSON.parse(cartValue)
-        this.setState({cart: [...cart, cartObj]})
+        this.setState({cart: [...cart], cartObj})
       }
 
 
     render() {
-        console.log('LOCAL STORATE', localStorage)
-        console.log('CARRRRT', this.state.cart)
+      //  console.log("localStorage", JSON.parse(localStorage.getItem('cart')))
+      console.log("CART", this.state.cart)
         const {selectedProduct} = this.props
         if (!selectedProduct.id) {
            return 'Loading the product...'

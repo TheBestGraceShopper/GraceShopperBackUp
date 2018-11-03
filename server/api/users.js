@@ -36,14 +36,12 @@ router.put('/:userId', async (req, res, next) => {
       },
       attributes: ['id', 'email', 'userType']
     })
-    if (user) {
-      const updatedUser = await user.update(req.body)
-      res.status(201).json(updatedUser)
-    } else {
-      res.status(404).send('User not found')
-    }
+    const updatedUser = await user.update(req.body)
+    res.status(201).json(updatedUser)
+
   } catch (err) {
     next(err)
   }
 })
 
+// GET /api/user

@@ -11,6 +11,7 @@ import CreateProduct from './components/CreateProduct'
 import EditProduct from './components/EditProduct'
 import ProductsListAdmin from './components/products-list/ProductListAdmin'
 import CartPage from './components/cart/CartPage';
+import CheckoutForm from './components/cart/CheckoutForm'
 
 /**
  * COMPONENT
@@ -33,6 +34,7 @@ class Routes extends Component {
         <Route path="/admin/products" render={routeProps => <ProductsListAdmin {...routeProps} admin={true} />} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/cart/checkout" component={CheckoutForm} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

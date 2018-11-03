@@ -1,45 +1,83 @@
 import React from 'react'
-import axios from 'axios'
-import StripeCheckout from 'react-stripe-checkout'
-import history from '../../history'
+import AddressForm from './AddressForm'
+import {me} from '../../store/user';
+import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 
-const STRIPE_PUBLISHABLE =
-	process.env.NODE_ENV === 'production'
-		? 'pk_test_VXhU5UDBroNkMgpztFSS2AAu'
-		: 'pk_test_VXhU5UDBroNkMgpztFSS2AAu'
+class CheckoutForm extends React.Component {
+    constructor () {
+        super()
+        this.state = {
+            email: '',
+            firstName: '',
+            lastName: '',
+            address: '',
+            city: '',
+            country: '',
+            zipCode: '',
+            phoneNumber: ''
+        }
 
-const currency = 'USD'
-const monetize = amount => Number(amount) * 1000
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
 
-const successfullPayment = data => {
-    alert('Thanks for the purchase! Enjoy your meats and cheeses.')
-}
+    async componentDidMount () {
+      if (this.props.user.id) {
+        await this.props.getUser(this.props.user.id)
+      }
+      this.setState({
+        email: this.props.user.email,
+        firstName: this.props.user.firstName,
+        lastName: this.props.user.lastName,
+        address: this.props.user.address,
+        city: this.props.user.city,
+        country: this.props.user.country,
+        zipCode: this.props.user.zipCode,
+        phoneNumber: this.props.user.phoneNumber
+      })
+    }
 
-const failedPayment = data => {
-    alert('You cannnot enjoy your meats and cheeses just yet. Do you have enough money?')
-}
+    handleChange (e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
 
-const withToken = (amount, description, clearCart) => token =>
-  axios.post('/api/stripe', {
-      description,
-      source: token.id,
-      currency,
-      amount: monetize(amount)
-  })
-  .then(successfullPayment)
-//   .then(clearCart()) going to need to pass down the props for clearing cart
-  .then(history.push('/home'))
-  .catch(failedPayment)
+    handleSubmit (e) {
+        e.preventDefault();
+        this.setState({
+            email: '',
+            firstName: '',
+            lastName: '',
+            address: '',
+            city: '',
+            country: '',
+            zipCode: '',
+            phoneNumber: ''
+        })
+    }
 
-const CheckoutForm = ({name, description, amount, clearCart}) => (
-	<StripeCheckout
-		name={name}
-		description={description}
-		amount={monetize(amount)}
-		token={withToken(amount, description, clearCart)}
-		currency={currency}
-		stripeKey={STRIPE_PUBLISHABLE}
-	/>
-)
+    render () {
+      console.log('state', this.state)
+      console.log('user', this.props.user)
+      return (
+        <div>
+          <Link to='/signup'>Create An Account</Link>
+          <h3>Already have an account?</h3>
+          <Link to='/login'>Login</Link>
+          <AddressForm state={this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+        </div>
+      )
+    }
+  }
 
-export default CheckoutForm;
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+const mapDispatchToProps = dispatch => ({
+  getUser: (userId) => dispatch(me(userId))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutForm)

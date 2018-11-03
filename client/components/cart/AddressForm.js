@@ -116,7 +116,6 @@ export default class AddressForm extends React.Component {
                         placeholder='Phone Number'
                     />
 
-                    <button type='submit' disabled={!this.state}>Continue To Payment</button>
                 </form>
             </div>
         )

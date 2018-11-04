@@ -3,6 +3,7 @@ import AddressForm from './AddressForm'
 import {me, createUser, editUser} from '../../store/user';
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import StripeForm from './StripeForm'
 
 class CheckoutForm extends React.Component {
     constructor () {
@@ -82,8 +83,6 @@ class CheckoutForm extends React.Component {
             zipCode: '',
             phoneNumber: ''
         })
-
-        this.props.history.push('/payment')
     }
 
     render () {
@@ -95,15 +94,12 @@ class CheckoutForm extends React.Component {
           <Link to='/login'>Login</Link>
           <AddressForm state={this.state} handleChange={this.handleChange} />
 
-        <button type="submit" onClick={this.handleSubmit}>Continue to Payment</button>
+        {/* <button type="submit" onClick={this.handleSubmit} disabled={!this.state}>Submit</button> */}
+        <StripeForm />
         </div>
       )
     }
   }
-
-// const mapStateToProps = state => ({
-//   user: state.user
-// })
 
 const mapDispatchToProps = dispatch => ({
   getUser: (userId) => dispatch(me(userId)),

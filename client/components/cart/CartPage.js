@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link, Redirect} from 'react-router-dom'
-import CheckoutPage from './CheckoutPage'
+import CheckoutForm from './CheckoutForm'
 
 
 const CartPage = () => {
@@ -30,8 +30,8 @@ const CartPage = () => {
               </div>
             ))}
           </ol>
-          <Link to='/checkout'>
-            <button onClick={() => <CheckoutPage />} type="button">Checkout</button>
+          <Link to='/cart/checkout'>
+            <button type="button">Checkout</button>
           </Link>
     </div>
     )
@@ -44,14 +44,14 @@ const CartPage = () => {
 export default connect(mapStateToProps)(CartPage);
 
 function itemWithAmount(items) {
-  const uniqueWtihCount = {}
+  const uniqueWithCount = {}
   items.forEach(item => {
-    if (!uniqueWtihCount[item.name]) {
-      uniqueWtihCount[item.name] = item;
-      uniqueWtihCount[item.name].count = 1
+    if (!uniqueWithCount[item.name]) {
+      uniqueWithCount[item.name] = item;
+      uniqueWithCount[item.name].count = 1
     } else {
-      uniqueWtihCount[item.name].count++
+      uniqueWithCount[item.name].count++
     }
   })
-  return uniqueWtihCount;
+  return uniqueWithCount;
 }

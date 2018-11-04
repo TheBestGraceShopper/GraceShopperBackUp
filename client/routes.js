@@ -13,6 +13,7 @@ import ProductsListAdmin from './components/products-list/ProductListAdmin'
 import CartPage from './components/cart/CartPage';
 import CheckoutForm from './components/cart/CheckoutForm'
 import OurStory from './components/OurStory'
+import Account from './components/Account'
 
 /**
  * COMPONENT
@@ -35,13 +36,14 @@ class Routes extends Component {
         <Route path="/admin/products" render={routeProps => <ProductsListAdmin {...routeProps} admin={true} />} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/cart/checkout" component={CheckoutForm} />
+        <Route path="/cart/checkout" render={routeProps => <CheckoutForm {...routeProps} user={this.props.user} />} />
         <Route path="/our-story" component={OurStory} />
         <Route exact path="/cart" component={CartPage} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/account" component={Account} />
             <Route path='/admin/products/:productId' component={SingleProductAdmin} />
           </Switch>
         )}
@@ -59,7 +61,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user
   }
 }
 

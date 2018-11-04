@@ -12,11 +12,12 @@ class ProductsListComp extends Component {
     super()
     this.state = {
       products: [],
-      searchProducts: [],
+      searchVal: '',
       filteredProducts: 'all',
       filtered: []
     }
     this.handleChange = this.handleChange.bind(this);
+    this.searchOnChange = this.searchOnChange.bind(this);
   }
 
   async componentDidMount() {
@@ -26,44 +27,11 @@ class ProductsListComp extends Component {
     })
   }
 
-  handleChange(whatToFilter) {
-    this.setState({filteredProducts: whatToFilter })
-  }
-  searchTitle(searchVal) {
+  searchTitle (searchVal) {
     this.setState({filteredProducts: `Search Results For: ${searchVal}` })
   }
 
-  render() {
-
-      const searchOnChange = (searchVal) => {
-        let filteredProducts = searchFilter(searchVal, this.state.products);
-        this.setState({searchProducts: filteredProducts})
-        this.searchTitle(searchVal);
-      }
-
-    return (
-
-      <div>
-        <button type="submit" form="test" value="Submit">Submit</button>
-        <FilterBar handleChange={this.handleChange} products={this.state.products}/>
-        <SearchBar searchOnChange={searchOnChange} />
-        <h2>{this.state.filteredProducts}</h2>
-        <div id="outer-products-div">
-          <div className="products">
-              {this.state.searchProducts.length ? this.state.searchProducts.map(product =>
-              <Product key={product.id} history={this.props.history} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser}/>)
-              : (this.state.filteredProducts === 'all' ? this.props.products
-              : this.props.products.filter(product => product.category === this.state.filteredProducts)).map(product =>
-              <Product key={product.id} history={this.props.history} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser}/> )}
-          </div>
-        </div>
-      </div>
-    )
-  }
-}
-
-function searchFilter(searchVal, products) {
-  const productSearchMatch = (searchVal, product) => {
+  productSearchMatch (searchVal, product) {
     const searchLowerCase = searchVal.toLowerCase();
     const productArr = product.description.toLowerCase().split(' ').concat(product.name.toLowerCase().split(" ")).concat(product.category.split(" "));
     if (productArr.includes(searchLowerCase)) return true;
@@ -74,8 +42,36 @@ function searchFilter(searchVal, products) {
     }
     return false;
   }
-  const whatIsThis = [...products].filter(product => productSearchMatch(searchVal, product))
-  return whatIsThis ;
+
+
+  handleChange(whatToFilter) {
+    this.setState({filteredProducts: whatToFilter })
+  }
+
+  searchOnChange (searchVal) {
+    this.setState({searchVal})
+    this.searchTitle(searchVal);
+  }
+
+  render() {
+    return (
+
+      <div>
+        <button type="submit" form="test" value="Submit">Submit</button>
+        <FilterBar handleChange={this.handleChange} products={this.state.products}/>
+        <SearchBar searchOnChange={this.searchOnChange} />
+        <h2>{this.state.filteredProducts}</h2>
+        <div id="outer-products-div">
+          <div className="products">
+              {this.state.searchVal.length ? this.props.products.filter(product => this.productSearchMatch(this.state.searchVal, product)).map(product=> <Product key={product.id} history={this.props.history} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser}/>)
+              : (this.state.filteredProducts === 'all' ? this.props.products
+              : this.props.products.filter(product => product.category === this.state.filteredProducts)).map(product =>
+              <Product key={product.id} history={this.props.history} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser}/> )}
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
 
 

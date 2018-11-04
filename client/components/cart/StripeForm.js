@@ -9,10 +9,10 @@ const STRIPE_PUBLISHABLE =
 		: 'pk_test_VXhU5UDBroNkMgpztFSS2AAu'
 
 const currency = 'USD'
-const monetize = amount => Number(amount) * 1000
+const monetize = amount => Number(amount) * 100
 
 const successfullPayment = data => {
-    alert('Thanks for the purchase! Enjoy your meats and cheeses.')
+    alert('Thanks for the purchase! Have a gouda day!')
 }
 
 const failedPayment = data => {

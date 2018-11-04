@@ -99,11 +99,11 @@ form div {
 }
 
 #banner {
-  background-image: url("https://preview.ibb.co/hY37Hf/let-it-brie-logo2.jpg");
+  background-image: url("https://preview.ibb.co/mS8jXf/let-it-brie-logo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-color: lightsalmon;
-  height: 400px;
+  height: 250px;
   width: 100%;
 }
 
@@ -133,6 +133,14 @@ form div {
   bottom: 0;
   width: 100%;
   height: 30px;
-  background-color: lightsalmon;
+  background-color: black;
 }
 
+.footer-text{
+  color: burlywood;
+  text-align: center
+}
+
+.our-story{
+  border-style: outset
+}

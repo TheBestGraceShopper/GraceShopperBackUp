@@ -1,12 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link, Redirect} from 'react-router-dom'
-import CheckoutPage from './CheckoutPage'
+import CheckoutForm from './CheckoutForm'
 
 
-const CartPage = () => {
+const CartPage = (props) => {
   const cartItems = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : []
-  
+
   return (
 
     <div>
@@ -25,8 +25,8 @@ const CartPage = () => {
               </div>
             ))}
           </ol>
-          <Link to='/checkout'>
-            <button onClick={() => <CheckoutPage />} type="button">Checkout</button>
+          <Link to='/cart/checkout'>
+            <button type="button">Checkout</button>
           </Link>
     </div>
     )

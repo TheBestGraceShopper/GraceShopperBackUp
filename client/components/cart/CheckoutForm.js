@@ -1,6 +1,6 @@
 import React from 'react'
 import AddressForm from './AddressForm'
-import {me} from '../../store/user';
+import {me, createUser, editUser} from '../../store/user';
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
@@ -23,9 +23,8 @@ class CheckoutForm extends React.Component {
     }
 
     async componentDidMount () {
-      if (this.props.user.id) {
-        await this.props.getUser(this.props.user.id)
-      }
+      await this.props.getUser(this.props.user.id)
+      // if (!this.state.zipCode) this.state.zipCode = ""
       this.setState({
         email: this.props.user.email,
         firstName: this.props.user.firstName,
@@ -46,6 +45,33 @@ class CheckoutForm extends React.Component {
 
     handleSubmit (e) {
         e.preventDefault();
+        if (!this.props.user.id) {
+          this.props.addUser({
+            email: this.state.email,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            address: this.state.address,
+            city: this.state.city,
+            country: this.state.country,
+            zipCode: Number(this.state.zipCode),
+            phoneNumber: this.state.phoneNumber,
+            userType: 'guest'
+          })
+        }
+
+        else {
+          this.props.updateUser({
+            email: this.state.email,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            address: this.state.address,
+            city: this.state.city,
+            country: this.state.country,
+            zipCode: Number(this.state.zipCode),
+            phoneNumber: this.state.phoneNumber
+          }, this.props.user.id)
+        }
+
         this.setState({
             email: '',
             firstName: '',
@@ -56,28 +82,33 @@ class CheckoutForm extends React.Component {
             zipCode: '',
             phoneNumber: ''
         })
+
+        this.props.history.push('/payment')
     }
 
     render () {
-      console.log('state', this.state)
-      console.log('user', this.props.user)
       return (
+
         <div>
           <Link to='/signup'>Create An Account</Link>
           <h3>Already have an account?</h3>
           <Link to='/login'>Login</Link>
-          <AddressForm state={this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+          <AddressForm state={this.state} handleChange={this.handleChange} />
+
+        <button type="submit" onClick={this.handleSubmit}>Continue to Payment</button>
         </div>
       )
     }
   }
 
-const mapStateToProps = state => ({
-  user: state.user
-})
+// const mapStateToProps = state => ({
+//   user: state.user
+// })
 
 const mapDispatchToProps = dispatch => ({
-  getUser: (userId) => dispatch(me(userId))
+  getUser: (userId) => dispatch(me(userId)),
+  addUser: (user) => dispatch(createUser(user)),
+  updateUser: (user, id) => dispatch(editUser(user, id))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CheckoutForm)
+export default connect(null, mapDispatchToProps)(CheckoutForm)

@@ -5,7 +5,7 @@ const Cart = db.define('cart', {
     orderId: {
       type: Sequelize.INTEGER
     },
-    total: {
+    price: {
       type: Sequelize.INTEGER
     },
     status: {
@@ -14,7 +14,7 @@ const Cart = db.define('cart', {
 })
 
 // Cart.prototype.findPrice = function () {
-//     const calculatePrice = 
+//     const calculatePrice =
 //     return this.total.reduce((sum, currentVal) => sum + currentVal)
 // }
 

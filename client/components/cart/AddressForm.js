@@ -3,7 +3,7 @@ import React from 'react'
 const AddressForm = (props) => {
   return (
     <div>
-        <form onSubmit={props.handleSubmit}>
+        <form>
             <h1>Contact Information</h1>
             <label htmlFor='email'>Email: </label>
             <input

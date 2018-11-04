@@ -12,6 +12,7 @@ class SingleProduct extends React.Component {
     super()
     this.state = {
       text: '',
+      title: '',
       rating: '',
       productId: '',
       userId: '',
@@ -40,6 +41,7 @@ class SingleProduct extends React.Component {
     e.preventDefault(e)
     const review = {
       text: this.state.text,
+      title: this.state.title,
       rating: Number(this.state.rating),
       userId: this.state.userId,
       productId: this.state.productId

@@ -44,4 +44,34 @@ router.put('/:userId', async (req, res, next) => {
   }
 })
 
-// GET /api/user
+// POST /api/users
+router.post('/', async (req, res, next) => {
+  try {
+      const newUser = await User.create({
+        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        address: req.body.address,
+        city: req.body.city,
+        country: req.body.country,
+        zipCode: req.body.zipCode,
+        phoneNumber: req.body.phoneNumber
+      })
+      res.status(201).send(newUser)
+  }
+  catch (err) {
+    next(err)
+  }
+})
+
+// PUT /api/users/checkout/:userId
+router.put('/checkout/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId)
+    const updatedUser = await user.update(req.body)
+    res.status(200).send(updatedUser)
+  }
+  catch (err) {
+    next(err)
+  }
+})

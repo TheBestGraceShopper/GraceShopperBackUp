@@ -60,7 +60,7 @@ const User = db.define('user', {
     validation: {
       isIn: [['admin', 'user', 'guest']]
     },
-    defaultValue: 'guest'
+    defaultValue: 'user'
   }
 })
 

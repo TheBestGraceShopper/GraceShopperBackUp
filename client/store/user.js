@@ -1,11 +1,14 @@
 import axios from 'axios'
 import history from '../history'
+import productsReducer from './product';
 
 /**
  * ACTION TYPES
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const ADD_USER = 'ADD_USER'
+const UPDATE_USER = 'UPDATE_USER'
 
 /**
  * INITIAL STATE
@@ -17,6 +20,8 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const addUser = (user) => ({type: ADD_USER, user})
+const updateUser = (user, id) => ({type: UPDATE_USER, user, id})
 
 /**
  * THUNK CREATORS
@@ -56,6 +61,26 @@ export const logout = () => async dispatch => {
   }
 }
 
+export const createUser = (user) => async dispatch => {
+  try {
+    const {data} = await axios.post('/api/users', user)
+    dispatch(addUser(data))
+  }
+  catch (err) {
+    console.error(err)
+  }
+}
+
+export const editUser = (user, id) => async dispatch => {
+  try {
+    const {data} = await axios.put(`/api/users/checkout/${id}`, user)
+    dispatch(updateUser(data))
+  }
+  catch (err) {
+    console.error(err)
+  }
+}
+
 /**
  * REDUCER
  */
@@ -65,6 +90,10 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case ADD_USER:
+      return action.user
+    case UPDATE_USER:
+      return action.user
     default:
       return state
   }

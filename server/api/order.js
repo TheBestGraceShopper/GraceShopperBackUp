@@ -3,7 +3,7 @@ const {Product, User} = require('../db/models')
 
 module.exports = router;
 
-// GET for '/api/cart/:userId'
+// GET for '/api/order/:userId'
 router.get('/:userId', async(req, res, next) => {
   const id = req.params.userId;
   try {
@@ -16,7 +16,7 @@ router.get('/:userId', async(req, res, next) => {
   }
 })
 
-//POST for '/api/cart/:userId'
+//POST for '/api/order/:userId'
 
 router.post('/:userId', async(req, res, next) => {
   const id = req.params.userId;
@@ -31,7 +31,7 @@ router.post('/:userId', async(req, res, next) => {
   }
 })
 
-//POST for '/api/cart/delete/:userId'
+//POST for '/api/order/delete/:userId'
 router.post('/delete/:userId', async(req, res, next) => {
   const id = req.params.userId;
   const productId = req.body.id;
@@ -46,6 +46,6 @@ router.post('/delete/:userId', async(req, res, next) => {
   }
 })
 
-// add to cart X
-// remove from cart
+// add to order X
+// remove from order
 // adjust get all for user ID

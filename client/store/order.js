@@ -49,7 +49,7 @@ const decreaseQuantity = (id, val) => ({
 
 export const fetchCart = userId => async dispatch => {
     try {
-        const {data} = await axios.get(`/api/cart/${userId}`)
+        const {data} = await axios.get(`/api/order/${userId}`)
         dispatch(getCart(data))
 
     } catch(err){
@@ -59,7 +59,7 @@ export const fetchCart = userId => async dispatch => {
 
 export const addProduct = (product, userId, orderId) => async dispatch => {
     try {
-        const response = await axios.post(`/api/cart/${userId}`, product, orderId)
+        const response = await axios.post(`/api/order/${userId}`, product, orderId)
         const newProduct = response.data
         const action = addProductToCart(newProduct)
         dispatch(action)
@@ -71,7 +71,7 @@ export const addProduct = (product, userId, orderId) => async dispatch => {
 
 export const deleteProduct = productId => async dispatch => {
     try {
-        await axios.post(`/api/cart/delete/${productId}`)
+        await axios.post(`/api/order/delete/${productId}`)
         const action = removeProductToCart(productId)
         dispatch(action)
     }
@@ -82,7 +82,7 @@ export const deleteProduct = productId => async dispatch => {
 
 export const addQuantity = (userId, productId) => async dispatch =>{
     try{
-        const response = await axios.put(`/api/cart/${userId}`, productId)
+        const response = await axios.put(`/api/order/${userId}`, productId)
         const updatedCart = response.data
         const action = increaseQuantity(updatedCart)
         dispatch(action)
@@ -94,7 +94,7 @@ export const addQuantity = (userId, productId) => async dispatch =>{
 
 export const removeQuantity = (userId, productId) => async dispatch =>{
     try{
-        const response = await axios.put(`/api/cart/${userId}`, productId)
+        const response = await axios.put(`/api/order/${userId}`, productId)
         const updatedCart = response.data
         const action = decreaseQuantity(updatedCart)
         dispatch(action)

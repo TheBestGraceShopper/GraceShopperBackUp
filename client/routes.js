@@ -14,6 +14,7 @@ import CartPage from './components/cart/CartPage';
 import CheckoutForm from './components/cart/CheckoutForm'
 import OurStory from './components/OurStory'
 import Account from './components/Account'
+import StripeForm from './components/cart/StripeForm'
 
 /**
  * COMPONENT
@@ -29,7 +30,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path='/admin/products/add' component={CreateProduct} />q2
+        <Route exact path='/admin/products/add' component={CreateProduct} />
         <Route path='/admin/products/:productId' component={EditProduct} />
         <Route exact path='/products/:productId' component={SingleProduct} />
         <Route path="/products" render={routeProps => <ProductsList {...routeProps} admin={false} />} />
@@ -39,6 +40,7 @@ class Routes extends Component {
         <Route path="/cart/checkout" render={routeProps => <CheckoutForm {...routeProps} user={this.props.user} />} />
         <Route path="/our-story" component={OurStory} />
         <Route exact path="/cart" component={CartPage} />
+        <Route path='/payment' component={StripeForm} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

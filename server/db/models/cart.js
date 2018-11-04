@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Cart = db.define('cart', {
+const Order = db.define('orders', {
     orderId: {
       type: Sequelize.INTEGER
     },
@@ -18,4 +18,4 @@ const Cart = db.define('cart', {
 //     return this.total.reduce((sum, currentVal) => sum + currentVal)
 // }
 
-module.exports = Cart;
+module.exports = Order;

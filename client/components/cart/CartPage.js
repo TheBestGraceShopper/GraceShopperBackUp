@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link, Redirect} from 'react-router-dom'
-import CheckoutPage from './CheckoutPage'
+import CheckoutForm from './CheckoutForm'
 
 
 const CartPage = () => {
@@ -30,8 +30,8 @@ const CartPage = () => {
               </div>
             ))}
           </ol>
-          <Link to='/checkout'>
-            <button onClick={() => <CheckoutPage />} type="button">Checkout</button>
+          <Link to='/cart/checkout'>
+            <button type="button">Checkout</button>
           </Link>
     </div>
     )

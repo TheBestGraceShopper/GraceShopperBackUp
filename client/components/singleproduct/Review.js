@@ -14,6 +14,8 @@ class Review extends React.Component {
 
       <label htmlFor='rating'> Rating:  </label>
           <input type ='text' name='rating' onChange={this.props.handleChange} value={this.props.state.rating}/>
+          <label htmlFor='title'> Review Title:  </label>
+          <input type ='text' name='title' onChange={this.props.handleChange} value={this.props.state.title}/>
           <label htmlFor='text'> Review:  </label>
           <input type ='text' name='text' onChange={this.props.handleChange} value={this.props.state.text}/>
 
@@ -22,6 +24,7 @@ class Review extends React.Component {
       {this.props.reviews.map(review => (
           <div key={review.id}>
             <p> {review.rating}</p>
+            <p> {review.title}</p>
             <p> {review.text}</p>
           </div>
       ))}

@@ -5,17 +5,11 @@ const Order = db.define('orders', {
     orderId: {
       type: Sequelize.INTEGER
     },
-    price: {
-      type: Sequelize.INTEGER
-    },
     status: {
-      type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed')
+      type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed'),
+      defaultValue: 'processing'
     }
 })
 
-// Cart.prototype.findPrice = function () {
-//     const calculatePrice =
-//     return this.total.reduce((sum, currentVal) => sum + currentVal)
-// }
 
 module.exports = Order;

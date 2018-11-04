@@ -5,21 +5,26 @@ import CheckoutPage from './CheckoutPage'
 
 
 const CartPage = () => {
-  const cartItems = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : []
-  
+  let cartItems = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [];
+  cartItems = itemWithAmount(cartItems);
+  let cartItemNames = Object.keys(cartItems);
+  console.log('cartItems======', cartItems)
+
   return (
 
     <div>
       <h3>Your Shopping Cart</h3>
          <ol>
-            {cartItems.map((products) => (
-              <div key={products.id}>
+            {cartItemNames.map((productName) => (
+              <div key={cartItems[productName].id}>
                 <li >
-                  <Link to={`/products/${products.id}`}> {`${ products.name}`}</Link>
+                  <Link to={`/products/${cartItems[productName].id}`}> {`${ cartItems[productName].name}`}</Link>
                   <br />
-                  Price: {`${products.price}`}
+                  <p>Price: {`$${cartItems[productName].price * cartItems[productName].count}`}</p>
                   <br />
-                  <img src={products.imageURL} />
+                  <p>Amount: {cartItems[productName].count}</p>
+                  <br />
+                  <img src={cartItems[productName].imageURL} />
                 </li>
                 <br />
               </div>
@@ -37,3 +42,16 @@ const CartPage = () => {
   })
 
 export default connect(mapStateToProps)(CartPage);
+
+function itemWithAmount(items) {
+  const uniqueWtihCount = {}
+  items.forEach(item => {
+    if (!uniqueWtihCount[item.name]) {
+      uniqueWtihCount[item.name] = item;
+      uniqueWtihCount[item.name].count = 1
+    } else {
+      uniqueWtihCount[item.name].count++
+    }
+  })
+  return uniqueWtihCount;
+}

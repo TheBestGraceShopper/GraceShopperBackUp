@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 
 class CartButton extends Component {
   render() {
-    // const cartItems = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')).length : 0;
-    const cartItems = this.props.state.order.cart.length
+    const cartItems = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')).length : 0;
+    // const cartItems = this.props.state.order.cart.length
     console.log('What are you?', this.props.state)
     return (
       <div id="shopping-cart" >

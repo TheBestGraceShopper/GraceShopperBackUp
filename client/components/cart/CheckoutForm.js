@@ -83,9 +83,13 @@ class CheckoutForm extends React.Component {
             zipCode: '',
             phoneNumber: ''
         })
+
+        this.props.history.push('/cart/checkout/payment')
     }
 
     render () {
+      const isEnabled = this.state.email && this.state.firstName && this.state.lastName && this.state.address && this.state.city && this.state.country && this.state.city && this.state.zipCode && this.state.phoneNumber
+    
       return (
 
         <div>
@@ -94,8 +98,7 @@ class CheckoutForm extends React.Component {
           <Link to='/login'>Login</Link>
           <AddressForm state={this.state} handleChange={this.handleChange} />
 
-        {/* <button type="submit" onClick={this.handleSubmit} disabled={!this.state}>Submit</button> */}
-        <StripeForm />
+          <button type="submit" onClick={this.handleSubmit} disabled={!isEnabled}>Submit</button>
         </div>
       )
     }

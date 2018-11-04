@@ -4,11 +4,13 @@ import {Link, Redirect} from 'react-router-dom'
 import CheckoutPage from './CheckoutPage'
 
 
-const CartPage = () => {
+
+const CartPage = (props) => {
   let cartItems = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [];
   cartItems = itemWithAmount(cartItems);
   let cartItemNames = Object.keys(cartItems);
-  console.log('cartItems======', cartItems)
+
+  console.log('WHAT ARE PROPS', props)
 
   return (
 
@@ -23,6 +25,14 @@ const CartPage = () => {
                   <p>Price: {`$${cartItems[productName].price * cartItems[productName].count}`}</p>
                   <br />
                   <p>Amount: {cartItems[productName].count}</p>
+                  <button className="QuantityButton" type="button" 
+                    onClick={props.addQuantity}
+                    disabled = {cartItems.stock > 0 ? '' : 'disabled'}> + Add Item
+                   </button>
+                   <button className="QuantityButton" type="button" 
+                    onClick={props.removeQuantity}
+                    disabled = {cartItems.stock > 0 ? '' : 'disabled'}> - Decrease Item
+                   </button>
                   <br />
                   <img src={cartItems[productName].imageURL} />
                 </li>
@@ -37,11 +47,8 @@ const CartPage = () => {
     )
   }
 
-  const mapStateToProps = (state) => ({
-     state
-  })
 
-export default connect(mapStateToProps)(CartPage);
+export default (CartPage);
 
 function itemWithAmount(items) {
   const uniqueWithCount = {}

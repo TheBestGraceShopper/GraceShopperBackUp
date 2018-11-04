@@ -21,6 +21,7 @@ class SingleProduct extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getLocalStorage = this.getLocalStorage.bind(this)
     this.addToCart = this.addToCart.bind(this)
+
   }
   async componentDidMount() {
     // this.props.getAProduct(this.props.match.params.productId);
@@ -75,6 +76,8 @@ class SingleProduct extends React.Component {
     this.setState({cart: [...cart], cartObj})
   }
 
+
+
   render() {
     //  console.log("localStorage", JSON.parse(localStorage.getItem('cart')))
     console.log('CART', this.state.cart)
@@ -121,7 +124,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getAProduct: id => dispatch(fetchAProduct(id)),
   getReviews: productId => dispatch(fetchReviews(productId)),
-  addReview: review => dispatch(postReview(review))
+  addReview: review => dispatch(postReview(review)),
+  increaseQuantity: productId => dispatch(addQuantity(productId)),
+  decreaseQuantity: productId => dispatch(removeQuantity(productId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)

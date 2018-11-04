@@ -1,7 +1,11 @@
 import axios from 'axios'
 
 const initialState = {
-    cart: []
+    cart: [
+        { id: '',
+          quantity: ''
+        }
+    ]
 }
 
 // ACTION TYPES
@@ -9,6 +13,8 @@ const initialState = {
 const GET_CART = 'GET_CART'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
+const INCEASE_QUANTITY = 'INCREASE_QUANTITY'
+const DECREASE_QUANTITY = 'DECREASE_QUANTITY'
 
 // ACTION CREATORS
 
@@ -25,6 +31,18 @@ const addProductToCart = productId => ({
 const removeProductToCart = productId => ({
     type: REMOVE_PRODUCT,
     productId
+})
+
+const increaseQuantity = (id, val) => ({
+    type: INCEASE_QUANTITY,
+    id,
+    up: val,
+})
+
+const decreaseQuantity = (id, val) => ({
+    type: DECREASE_QUANTITY,
+    id,
+    down: val,
 })
 
 // THUNKAROOS
@@ -62,9 +80,32 @@ export const deleteProduct = productId => async dispatch => {
     }
 }
 
+export const addQuantity = (userId, productId) => async dispatch =>{
+    try{
+        const response = await axios.put(`/api/cart/${userId}`, productId)
+        const updatedCart = response.data
+        const action = increaseQuantity(updatedCart)
+        dispatch(action)
+    }
+    catch (err) {
+        console.err(err)
+    }
+}
+
+export const removeQuantity = (userId, productId) => async dispatch =>{
+    try{
+        const response = await axios.put(`/api/cart/${userId}`, productId)
+        const updatedCart = response.data
+        const action = decreaseQuantity(updatedCart)
+        dispatch(action)
+    }
+    catch (err) {
+        console.err(err)
+    }
+}
 
 // REDUCER
-export default (state = initialState, action) => {
+ const ordersReducer = (state = initialState, action) => {
     switch (action.type) {
       case GET_CART:
         return {...state, cart: action.cart}
@@ -72,9 +113,20 @@ export default (state = initialState, action) => {
         return {...state, cart: [...state.cart, action.product]}
       case REMOVE_PRODUCT:
         return {...state, cart: [...state.cart.filter(product => product.id !== action.productId)]}
+      case INCEASE_QUANTITY:
+        return {...state, cart:[...state.cart.map(item =>{
+            if(item.id === action.id){item.quantity += action.up} 
+            return item;
+        })]}   
+      case DECREASE_QUANTITY:
+        return {...state, cart:[...state.cart.map(item =>{
+            if(item.id === action.id){item.quantity -= action.down} 
+            return item;
+        })]}         
       default:
         return state
     }
 
 }
 
+export default ordersReducer;

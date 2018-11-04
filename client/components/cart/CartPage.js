@@ -44,14 +44,14 @@ const CartPage = () => {
 export default connect(mapStateToProps)(CartPage);
 
 function itemWithAmount(items) {
-  const uniqueWtihCount = {}
+  const uniqueWithCount = {}
   items.forEach(item => {
-    if (!uniqueWtihCount[item.name]) {
-      uniqueWtihCount[item.name] = item;
-      uniqueWtihCount[item.name].count = 1
+    if (!uniqueWithCount[item.name]) {
+      uniqueWithCount[item.name] = item;
+      uniqueWithCount[item.name].count = 1
     } else {
-      uniqueWtihCount[item.name].count++
+      uniqueWithCount[item.name].count++
     }
   })
-  return uniqueWtihCount;
+  return uniqueWithCount;
 }

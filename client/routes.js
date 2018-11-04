@@ -6,7 +6,6 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import ProductsList from './components/products-list/products-list'
 import SingleProduct from './components/singleproduct/SingleProduct'
-import SingleProductAdmin from './components/singleproduct/SingleProductAdmin'
 import CreateProduct from './components/CreateProduct'
 import EditProduct from './components/EditProduct'
 import ProductsListAdmin from './components/products-list/ProductListAdmin'
@@ -15,6 +14,7 @@ import CheckoutForm from './components/cart/CheckoutForm'
 import OurStory from './components/OurStory'
 import Account from './components/Account'
 import StripeForm from './components/cart/StripeForm'
+import EditUserForm from './components/cart/EditUserForm'
 
 /**
  * COMPONENT
@@ -37,16 +37,15 @@ class Routes extends Component {
         <Route path="/admin/products" render={routeProps => <ProductsListAdmin {...routeProps} admin={true} />} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/cart/checkout" render={routeProps => <CheckoutForm {...routeProps} user={this.props.user} />} />
+        <Route path='/cart/checkout/payment' component={EditUserForm} />
+        <Route exact path="/cart/checkout" render={routeProps => <CheckoutForm {...routeProps} user={this.props.user} />} />
         <Route path="/our-story" component={OurStory} />
         <Route exact path="/cart" component={CartPage} />
-        <Route path='/payment' component={StripeForm} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             <Route path="/account" component={Account} />
-            <Route path='/admin/products/:productId' component={SingleProductAdmin} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

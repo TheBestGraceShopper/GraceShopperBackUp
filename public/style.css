@@ -98,17 +98,33 @@ form div {
   line-height: 1.4;
 }
 
-.navbar {
+#banner {
+  background-image: url("https://preview.ibb.co/hY37Hf/let-it-brie-logo2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   background-color: lightsalmon;
-  height: 200px;
+  height: 400px;
+  width: 100%;
+}
+
+#navbar {
+  background-color: lightsalmon;
+  width: 100%;
 }
 
 .menu {
   float: left;
 }
 
-
 .login-nav {
+  float: right;
+}
+
+.nav-links {
+  float: left;
+}
+
+.cart-link {
   float: right;
 }
 
@@ -119,3 +135,4 @@ form div {
   height: 30px;
   background-color: lightsalmon;
 }
+

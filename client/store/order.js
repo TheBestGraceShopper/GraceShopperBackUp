@@ -5,7 +5,8 @@ const initialState = {
         { id: '',
           quantity: ''
         }
-    ]
+    ],
+    prevOrder: []
 }
 
 // ACTION TYPES
@@ -15,6 +16,7 @@ const ADD_PRODUCT = 'ADD_PRODUCT'
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 const INCEASE_QUANTITY = 'INCREASE_QUANTITY'
 const DECREASE_QUANTITY = 'DECREASE_QUANTITY'
+const GET_PREV_ORDER = 'GET_PREV_ORDER'
 
 // ACTION CREATORS
 
@@ -43,6 +45,11 @@ const decreaseQuantity = (id, val) => ({
     type: DECREASE_QUANTITY,
     id,
     down: val,
+})
+
+const getPrevOrder = (orders) => ({
+    type: GET_PREV_ORDER,
+    orders
 })
 
 // THUNKAROOS
@@ -104,6 +111,15 @@ export const removeQuantity = (userId, productId) => async dispatch =>{
     }
 }
 
+export const fetchOrderHistory = (id) => async dispatch => {
+    try {
+      const res = await axios.get(`/api/orders/history/${id}`)
+      dispatch(getPrevOrder(res.data))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
 // REDUCER
  const ordersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -122,7 +138,9 @@ export const removeQuantity = (userId, productId) => async dispatch =>{
         return {...state, cart:[...state.cart.map(item =>{
             if(item.id === action.id){item.quantity -= action.down} 
             return item;
-        })]}         
+        })]}    
+      case GET_PREV_ORDER:
+      return {...state, prevOrders: action.orders}    
       default:
         return state
     }

@@ -1,21 +1,32 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Cart = db.define('cart', {
+const Order = db.define('order', {
     orderId: {
       type: Sequelize.INTEGER
     },
-    price: {
-      type: Sequelize.INTEGER
-    },
     status: {
-      type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed')
+      type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed'),
+      defaultValue: 'processing'
     }
 })
 
-// Cart.prototype.findPrice = function () {
-//     const calculatePrice =
-//     return this.total.reduce((sum, currentVal) => sum + currentVal)
-// }
 
-module.exports = Cart;
+module.exports = Order;
+
+
+// const Sequelize = require('sequelize')
+// const db = require('../db')
+
+// const Order = db.define('order', {
+//     orderId: {
+//       type: Sequelize.INTEGER
+//     },
+//     status: {
+//       type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed'),
+//       defaultValue: 'processing'
+//     }
+// })
+
+
+// module.exports = Order;

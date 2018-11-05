@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'
 
-const FillOrder = (props) => {
+const fillOrder = (props) => {
 
   //get orderId from db & add 1 for new orderId
   // async function getNextOrderId() {
@@ -10,7 +10,7 @@ const FillOrder = (props) => {
   //   return id + 1;
   // }
 
-  const nextOrderId = getNextOrderId();
+  //const nextOrderId = getNextOrderId();
 
   //status is default
 
@@ -27,9 +27,11 @@ const FillOrder = (props) => {
 
     const data = { totalPrice: cartItems[productName].price * cartItems[productName].count, userId, }
 
-    //const productData = {productId: cartItems[productName].id, productQuantity: cartItems[productName].count};
+    const order = await axios.post(`/api/order/add`, data);
 
-    await axios.post(`/api/order/${cartItems[productName].id}/${cartItems[productName].count}`, data);
+    const productData = {productId: cartItems[productName].id, productQuantity: cartItems[productName].count, orderId: order.id};
+
+    await axios.post(`/api/order/add_product_order`, productData)
 
   });
 }
@@ -48,6 +50,11 @@ function itemWithAmount(items) {
 }
 
 
-export default FillOrder;
+// export default fillOrder;
 
 //export to cartPage?
+function order () {
+  console.log('DOES IT WORK THIS WAY?')
+}
+
+export default order

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Product, User, Order} = require('../db/models')
+const {Product, User, Order, ProductOrder} = require('../db/models')
 
 module.exports = router;
 
@@ -27,17 +27,20 @@ router.get('/:userId', async(req, res, next) => {
 })
 
 // POST for '/api/order/:productId/:quantity'
-router.post('/:productId/:quantity', async (req, res, next) => {
+// POST for '/api/order/add'
+router.post('/add', async (req, res, next) => {
   try {
-    const productId = req.params.productId;
-    const productQuantity = req.params.quantity;
+    // const productId = Number(req.params.productId);
+    // const productQuantity = Number(req.params.quantity);
 
     const order = await Order.create({
       totalPrice: req.body.totalPrice,
       userId: req.body.userId
     })
 
-    order.addProduct({productId, productQuantity})
+
+
+    // order.addProduct({productId, productQuantity})
 
     res.status(201).send(order)
   }
@@ -46,6 +49,21 @@ router.post('/:productId/:quantity', async (req, res, next) => {
   }
 })
 
+// POST for '/api/order/add_product_order'
+router.post('/add_product_order', async (req, res, next) => {
+  try {
+
+    const productOrder = await ProductOrder.create({
+      productId: req.body.productId,
+      productQuantity: req.body.productQuantity,
+      orderId: req.body.orderId
+    })
+    res.status(201).send(productOrder)
+  }
+  catch (err) {
+    next(err)
+  }
+})
 
 //POST for '/api/order/:userId'
 

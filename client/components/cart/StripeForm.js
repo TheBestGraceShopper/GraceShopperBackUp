@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import history from '../../history'
+import FillOrder from '../cart/OrderToDB'
 
 const cartItems = JSON.parse(localStorage.getItem('cart'))
 const total = cartItems ? cartItems.reduce(((sum, currProduct) => sum + currProduct.price), 0) * 100 : 0
@@ -15,11 +16,13 @@ const currency = 'USD'
 // const monetize = amount => Number(amount) * 100
 
 const successfullPayment = data => {
-    alert('Thanks for the purchase! Have a gouda day!')
+    alert('Thanks for the purchase! Have a gouda day!');
+    return <FillOrder />
+
 }
 
 const failedPayment = data => {
-    alert('You cannnot enjoy your meats and cheeses just yet. Do you have enough money? Maybe check out www.monster.com')
+    alert('You cannnot enjoy your meats and cheeses just yet. Do you have enough money? Maybe check out www.monster.com');
 }
 
 const withToken = (amount, description) => token =>

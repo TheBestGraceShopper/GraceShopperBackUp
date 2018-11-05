@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import CheckoutForm from './CheckoutForm'
-// const JSON = require('circular-json');
+
+
 
 class CartPage extends Component {
   constructor() {
@@ -12,7 +13,7 @@ class CartPage extends Component {
     }
     this.getLocalStorage = this.getLocalStorage.bind(this)
     this.addToCart = this.addToCart.bind(this)
-    this.removeQuantity = this.removeQuantity.bind(this)
+     this.removeFromCart = this.removeFromCart.bind(this)
   }
 
   componentDidMount() {
@@ -47,20 +48,19 @@ class CartPage extends Component {
     this.setState({cart: [...cart], cartObj})
   }
 
-  removeQuantity(product, i) {
-    let cart = [...this.state.cart]
-    let index = cart.findIndex(product)
-    console.log("WHAT IS INDEX", index)
-    cart.splice(index, 1)
-    localStorage.setItem('cart', JSON.stringify(cart))
-    var cartValue = localStorage.getItem('cart')
-    var cartObj = JSON.parse(cartValue)
-    this.setState({cart: [...cart], cartObj})
-  }
+removeFromCart(product){
+  let cartArr = JSON.parse(localStorage.getItem('cart'))
+  let newCartArr = cartArr.filter(item => (
+    item.id!==product.id
+  ))
+  this.setState({cart: [...newCartArr]})
+  localStorage.setItem('cart', JSON.stringify(newCartArr))
+}
 
   render() {
-    console.log("LOCAL STORAGE", localStorage)
+    console.log("LOCAL STORAGE", JSON.parse(localStorage.getItem('cart')))
     console.log("CARRRRT", this.state.cart)
+
     let cartItems = JSON.parse(localStorage.getItem('cart'))
       ? JSON.parse(localStorage.getItem('cart'))
       : []
@@ -98,12 +98,11 @@ class CartPage extends Component {
                 <button
                   className="QuantityButton"
                   type="button"
-                  onClick={() => this.removeQuantity(cartItems[productName])}
+                  onClick={() => this.removeFromCart(cartItems[productName])}
                 >
                   {' '}
-                  - Decrease Item
+                  Remove From Cart
                 </button>
-                <br />
                 <img src={cartItems[productName].imageURL} />
               </li>
               <br />

@@ -26,7 +26,7 @@ const withToken = (amount, description) => token =>
       currency,
       amount: monetize(amount)
   })
-  .then(successfullPayment)
+  .then(successfullPayment())
   .then(window.localStorage.clear())
   .then(history.push('/home'))
   .catch(failedPayment)

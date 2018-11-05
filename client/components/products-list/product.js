@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-console.log('test')
 
-const Product = ({ product, admin, removeProduct, addProductToCart, userId, history }) => {
+
+const Product = ({ product, admin, removeProduct }) => {
   return (
     <div className="product-small">
       <Link to={admin ? `/admin/products/${product.id}` : `/products/${product.id}`}>
@@ -11,10 +11,10 @@ const Product = ({ product, admin, removeProduct, addProductToCart, userId, hist
         <p>${product.price}</p>
         {product.stock ? <p className="in-stock">In Stock</p> : <p className="out-of-stock">Out Of Stock</p>}
       </Link>
-      <button type="button" onClick={() => {
+      {admin ? <button type="button" onClick={() => {
         removeProduct(product.id)
-      }}>Delete</button>
-      <button type="button" onClick={() => addProductToCart(product, userId)}>Add To Cart</button>
+      }}>Delete</button> : null}
+
     </div>
 
   )

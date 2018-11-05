@@ -19,7 +19,7 @@ const successfullPayment = data => {
 }
 
 const failedPayment = data => {
-    alert('You cannnot enjoy your meats and cheeses just yet. Do you have enough money?')
+    alert('You cannnot enjoy your meats and cheeses just yet. Do you have enough money? Maybe check out www.monster.com')
 }
 
 const withToken = (amount, description) => token =>

@@ -13,8 +13,7 @@ import CartPage from './components/cart/CartPage';
 import CheckoutForm from './components/cart/CheckoutForm'
 import OurStory from './components/OurStory'
 import Account from './components/Account'
-import StripeForm from './components/cart/StripeForm'
-import EditUserForm from './components/cart/EditUserForm'
+import PaymentCheckout from './components/cart/PaymentCheckout'
 
 /**
  * COMPONENT
@@ -37,7 +36,7 @@ class Routes extends Component {
         <Route path="/admin/products" render={routeProps => <ProductsListAdmin {...routeProps} admin={true} />} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path='/cart/checkout/payment' component={EditUserForm} />
+        <Route path='/cart/checkout/payment' component={PaymentCheckout} />
         <Route exact path="/cart/checkout" render={routeProps => <CheckoutForm {...routeProps} user={this.props.user} />} />
         <Route path="/our-story" component={OurStory} />
         <Route exact path="/cart" component={CartPage} />

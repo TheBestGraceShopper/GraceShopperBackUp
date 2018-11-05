@@ -96,6 +96,10 @@ form div {
   height: 20px;
   text-align: center;
   line-height: 1.4;
+  /*------- changes here */
+  position: absolute;
+  top: 5px;
+  right: 0;
 }
 
 #banner {
@@ -144,3 +148,4 @@ form div {
 .our-story{
   border-style: outset
 }
+

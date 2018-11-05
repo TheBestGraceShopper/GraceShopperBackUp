@@ -135,51 +135,15 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+var _EditUserForm = _interopRequireDefault(__webpack_require__(/*! ../components/cart/EditUserForm */ "./client/components/cart/EditUserForm.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var Account = function Account() {
+  return _react.default.createElement("div", null, _react.default.createElement("h1", null, " Account Information "), _react.default.createElement(_EditUserForm.default, null));
+};
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var Account =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(Account, _React$Component);
-
-  function Account() {
-    _classCallCheck(this, Account);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Account).apply(this, arguments));
-  }
-
-  _createClass(Account, [{
-    key: "render",
-    value: function render() {
-      return _react.default.createElement("h1", null, " Account Information ");
-    }
-  }]);
-
-  return Account;
-}(_react.default.Component);
-
-var _default = (0, _reactRedux.connect)(null)(Account);
-
+var _default = Account;
 exports.default = _default;
 
 /***/ }),
@@ -587,7 +551,7 @@ var Footer = function Footer() {
     className: "footer"
   }, _react.default.createElement("p", {
     className: "footer-text"
-  }, "Copyright \xA9 2018 Listing. All rights reserved | Ayema Chowdhury, Summer Deehan, Connie Lim, and Bethany Walker :)"), _react.default.createElement("p", {
+  }, "Copyright \xA9 2018 Listing. All rights reserved | Ayema Chowdhury, Summer Deehan, Connie Lim, and Bethany Walker"), _react.default.createElement("p", {
     className: "footer-text"
   }, _react.default.createElement("a", {
     href: "https://github.com/TheBestGraceShopper/GraceShopper/"
@@ -1399,9 +1363,21 @@ var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_mod
 
 var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
+var _AddressForm = _interopRequireDefault(__webpack_require__(/*! ./AddressForm */ "./client/components/cart/AddressForm.js"));
+
+var _store = __webpack_require__(/*! ../../store */ "./client/store/index.js");
+
+var _StripeForm = _interopRequireDefault(__webpack_require__(/*! ./StripeForm */ "./client/components/cart/StripeForm.js"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1431,16 +1407,86 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(EditUserForm).call(this));
     _this.state = {
+      email: '',
+      firstName: '',
+      lastName: '',
+      address: '',
+      city: '',
+      country: '',
+      zipCode: '',
+      phoneNumber: '',
       showForm: false
     };
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
   _createClass(EditUserForm, [{
+    key: "componentDidMount",
+    value: function () {
+      var _componentDidMount = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return this.props.getUser(this.props.user.id);
+
+              case 2:
+                this.setState({
+                  email: this.props.user.email,
+                  firstName: this.props.user.firstName,
+                  lastName: this.props.user.lastName,
+                  address: this.props.user.address,
+                  city: this.props.user.city,
+                  country: this.props.user.country,
+                  zipCode: this.props.user.zipCode,
+                  phoneNumber: this.props.user.phoneNumber,
+                  showForm: false
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function componentDidMount() {
+        return _componentDidMount.apply(this, arguments);
+      };
+    }()
+  }, {
+    key: "handleChange",
+    value: function handleChange(e) {
+      this.setState(_defineProperty({}, e.target.name, e.target.value));
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.props.updateUser({
+        email: this.state.email,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        address: this.state.address,
+        city: this.state.city,
+        country: this.state.country,
+        zipCode: Number(this.state.zipCode),
+        phoneNumber: this.state.phoneNumber
+      }, this.props.user.id);
+      this.setState({
+        showForm: false
+      });
+    }
+  }, {
     key: "handleClick",
     value: function handleClick() {
-      console.log('hello', hello);
       this.setState({
         showForm: true
       });
@@ -1456,7 +1502,13 @@ function (_React$Component) {
         onClick: function onClick() {
           return _this2.handleClick();
         }
-      }, "Edit Account Information"), this.state.showForm ? _react.default.createElement(AddressForm, null) : _react.default.createElement("ul", null, _react.default.createElement("h4", null, "Email: ", user.email), _react.default.createElement("h4", null, "Name: ", user.firstName, " ", user.lastName), _react.default.createElement("h4", null, "Address: ", user.address, " ", user.city, " ", user.country, " ", user.zipCode), _react.default.createElement("h4", null, "Phone Number: ", user.phoneNumber)));
+      }, "Edit Account Information"), this.state.showForm ? _react.default.createElement("div", null, _react.default.createElement(_AddressForm.default, {
+        state: this.state,
+        handleChange: this.handleChange
+      }), _react.default.createElement("button", {
+        type: "submit",
+        onClick: this.handleSubmit
+      }, "Submit")) : _react.default.createElement("div", null, _react.default.createElement("ul", null, _react.default.createElement("h4", null, "Email: ", user.email), _react.default.createElement("h4", null, "Name: ", user.firstName, " ", user.lastName), _react.default.createElement("h4", null, "Address: ", user.address, " ", user.city, " ", user.country, " ", user.zipCode), _react.default.createElement("h4", null, "Phone Number: ", user.phoneNumber))));
     }
   }]);
 
@@ -1469,8 +1521,51 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-var _default = (0, _reactRedux.connect)(mapStateToProps)(EditUserForm);
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    updateUser: function updateUser(user, id) {
+      return dispatch((0, _store.editUser)(user, id));
+    },
+    getUser: function getUser(userId) {
+      return dispatch((0, _store.me)(userId));
+    }
+  };
+};
 
+var _default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(EditUserForm);
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./client/components/cart/PaymentCheckout.js":
+/*!***************************************************!*\
+  !*** ./client/components/cart/PaymentCheckout.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _EditUserForm = _interopRequireDefault(__webpack_require__(/*! ./EditUserForm */ "./client/components/cart/EditUserForm.js"));
+
+var _StripeForm = _interopRequireDefault(__webpack_require__(/*! ./StripeForm */ "./client/components/cart/StripeForm.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var PaymentCheckout = function PaymentCheckout() {
+  return _react.default.createElement("div", null, _react.default.createElement(_EditUserForm.default, null), _react.default.createElement(_StripeForm.default, null));
+};
+
+var _default = PaymentCheckout;
 exports.default = _default;
 
 /***/ }),
@@ -2627,9 +2722,7 @@ var _OurStory = _interopRequireDefault(__webpack_require__(/*! ./components/OurS
 
 var _Account = _interopRequireDefault(__webpack_require__(/*! ./components/Account */ "./client/components/Account.js"));
 
-var _StripeForm = _interopRequireDefault(__webpack_require__(/*! ./components/cart/StripeForm */ "./client/components/cart/StripeForm.js"));
-
-var _EditUserForm = _interopRequireDefault(__webpack_require__(/*! ./components/cart/EditUserForm */ "./client/components/cart/EditUserForm.js"));
+var _PaymentCheckout = _interopRequireDefault(__webpack_require__(/*! ./components/cart/PaymentCheckout */ "./client/components/cart/PaymentCheckout.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2714,7 +2807,7 @@ function (_Component) {
         component: _components.Signup
       }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/cart/checkout/payment",
-        component: _EditUserForm.default
+        component: _PaymentCheckout.default
       }), _react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/cart/checkout",
@@ -2916,7 +3009,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.removeQuantity = exports.addQuantity = exports.deleteProduct = exports.addProduct = exports.fetchCart = void 0;
+exports.default = exports.fetchOrderHistory = exports.removeQuantity = exports.addQuantity = exports.deleteProduct = exports.addProduct = exports.fetchCart = void 0;
 
 var _axios = _interopRequireDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 
@@ -2942,14 +3035,16 @@ var initialState = {
   cart: [{
     id: '',
     quantity: ''
-  }] // ACTION TYPES
+  }],
+  prevOrder: [] // ACTION TYPES
 
 };
 var GET_CART = 'GET_CART';
 var ADD_PRODUCT = 'ADD_PRODUCT';
 var REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 var INCEASE_QUANTITY = 'INCREASE_QUANTITY';
-var DECREASE_QUANTITY = 'DECREASE_QUANTITY'; // ACTION CREATORS
+var DECREASE_QUANTITY = 'DECREASE_QUANTITY';
+var GET_PREV_ORDER = 'GET_PREV_ORDER'; // ACTION CREATORS
 
 var getCart = function getCart(cart) {
   return {
@@ -2985,6 +3080,13 @@ var decreaseQuantity = function decreaseQuantity(id, val) {
     type: DECREASE_QUANTITY,
     id: id,
     down: val
+  };
+};
+
+var getPrevOrder = function getPrevOrder(orders) {
+  return {
+    type: GET_PREV_ORDER,
+    orders: orders
   };
 }; // THUNKAROOS
 
@@ -3213,10 +3315,54 @@ var removeQuantity = function removeQuantity(userId, productId) {
       };
     }()
   );
+};
+
+exports.removeQuantity = removeQuantity;
+
+var fetchOrderHistory = function fetchOrderHistory(id) {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref7 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee6(dispatch) {
+        var res;
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.prev = 0;
+                _context6.next = 3;
+                return _axios.default.get("/api/orders/history/".concat(id));
+
+              case 3:
+                res = _context6.sent;
+                dispatch(getPrevOrder(res.data));
+                _context6.next = 10;
+                break;
+
+              case 7:
+                _context6.prev = 7;
+                _context6.t0 = _context6["catch"](0);
+                console.error(_context6.t0);
+
+              case 10:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this, [[0, 7]]);
+      }));
+
+      return function (_x6) {
+        return _ref7.apply(this, arguments);
+      };
+    }()
+  );
 }; // REDUCER
 
 
-exports.removeQuantity = removeQuantity;
+exports.fetchOrderHistory = fetchOrderHistory;
 
 var ordersReducer = function ordersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
@@ -3260,6 +3406,11 @@ var ordersReducer = function ordersReducer() {
 
           return item;
         }))
+      });
+
+    case GET_PREV_ORDER:
+      return _objectSpread({}, state, {
+        prevOrders: action.orders
       });
 
     default:

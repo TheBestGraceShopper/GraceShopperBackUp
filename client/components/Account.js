@@ -1,11 +1,13 @@
 import React from 'react'
-import { connect } from 'react-redux';
+import EditUserForm from '../components/cart/EditUserForm'
 
-class Account extends React.Component {
-  render () {
+const Account = () => {
     return (
-    <h1> Account Information </h1>
-  )
-  }
+      <div>
+        <h1> Account Information </h1>
+        <EditUserForm />
+      </div>
+    )
 }
-export default connect(null)(Account)
+
+export default Account;

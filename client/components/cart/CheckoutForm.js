@@ -89,7 +89,7 @@ class CheckoutForm extends React.Component {
 
     render () {
       const isEnabled = this.state.email && this.state.firstName && this.state.lastName && this.state.address && this.state.city && this.state.country && this.state.city && this.state.zipCode && this.state.phoneNumber
-    
+
       return (
 
         <div>

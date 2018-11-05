@@ -32,7 +32,7 @@ const withToken = (amount, description) => token =>
   .then(successfullPayment())
   .then(window.localStorage.clear())
   .then(history.push('/home'))
-  .catch(failedPayment())
+  .catch(failedPayment)
 
 const StripeForm = ({name, description, amount, clearCart}) => (
 	<StripeCheckout

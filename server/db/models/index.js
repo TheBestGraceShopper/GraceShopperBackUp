@@ -27,9 +27,9 @@ Product.hasMany(Review);
 
 User.hasMany(Order);
 Order.belongsTo(User);
-Product.hasMany(Order);
-Order.belongsTo(Product);
 
+Product.belongsToMany(Order, {through: 'product_order'});
+Order.belongsToMany(Product, {through: 'product_order'});
 
 module.exports = {
   User,

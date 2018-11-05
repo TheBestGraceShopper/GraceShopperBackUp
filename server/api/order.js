@@ -26,17 +26,20 @@ router.get('/:userId', async(req, res, next) => {
   }
 })
 
-// POST for '/api/order'
-router.post('/', async (req, res, next) => {
+// POST for '/api/order/:productId/:quantity'
+router.post('/:productId/:quantity', async (req, res, next) => {
   try {
-    const newProduct = await Order.create({
-      orderId: req.body.orderId,
-      productAmount: req.body.productAmount,
-      totalItemPrice: req.body.totalItemPrice,
-      userId: req.body.userId,
-      productId: req.body.productId
+    const productId = req.params.productId;
+    const productQuantity = req.params.quantity;
+
+    const order = await Order.create({
+      totalPrice: req.body.totalPrice,
+      userId: req.body.userId
     })
-    res.status(201).send(newProduct)
+
+    order.addProduct({productId, productQuantity})
+
+    res.status(201).send(order)
   }
   catch (err) {
     next(err)

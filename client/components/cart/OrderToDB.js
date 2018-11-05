@@ -11,9 +11,9 @@ const FillOrder = (props) => {
   }
   const nextOrderId = getNextOrderId();
 
-  //get userId from store
-
   //status is default
+
+  //get userId from store
   console.log(props.userId);
   const userId = props.userId
 
@@ -24,9 +24,9 @@ const FillOrder = (props) => {
 
 
   cartItemNames.map( async productName => {
-    const data = {orderId: nextOrderId, productAmount: cartItems[productName].count, totalItemPrice: cartItems[productName].price * cartItems[productName].count, userId, productId: cartItems[productName].id}
+    const data = {orderId: nextOrderId, productQuantity: cartItems[productName].count, totalPrice: cartItems[productName].price * cartItems[productName].count, userId, productId: cartItems[productName].id}
 
-      await axios.create(data);
+      await axios.post('/api/order', data);
   });
 }
 
@@ -46,4 +46,4 @@ function itemWithAmount(items) {
 
 export default FillOrder;
 
-//export to cartPage
+//export to cartPage?

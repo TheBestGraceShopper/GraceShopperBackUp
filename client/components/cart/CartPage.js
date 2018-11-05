@@ -23,11 +23,11 @@ const CartPage = (props) => {
                   <p>Price: {`$${cartItems[productName].price * cartItems[productName].count}`}</p>
                   <br />
                   <p>Amount: {cartItems[productName].count}</p>
-                  <button className="QuantityButton" type="button" 
+                  <button className="QuantityButton" type="button"
                     onClick={props.addQuantity}
                     disabled = {cartItems.stock > 0 ? '' : 'disabled'}> + Add Item
                    </button>
-                   <button className="QuantityButton" type="button" 
+                   <button className="QuantityButton" type="button"
                     onClick={props.removeQuantity}
                     disabled = {cartItems.stock > 0 ? '' : 'disabled'}> - Decrease Item
                    </button>

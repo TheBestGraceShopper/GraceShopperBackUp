@@ -9,11 +9,11 @@ const Order = db.define('orders', {
       type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed'),
       defaultValue: 'processing'
     },
-    productAmount: {
+    productQuantity: {
       type: Sequelize.INTEGER,
       defaultValue: 0
     },
-    totalItemPrice: {
+    totalPrice: {
       type: Sequelize.INTEGER
     }
 })

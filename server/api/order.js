@@ -26,20 +26,38 @@ router.get('/:userId', async(req, res, next) => {
   }
 })
 
-//POST for '/api/order/:userId'
-
-router.post('/:userId', async(req, res, next) => {
-  const id = req.params.userId;
-  const productId = req.body.id;
+// POST for '/api/order'
+router.post('/', async (req, res, next) => {
   try {
-    const user = await User.findById(id);
-    const product = await Product.findById(productId);
-    const cart = await user.addProduct(product)
-    res.status(201).send(cart)
-  } catch(err) {
+    const newProduct = await Order.create({
+      orderId: req.body.orderId,
+      productAmount: req.body.productAmount,
+      totalItemPrice: req.body.totalItemPrice,
+      userId: req.body.userId,
+      productId: req.body.productId
+    })
+    res.status(201).send(newProduct)
+  }
+  catch (err) {
     next(err)
   }
 })
+
+
+//POST for '/api/order/:userId'
+
+// router.post('/:userId', async(req, res, next) => {
+//   const id = req.params.userId;
+//   const productId = req.body.id;
+//   try {
+//     const user = await User.findById(id);
+//     const product = await Product.findById(productId);
+//     const cart = await user.addProduct(product)
+//     res.status(201).send(cart)
+//   } catch(err) {
+//     next(err)
+//   }
+// })
 
 //POST for '/api/order/delete/:userId'
 router.post('/delete/:userId', async(req, res, next) => {

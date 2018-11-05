@@ -10,8 +10,6 @@ const CartPage = (props) => {
   cartItems = itemWithAmount(cartItems);
   let cartItemNames = Object.keys(cartItems);
 
-  console.log('WHAT ARE PROPS', props)
-
   return (
 
     <div>

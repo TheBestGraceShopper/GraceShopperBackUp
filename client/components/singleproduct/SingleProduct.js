@@ -16,14 +16,17 @@ class SingleProduct extends React.Component {
       rating: '',
       productId: '',
       userId: '',
-      cart: []
+      cart: [],
+      showForm: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getLocalStorage = this.getLocalStorage.bind(this)
     this.addToCart = this.addToCart.bind(this)
+    this.showForm = this.showForm.bind(this)
   }
   async componentDidMount() {
+    this.setState({showForm: false})
     // this.props.getAProduct(this.props.match.params.productId);
     const productId = this.props.match.params.productId
     await this.props.getAProduct(productId)
@@ -39,6 +42,8 @@ class SingleProduct extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault(e)
+    const currentState = this.state.showForm;
+    this.setState({showForm: !currentState})
     const review = {
       text: this.state.text,
       title: this.state.title,
@@ -76,6 +81,10 @@ class SingleProduct extends React.Component {
     var cartObj = JSON.parse(cartValue)
     this.setState({cart: [...cart], cartObj})
   }
+  showForm() {
+    const currentState = this.state.showForm;
+    this.setState({showForm : !currentState});
+  }
 
   render() {
     console.log("LOCAL STORAGE", localStorage)
@@ -106,6 +115,7 @@ class SingleProduct extends React.Component {
               handleSubmit={this.handleSubmit}
               reviews={this.props.reviews}
               productId={selectedProduct.id}
+              showForm={this.showForm}
             />
           </div>
         </div>

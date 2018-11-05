@@ -3,24 +3,13 @@ import {connect} from 'react-redux'
 import { fetchReviews, postReview} from '../../store'
 
 class Review extends React.Component {
- constructor() {
-   super();
-   this.state = {
-     showForm: false
-   }
-   this.showForm = this.showForm.bind(this);
- }
- showForm() {
-   const currentState = this.state.showForm;
-   this.setState({showForm : !currentState});
- }
- render() {
 
+ render() {
    return (
    <div>
      <h3> Reviews: </h3>
-     {this.state.showForm ? <button onClick={this.showForm}> Add Review </button> : null }
-     { this.state.showForm ? <div>
+     {this.props.state.showForm ? null: <button onClick={this.props.showForm}> Add Review </button> }
+     { this.props.state.showForm ? <div>
        <form onSubmit={this.props.handleSubmit}>
 
        <label htmlFor='rating'> Rating:  </label>

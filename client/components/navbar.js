@@ -6,7 +6,7 @@ import { logout } from '../store'
 import CartButton from './CartButton'
 
 const Navbar = ({ handleClick, isLoggedIn, user }) =>
-{console.log(user)
+{
   return (
 
   <div id="banner">

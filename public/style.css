@@ -175,3 +175,8 @@ html, body, #container, .carousel {
 	left: 1rem;
 }
 
+.cart-number {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

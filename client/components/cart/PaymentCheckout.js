@@ -6,7 +6,7 @@ const PaymentCheckout = () => {
   return (
     <div>
       <EditUserForm />
-      <StripeForm />
+      <StripeForm name='ABCS' description='Please enter payment details'/>
     </div>
   )
 }

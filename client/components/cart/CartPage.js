@@ -24,6 +24,7 @@ class CartPage extends Component {
       })
   }
 
+
   getLocalStorage() {
     for (let key in this.state) {
       if (localStorage.hasOwnProperty(key)) {

@@ -1,7 +1,17 @@
 const router = require('express').Router()
-const {Product, User} = require('../db/models')
+const {Product, User, Order} = require('../db/models')
 
 module.exports = router;
+
+// GET for '/api/order/lastOrder'
+router.get('/lastOrder', async(req, res, next) => {
+  try {
+    let product = await Order.max('orderId') || 0;
+    res.status(202).send({max: product});
+  } catch (err) {
+    next(err)
+  }
+})
 
 // GET for '/api/order/:userId'
 router.get('/:userId', async(req, res, next) => {
@@ -45,6 +55,22 @@ router.post('/delete/:userId', async(req, res, next) => {
     next(err)
   }
 })
+
+//POST for '/api/order/lastOrder
+
+//POST for '/api/cart/odered
+// router.get('ordered', async(req, res, next) => {
+//   try {
+//     const products = await Order.findAll({
+//       order: [Sequelize.fn('max', Sequelize.col('orderId'))]
+//     })
+//     res.send(products);
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+
+
 
 // add to order X
 // remove from order

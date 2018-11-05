@@ -15,6 +15,7 @@ a {
   text-decoration: none;
 }
 
+
 label {
   display: block;
 }
@@ -145,6 +146,7 @@ form div {
   border-style: outset
 }
 
+
 html, body, #container, .carousel {
 	height:100%;
 	margin: 0;
@@ -172,3 +174,4 @@ html, body, #container, .carousel {
 .slide-arrow.left {
 	left: 1rem;
 }
+

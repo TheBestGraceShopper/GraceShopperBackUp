@@ -19,7 +19,7 @@ const failedPayment = data => {
     alert('You cannnot enjoy your meats and cheeses just yet. Do you have enough money?')
 }
 
-const withToken = (amount, description, clearCart) => token =>
+const withToken = (amount, description) => token =>
   axios.post('/api/stripe', {
       description,
       source: token.id,
@@ -27,7 +27,7 @@ const withToken = (amount, description, clearCart) => token =>
       amount: monetize(amount)
   })
   .then(successfullPayment)
-//   .then(clearCart()) going to need to pass down the props for clearing cart
+  .then(window.localStorage.clear())
   .then(history.push('/home'))
   .catch(failedPayment)
 
@@ -36,7 +36,7 @@ const CheckoutForm = ({name, description, amount, clearCart}) => (
 		name={name}
 		description={description}
 		amount={monetize(amount)}
-		token={withToken(amount, description, clearCart)}
+		token={withToken(amount, description)}
 		currency={currency}
 		stripeKey={STRIPE_PUBLISHABLE}
 	/>

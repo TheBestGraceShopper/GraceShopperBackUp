@@ -587,7 +587,7 @@ var Footer = function Footer() {
     className: "footer"
   }, _react.default.createElement("p", {
     className: "footer-text"
-  }, "Copyright \xA9 2018 Listing. All rights reserved | Ayema Chowdhury, Summer Deehan, Connie Lim, and Bethany Walker :)"), _react.default.createElement("p", {
+  }, "Copyright \xA9 2018 Listing. All rights reserved | Ayema Chowdhury, Summer Deehan, Connie Lim, and Bethany Walker"), _react.default.createElement("p", {
     className: "footer-text"
   }, _react.default.createElement("a", {
     href: "https://github.com/TheBestGraceShopper/GraceShopper/"
@@ -1440,7 +1440,7 @@ function (_React$Component) {
   _createClass(EditUserForm, [{
     key: "handleClick",
     value: function handleClick() {
-      console.log('hello', hello);
+      console.log('hello');
       this.setState({
         showForm: true
       });
@@ -1515,15 +1515,14 @@ var failedPayment = function failedPayment(data) {
   alert('You cannnot enjoy your meats and cheeses just yet. Do you have enough money?');
 };
 
-var withToken = function withToken(amount, description, clearCart) {
+var withToken = function withToken(amount, description) {
   return function (token) {
     return _axios.default.post('/api/stripe', {
       description: description,
       source: token.id,
       currency: currency,
       amount: monetize(amount)
-    }).then(successfullPayment) //   .then(clearCart()) going to need to pass down the props for clearing cart
-    .then(_history.default.push('/home')).catch(failedPayment);
+    }).then(successfullPayment).then(window.localStorage.clear()).then(_history.default.push('/home')).catch(failedPayment);
   };
 };
 
@@ -1536,7 +1535,7 @@ var CheckoutForm = function CheckoutForm(_ref) {
     name: name,
     description: description,
     amount: monetize(amount),
-    token: withToken(amount, description, clearCart),
+    token: withToken(amount, description),
     currency: currency,
     stripeKey: STRIPE_PUBLISHABLE
   });
@@ -2916,7 +2915,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.removeQuantity = exports.addQuantity = exports.deleteProduct = exports.addProduct = exports.fetchCart = void 0;
+exports.default = exports.fetchOrderHistory = exports.removeQuantity = exports.addQuantity = exports.deleteProduct = exports.addProduct = exports.fetchCart = void 0;
 
 var _axios = _interopRequireDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 
@@ -2942,14 +2941,16 @@ var initialState = {
   cart: [{
     id: '',
     quantity: ''
-  }] // ACTION TYPES
+  }],
+  prevOrder: [] // ACTION TYPES
 
 };
 var GET_CART = 'GET_CART';
 var ADD_PRODUCT = 'ADD_PRODUCT';
 var REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 var INCEASE_QUANTITY = 'INCREASE_QUANTITY';
-var DECREASE_QUANTITY = 'DECREASE_QUANTITY'; // ACTION CREATORS
+var DECREASE_QUANTITY = 'DECREASE_QUANTITY';
+var GET_PREV_ORDER = 'GET_PREV_ORDER'; // ACTION CREATORS
 
 var getCart = function getCart(cart) {
   return {
@@ -2985,6 +2986,13 @@ var decreaseQuantity = function decreaseQuantity(id, val) {
     type: DECREASE_QUANTITY,
     id: id,
     down: val
+  };
+};
+
+var getPrevOrder = function getPrevOrder(orders) {
+  return {
+    type: GET_PREV_ORDER,
+    orders: orders
   };
 }; // THUNKAROOS
 
@@ -3213,10 +3221,54 @@ var removeQuantity = function removeQuantity(userId, productId) {
       };
     }()
   );
+};
+
+exports.removeQuantity = removeQuantity;
+
+var fetchOrderHistory = function fetchOrderHistory(id) {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref7 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee6(dispatch) {
+        var res;
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.prev = 0;
+                _context6.next = 3;
+                return _axios.default.get("/api/orders/history/".concat(id));
+
+              case 3:
+                res = _context6.sent;
+                dispatch(getPrevOrder(res.data));
+                _context6.next = 10;
+                break;
+
+              case 7:
+                _context6.prev = 7;
+                _context6.t0 = _context6["catch"](0);
+                console.error(_context6.t0);
+
+              case 10:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this, [[0, 7]]);
+      }));
+
+      return function (_x6) {
+        return _ref7.apply(this, arguments);
+      };
+    }()
+  );
 }; // REDUCER
 
 
-exports.removeQuantity = removeQuantity;
+exports.fetchOrderHistory = fetchOrderHistory;
 
 var ordersReducer = function ordersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
@@ -3260,6 +3312,11 @@ var ordersReducer = function ordersReducer() {
 
           return item;
         }))
+      });
+
+    case GET_PREV_ORDER:
+      return _objectSpread({}, state, {
+        prevOrders: action.orders
       });
 
     default:

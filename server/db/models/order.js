@@ -8,6 +8,13 @@ const Order = db.define('orders', {
     status: {
       type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed'),
       defaultValue: 'processing'
+    },
+    productAmount: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0
+    },
+    totalItemPrice: {
+      type: Sequelize.INTEGER
     }
 })
 

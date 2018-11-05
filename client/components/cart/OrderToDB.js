@@ -1,19 +1,20 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'
 
 const FillOrder = (props) => {
 
   //get orderId from db & add 1 for new orderId
-  async function getNextOrderId() {
-    let id = await axios.get('/api/order/lastOrder');
-    return id + 1;
-  }
+  // async function getNextOrderId() {
+  //   let id = await axios.get('/api/order/lastOrder');
+  //   return id + 1;
+  // }
+
   const nextOrderId = getNextOrderId();
 
-  //get userId from store
-
   //status is default
+
+  //get userId from store
   console.log(props.userId);
   const userId = props.userId
 
@@ -22,11 +23,14 @@ const FillOrder = (props) => {
   cartItems = itemWithAmount(cartItems);
   let cartItemNames = Object.keys(cartItems);
 
+  cartItemNames.map(async productName => {
 
-  cartItemNames.map( async productName => {
-    const data = {orderId: nextOrderId, productAmount: cartItems[productName].count, totalItemPrice: cartItems[productName].price * cartItems[productName].count, userId, productId: cartItems[productName].id}
+    const data = { totalPrice: cartItems[productName].price * cartItems[productName].count, userId, }
 
-      await axios.create(data);
+    //const productData = {productId: cartItems[productName].id, productQuantity: cartItems[productName].count};
+
+    await axios.post(`/api/order/${cartItems[productName].id}/${cartItems[productName].count}`, data);
+
   });
 }
 
@@ -46,4 +50,4 @@ function itemWithAmount(items) {
 
 export default FillOrder;
 
-//export to cartPage
+//export to cartPage?

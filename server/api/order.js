@@ -26,20 +26,41 @@ router.get('/:userId', async(req, res, next) => {
   }
 })
 
-//POST for '/api/order/:userId'
-
-router.post('/:userId', async(req, res, next) => {
-  const id = req.params.userId;
-  const productId = req.body.id;
+// POST for '/api/order/:productId/:quantity'
+router.post('/:productId/:quantity', async (req, res, next) => {
   try {
-    const user = await User.findById(id);
-    const product = await Product.findById(productId);
-    const cart = await user.addProduct(product)
-    res.status(201).send(cart)
-  } catch(err) {
+    const productId = req.params.productId;
+    const productQuantity = req.params.quantity;
+
+    const order = await Order.create({
+      totalPrice: req.body.totalPrice,
+      userId: req.body.userId
+    })
+
+    order.addProduct({productId, productQuantity})
+
+    res.status(201).send(order)
+  }
+  catch (err) {
     next(err)
   }
 })
+
+
+//POST for '/api/order/:userId'
+
+// router.post('/:userId', async(req, res, next) => {
+//   const id = req.params.userId;
+//   const productId = req.body.id;
+//   try {
+//     const user = await User.findById(id);
+//     const product = await Product.findById(productId);
+//     const cart = await user.addProduct(product)
+//     res.status(201).send(cart)
+//   } catch(err) {
+//     next(err)
+//   }
+// })
 
 //POST for '/api/order/delete/:userId'
 router.post('/delete/:userId', async(req, res, next) => {

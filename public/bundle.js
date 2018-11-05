@@ -1595,7 +1595,7 @@ var _history = _interopRequireDefault(__webpack_require__(/*! ../../history */ "
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var STRIPE_PUBLISHABLE =  false ? undefined : 'pk_test_VXhU5UDBroNkMgpztFSS2AAu';
+var STRIPE_PUBLISHABLE =  false ? undefined : 'pk_test_a41tEZdwchhwkDi9HhH0pc9D';
 var currency = 'USD';
 
 var monetize = function monetize(amount) {

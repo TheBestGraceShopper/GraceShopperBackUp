@@ -5,8 +5,8 @@ import history from '../../history'
 
 const STRIPE_PUBLISHABLE =
 	process.env.NODE_ENV === 'production'
-		? 'pk_test_VXhU5UDBroNkMgpztFSS2AAu'
-		: 'pk_test_VXhU5UDBroNkMgpztFSS2AAu'
+		? 'pk_test_a41tEZdwchhwkDi9HhH0pc9D'
+		: 'pk_test_a41tEZdwchhwkDi9HhH0pc9D'
 
 const currency = 'USD'
 const monetize = amount => Number(amount) * 100

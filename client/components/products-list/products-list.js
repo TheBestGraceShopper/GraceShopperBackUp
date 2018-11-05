@@ -57,7 +57,7 @@ class ProductsListComp extends Component {
     return (
 
       <div>
-        <button type="submit" form="test" value="Submit">Submit</button>
+        {/* <button type="submit" form="test" value="Submit">Submit</button> */}
         <FilterBar handleChange={this.handleChange} products={this.state.products}/>
         <SearchBar searchOnChange={this.searchOnChange} />
         <h2>{this.state.filteredProducts}</h2>
@@ -66,7 +66,7 @@ class ProductsListComp extends Component {
               {this.state.searchVal.length ? this.props.products.filter(product => this.productSearchMatch(this.state.searchVal, product)).map(product=> <Product key={product.id} history={this.props.history} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser}/>)
               : (this.state.filteredProducts === 'all' ? this.props.products
               : this.props.products.filter(product => product.category === this.state.filteredProducts)).map(product =>
-              <Product key={product.id} history={this.props.history} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser}/> )}
+              <Product key={product.id} history={this.props.history} product={product} user={this.props.user} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser}/> )}
           </div>
         </div>
       </div>
@@ -77,7 +77,8 @@ class ProductsListComp extends Component {
 
 const mapStateToProps = (state) => {
   return {products: state.productsReducer.products,
-          currentUser: state.user.id}
+          currentUser: state.user.id,
+          user: state.user}
 }
 
 const mapDispatchToProps = (dispatch) => ({

@@ -5,11 +5,14 @@ import { Link } from 'react-router-dom'
 import { logout } from '../store'
 import CartButton from './CartButton'
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn, user }) =>
+{console.log(user)
+  return (
+
   <div id="banner">
     <div id="navbar">
       <div className="nav-links">
-        <Link to="/products">Shop</Link>
+        {user.userType === 'admin' ? <Link to="/admin/products/">Products</Link> : <Link to="/products/">Shop</Link>}
         <br />
         <Link to="/our-story">Our Story</Link>
         <br />
@@ -40,13 +43,15 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
     </nav>
   </div>
 )
+}
 
 /**
  * CONTAINER
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user
   }
 }
 

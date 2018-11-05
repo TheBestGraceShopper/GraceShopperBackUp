@@ -1737,15 +1737,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Navbar = function Navbar(_ref) {
   var handleClick = _ref.handleClick,
-      isLoggedIn = _ref.isLoggedIn;
+      isLoggedIn = _ref.isLoggedIn,
+      user = _ref.user;
+  console.log(user);
   return _react.default.createElement("div", {
     id: "banner"
   }, _react.default.createElement("div", {
     id: "navbar"
   }, _react.default.createElement("div", {
     className: "nav-links"
-  }, _react.default.createElement(_reactRouterDom.Link, {
-    to: "/products"
+  }, user.userType === 'admin' ? _react.default.createElement(_reactRouterDom.Link, {
+    to: "/admin/products/"
+  }, "Products") : _react.default.createElement(_reactRouterDom.Link, {
+    to: "/products/"
   }, "Shop"), _react.default.createElement("br", null), _react.default.createElement(_reactRouterDom.Link, {
     to: "/our-story"
   }, "Our Story"), _react.default.createElement("br", null), _react.default.createElement(_reactRouterDom.Link, {
@@ -1774,7 +1778,8 @@ var Navbar = function Navbar(_ref) {
 
 var mapState = function mapState(state) {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user
   };
 };
 
@@ -1906,15 +1911,10 @@ var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_module
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-console.log('test');
-
 var Product = function Product(_ref) {
   var product = _ref.product,
       admin = _ref.admin,
-      removeProduct = _ref.removeProduct,
-      addProductToCart = _ref.addProductToCart,
-      userId = _ref.userId,
-      history = _ref.history;
+      removeProduct = _ref.removeProduct;
   return _react.default.createElement("div", {
     className: "product-small"
   }, _react.default.createElement(_reactRouterDom.Link, {
@@ -1928,17 +1928,12 @@ var Product = function Product(_ref) {
     className: "in-stock"
   }, "In Stock") : _react.default.createElement("p", {
     className: "out-of-stock"
-  }, "Out Of Stock")), _react.default.createElement("button", {
+  }, "Out Of Stock")), admin ? _react.default.createElement("button", {
     type: "button",
     onClick: function onClick() {
       removeProduct(product.id);
     }
-  }, "Delete"), _react.default.createElement("button", {
-    type: "button",
-    onClick: function onClick() {
-      return addProductToCart(product, userId);
-    }
-  }, "Add To Cart"));
+  }, "Delete") : null);
 }; //
 
 
@@ -2099,11 +2094,7 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      return _react.default.createElement("div", null, _react.default.createElement("button", {
-        type: "submit",
-        form: "test",
-        value: "Submit"
-      }, "Submit"), _react.default.createElement(_filterBar.default, {
+      return _react.default.createElement("div", null, _react.default.createElement(_filterBar.default, {
         handleChange: this.handleChange,
         products: this.state.products
       }), _react.default.createElement(_searchBar.default, {
@@ -2131,6 +2122,7 @@ function (_Component) {
           key: product.id,
           history: _this2.props.history,
           product: product,
+          user: _this2.props.user,
           admin: _this2.props.admin,
           removeProduct: _this2.props.removeProduct,
           addProductToCart: _this2.props.addProduct,
@@ -2146,7 +2138,8 @@ function (_Component) {
 var mapStateToProps = function mapStateToProps(state) {
   return {
     products: state.productsReducer.products,
-    currentUser: state.user.id
+    currentUser: state.user.id,
+    user: state.user
   };
 };
 

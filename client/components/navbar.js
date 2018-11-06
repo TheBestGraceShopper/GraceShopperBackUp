@@ -26,7 +26,7 @@ const Navbar = ({ handleClick, isLoggedIn, user }) => {
             <br />
             <Link to="/our-story" className="nav-text">Our Story</Link>
             <br />
-            <Link to="/contact-us" className="nav-text">Contact Us!</Link>
+            <Link to="/help" className="nav-text">Contact Us!</Link>
           </div>
 
         </div>

@@ -1,110 +1,71 @@
-import React, { Component, ReactFormLabel } from 'react'
+import React from 'react'
 
 
-// class ContactUsForm extends Component {
-//  constructor(props) {
-//   super(props)
+class ContactUs extends React.Component {
+    constructor () {
+        super()
+        this.state = {
+            email: '',
+            fullName: '',
+            question: ''
+        }
 
-//   this.state = {
-//    name: '',
-//    email: '',
-//    subject: '',
-//    message: ''
-//   }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+  
+      handleChange (e) {
+          this.setState({
+              [e.target.name]: e.target.value
+          })
+      }
 
-//   this.handleChange = this.handleChange.bind(this)
-//   this.handleSubmit = this.handleSubmit.bind(this)
-//  }
+      handleSubmit (e) {
+        e.preventDefault();
+        this.setState({
+            email: '',
+            fullName: '',
+            question: '',
+        })
+    }
 
-//  handleChange = (e) => {
-//   let newState = {}
+render(){
+  return (
+    <div>
+        <form>
+            <h1>Contact us with any questions!</h1>
+           
+            <label htmlFor='email'>Email: </label>
+            <input
+                type='text'
+                name='email'
+                onChange={this.handleChange}
+                value={this.state.email}
+                placeholder='E-mail'
+            />
+            
+            <label htmlFor='firstName'>Full Name: </label>
+            <input
+                type='text'
+                name='fullName'
+                onChange={this.handleChange}
+                value={this.state.fullName}
+                placeholder='Full Name'
+            />
 
-//   newState[e.target.name] = e.target.value
+            <label htmlFor='lastName'>Question:</label>
+            <input
+                type='text'
+                name='questions'
+                onChange={this.handleChange}
+                value={this.state.question}
+                placeholder='How May We Help You?'
+            />
+         <button type="submit" onClick={this.handleSubmit} disabled={!isEnabled}>Submit</button>
+        </form>
+    </div>
+)
+}
+}
+export default ContactUs;
 
-//   this.setState(newState)
-//  }
-
-
-//  handleSubmit = (e, message) => {
-//   e.preventDefault()
-
-//   let formData = {
-//    formSender: this.state.name,
-//    formEmail: this.state.email,
-//    formSubject: this.state.subject,
-//    formMessage: this.state.message
-//   }
-
-//   if (formData.formSender.length < 1 || formData.formEmail.length < 1 || formData.formSubject.length < 1 || formData.formMessage.length < 1) {
-//    return false
-//   }
-
-//   $.ajax({
-//    url: '/some/url',
-//    dataType: 'json',
-//    type: 'POST',
-//    data: formData,
-//    success: function(data) {
-//     if (confirm('Thank you for your message. Can I erase the form?')) {
-//       this.setState({
-//        firstName: '',
-//        lastName: '',
-//        email: '',
-//        subject: '',
-//        message: ''
-//       })
-//     }
-//    },
-//    error: function(xhr, status, err) {
-//     console.error(status, err.toString())
-//     alert('There was some problem with sending your message.')
-//    }
-//   })
-
-//   this.setState({
-//    firstName: '',
-//    lastName: '',
-//    email: '',
-//    subject: '',
-//    message: ''
-//   })
-//  }
-
-//  render() {
-//   return(
-//    <form className='react-form' onSubmit={this.handleSubmit}>
-//     <h1>Have a question or want to just say hi?!</h1>
-
-//     <fieldset className='form-group'>
-//      <ReactFormLabel htmlFor='formName' title='Full Name:' />
-
-//      <input id='formName' className='form-input' name='name' type='text' required onChange={this.handleChange} value={this.state.name} />
-//     </fieldset>
-
-//     <fieldset className='form-group'>
-//      <ReactFormLabel htmlFor='formEmail' title='Email:' />
-
-//      <input id='formEmail' className='form-input' name='email' type='email' required onChange={this.handleChange} value={this.state.email} />
-//     </fieldset>
-
-//     <fieldset className='form-group'>
-//      <ReactFormLabel htmlFor='formSubject' title='Subject:'/>
-
-//      <input id='formSubject' className='form-input' name='subject' type='text' required onChange={this.handleChange} value={this.state.subject} />
-//     </fieldset>
-
-//     <fieldset className='form-group'>
-//      <ReactFormLabel htmlFor='formMessage' title='Message:' />
-
-//      <textarea id='formMessage' className='form-textarea' name='message' required onChange={this.handleChange}></textarea>
-//     </fieldset>
-
-//     <div className='form-group'>
-//      <input id='formButton' className='btn' type='submit' placeholder='Send message' />
-//     </div>
-//    </form>
-//   )
-//  }
-// }
-
-// export default ContactUsForm;

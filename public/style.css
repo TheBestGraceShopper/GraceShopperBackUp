@@ -181,3 +181,77 @@ html, body, #container, .carousel {
   right: 0;
 }
 
+.ourStory{
+  display: flex;
+  margin: 5%;
+  margin-top: 0;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.083em;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.ourStory{
+  text-align: justify;
+}
+
+.ourStory p{
+  text-align: center;
+  font-size: 1em;
+  padding-top: 0;
+  margin-top: 0
+}
+
+.ourStory h1{
+  text-align: center;
+  color: darkolivegreen
+}
+
+.Team{
+  text-align: center
+}
+
+.teamContainer{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  justify-items: flex-start;
+  padding-top: 0;
+  margin-top:0
+}
+
+
+.teamContainer figure{
+  width: 20%;
+  height: auto;
+  padding: 2%;
+  margin: 0;
+  padding-top:0;
+  margin-top:0
+}
+
+.teamContainer img{
+  width: 100%;
+  height: auto;
+  border-radius: 37%;
+  box-sizing: border-box;
+}
+
+.teamContainer h5{
+  padding:0;
+  font-size: 2em;
+  margin:0;
+}
+
+.teamContainer p{
+  text-align: center
+}
+
+.teamContainer span{
+  font-size: 1.5em
+}
+
+/* ======================== navbar  ==================================== */

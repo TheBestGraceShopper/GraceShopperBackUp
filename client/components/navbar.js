@@ -9,10 +9,16 @@ const Navbar = ({ handleClick, isLoggedIn, user }) => {
   return (
 
     <div id="banner">
-      <div className="logo-and-title-div">
-        <img className="group-logo" src="https://preview.ibb.co/bUndOL/abcs-logo.png/" alt="ABCS logo" />
-        <h1 className="main-title">Let it Brie</h1>
+      <div className="banner-div">
+        <div className="logo-and-title-div">
+          <img className="group-logo" src="https://preview.ibb.co/bUndOL/abcs-logo.png/" alt="ABCS logo" />
+          <h1 className="main-title">Let it Brie</h1>
+        </div>
+        <div className="cart-link">
+        <CartButton />
       </div>
+      </div>
+
       <div id="nav-text">
         <div id="navbar">
           <div className="nav-links">
@@ -22,9 +28,7 @@ const Navbar = ({ handleClick, isLoggedIn, user }) => {
             <br />
             <Link to="/contact-us" className="nav-text">Contact Us!</Link>
           </div>
-          <div className="cart-link">
-            <CartButton />
-          </div>
+
         </div>
         <nav className='login-nav'>
           {isLoggedIn ? (
@@ -36,11 +40,11 @@ const Navbar = ({ handleClick, isLoggedIn, user }) => {
           </a>
             </div>
           ) : (
-              <div>
+              <div className="login-signup-div">
                 {/* The navbar will show these links before you log in */}
 
                 <Link to="/login" className="nav-text">Login</Link>
-                {/* <p className="nav-text">|</p> */}
+                <p id="nav-text-line">|</p>
                 <Link to="/signup" className="nav-text">Sign Up</Link>
               </div>
             )}

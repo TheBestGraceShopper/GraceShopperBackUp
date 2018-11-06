@@ -120,6 +120,9 @@ export const fetchOrderHistory = (id) => async dispatch => {
     }
   }
 
+
+
+
 // REDUCER
  const ordersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -131,16 +134,16 @@ export const fetchOrderHistory = (id) => async dispatch => {
         return {...state, cart: [...state.cart.filter(product => product.id !== action.productId)]}
       case INCEASE_QUANTITY:
         return {...state, cart:[...state.cart.map(item =>{
-            if(item.id === action.id){item.quantity += action.up} 
+            if(item.id === action.id){item.quantity += action.up}
             return item;
-        })]}   
+        })]}
       case DECREASE_QUANTITY:
         return {...state, cart:[...state.cart.map(item =>{
-            if(item.id === action.id){item.quantity -= action.down} 
+            if(item.id === action.id){item.quantity -= action.down}
             return item;
-        })]}    
+        })]}
       case GET_PREV_ORDER:
-      return {...state, prevOrders: action.orders}    
+      return {...state, prevOrders: action.orders}
       default:
         return state
     }

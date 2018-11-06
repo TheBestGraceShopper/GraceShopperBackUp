@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import history from '../../history'
+import {connect} from 'react-redux'
+import OrderToDB from './OrderToDB'
 
 const STRIPE_PUBLISHABLE =
 	process.env.NODE_ENV === 'production'
@@ -11,12 +13,15 @@ const STRIPE_PUBLISHABLE =
 const currency = 'USD'
 const monetize = amount => Number(amount) * 100
 
-const successfullPayment = data => {
+
+const successfulPayment = () => {
     alert('Thanks for the purchase! Have a gouda day!')
+
 }
 
+
 const failedPayment = data => {
-    alert('You cannnot enjoy your meats and cheeses just yet. Do you have enough money? Maybe check out www.monster.com')
+    alert('You cannot enjoy your meats and cheeses just yet. Do you have enough money? Maybe check out www.monster.com')
 }
 
 const withToken = (amount, description) => token =>
@@ -26,9 +31,9 @@ const withToken = (amount, description) => token =>
       currency,
       amount: monetize(amount)
   })
-  .then(successfullPayment())
+  .then(successfulPayment())
   .then(window.localStorage.clear())
-  .then(history.push('/home'))
+  .then(history.push('/confirmation'))
   .catch(failedPayment)
 
 const StripeForm = ({name, description, amount}) => (

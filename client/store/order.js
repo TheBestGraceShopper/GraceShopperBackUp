@@ -139,7 +139,7 @@ export const fetchOrderHistory = (id) => async dispatch => {
         })]}
       case DECREASE_QUANTITY:
         return {...state, cart:[...state.cart.map(item =>{
-            if(item.id === action.id){item.quantity -= action.down}
+            if(item.id === action.id){item.quantitoy -= action.down}
             return item;
         })]}
       case GET_PREV_ORDER:

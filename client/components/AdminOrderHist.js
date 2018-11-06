@@ -1,7 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 import Order from './Order'
 
 
@@ -14,23 +12,18 @@ class OrderHistory extends React.Component {
   }
 
   async componentDidMount() {
-    const userId = this.props.userId;
-    let { data: orders } = await axios.get(`/api/users/pastOrders/${userId}`);
+    let { data: orders } = await axios.get(`/api/orders/pastOrders/`);
     this.setState({ orderHistory: orders });
   }
 
   render() {
     return (
-    <div>
-        <h2>ORDER HISTORY</h2>
+      <div>
+        <h2>PAST ORDERS</h2>
         {this.state.orderHistory.map(order => <Order key={order.id} order={order}/>)}
-    </div>)
-
+      </div>
+    )
+  }
 }
-}
-const mapStateToProps = (state) => ({
-  userId: state.user.id
-});
 
-export default connect(mapStateToProps)(OrderHistory);
-
+export default OrderHistory;

@@ -1,110 +1,110 @@
-import React, { Component } from 'react'
+import React, { Component, ReactFormLabel } from 'react'
 
 
-class ContactUsForm extends Component {
- constructor(props) {
-  super(props)
+// class ContactUsForm extends Component {
+//  constructor(props) {
+//   super(props)
 
-  this.state = {
-   name: '',
-   email: '',
-   subject: '',
-   message: ''
-  }
+//   this.state = {
+//    name: '',
+//    email: '',
+//    subject: '',
+//    message: ''
+//   }
 
-  this.handleChange = this.handleChange.bind(this)
-  this.handleSubmit = this.handleSubmit.bind(this)
- }
+//   this.handleChange = this.handleChange.bind(this)
+//   this.handleSubmit = this.handleSubmit.bind(this)
+//  }
 
- handleChange = (e) => {
-  let newState = {}
+//  handleChange = (e) => {
+//   let newState = {}
 
-  newState[e.target.name] = e.target.value
+//   newState[e.target.name] = e.target.value
 
-  this.setState(newState)
- }
+//   this.setState(newState)
+//  }
 
 
- handleSubmit = (e, message) => {
-  e.preventDefault()
+//  handleSubmit = (e, message) => {
+//   e.preventDefault()
 
-  let formData = {
-   formSender: this.state.name,
-   formEmail: this.state.email,
-   formSubject: this.state.subject,
-   formMessage: this.state.message
-  }
+//   let formData = {
+//    formSender: this.state.name,
+//    formEmail: this.state.email,
+//    formSubject: this.state.subject,
+//    formMessage: this.state.message
+//   }
 
-  if (formData.formSender.length < 1 || formData.formEmail.length < 1 || formData.formSubject.length < 1 || formData.formMessage.length < 1) {
-   return false
-  }
+//   if (formData.formSender.length < 1 || formData.formEmail.length < 1 || formData.formSubject.length < 1 || formData.formMessage.length < 1) {
+//    return false
+//   }
 
-  $.ajax({
-   url: '/some/url',
-   dataType: 'json',
-   type: 'POST',
-   data: formData,
-   success: function(data) {
-    if (confirm('Thank you for your message. Can I erase the form?')) {
-      this.setState({
-       firstName: '',
-       lastName: '',
-       email: '',
-       subject: '',
-       message: ''
-      })
-    }
-   },
-   error: function(xhr, status, err) {
-    console.error(status, err.toString())
-    alert('There was some problem with sending your message.')
-   }
-  })
+//   $.ajax({
+//    url: '/some/url',
+//    dataType: 'json',
+//    type: 'POST',
+//    data: formData,
+//    success: function(data) {
+//     if (confirm('Thank you for your message. Can I erase the form?')) {
+//       this.setState({
+//        firstName: '',
+//        lastName: '',
+//        email: '',
+//        subject: '',
+//        message: ''
+//       })
+//     }
+//    },
+//    error: function(xhr, status, err) {
+//     console.error(status, err.toString())
+//     alert('There was some problem with sending your message.')
+//    }
+//   })
 
-  this.setState({
-   firstName: '',
-   lastName: '',
-   email: '',
-   subject: '',
-   message: ''
-  })
- }
+//   this.setState({
+//    firstName: '',
+//    lastName: '',
+//    email: '',
+//    subject: '',
+//    message: ''
+//   })
+//  }
 
- render() {
-  return(
-   <form className='react-form' onSubmit={this.handleSubmit}>
-    <h1>Have a question or want to just say hi?!</h1>
+//  render() {
+//   return(
+//    <form className='react-form' onSubmit={this.handleSubmit}>
+//     <h1>Have a question or want to just say hi?!</h1>
 
-    <fieldset className='form-group'>
-     <ReactFormLabel htmlFor='formName' title='Full Name:' />
+//     <fieldset className='form-group'>
+//      <ReactFormLabel htmlFor='formName' title='Full Name:' />
 
-     <input id='formName' className='form-input' name='name' type='text' required onChange={this.handleChange} value={this.state.name} />
-    </fieldset>
+//      <input id='formName' className='form-input' name='name' type='text' required onChange={this.handleChange} value={this.state.name} />
+//     </fieldset>
 
-    <fieldset className='form-group'>
-     <ReactFormLabel htmlFor='formEmail' title='Email:' />
+//     <fieldset className='form-group'>
+//      <ReactFormLabel htmlFor='formEmail' title='Email:' />
 
-     <input id='formEmail' className='form-input' name='email' type='email' required onChange={this.handleChange} value={this.state.email} />
-    </fieldset>
+//      <input id='formEmail' className='form-input' name='email' type='email' required onChange={this.handleChange} value={this.state.email} />
+//     </fieldset>
 
-    <fieldset className='form-group'>
-     <ReactFormLabel htmlFor='formSubject' title='Subject:'/>
+//     <fieldset className='form-group'>
+//      <ReactFormLabel htmlFor='formSubject' title='Subject:'/>
 
-     <input id='formSubject' className='form-input' name='subject' type='text' required onChange={this.handleChange} value={this.state.subject} />
-    </fieldset>
+//      <input id='formSubject' className='form-input' name='subject' type='text' required onChange={this.handleChange} value={this.state.subject} />
+//     </fieldset>
 
-    <fieldset className='form-group'>
-     <ReactFormLabel htmlFor='formMessage' title='Message:' />
+//     <fieldset className='form-group'>
+//      <ReactFormLabel htmlFor='formMessage' title='Message:' />
 
-     <textarea id='formMessage' className='form-textarea' name='message' required onChange={this.handleChange}></textarea>
-    </fieldset>
+//      <textarea id='formMessage' className='form-textarea' name='message' required onChange={this.handleChange}></textarea>
+//     </fieldset>
 
-    <div className='form-group'>
-     <input id='formButton' className='btn' type='submit' placeholder='Send message' />
-    </div>
-   </form>
-  )
- }
-}
+//     <div className='form-group'>
+//      <input id='formButton' className='btn' type='submit' placeholder='Send message' />
+//     </div>
+//    </form>
+//   )
+//  }
+// }
 
-export default ContactUsForm;
+// export default ContactUsForm;

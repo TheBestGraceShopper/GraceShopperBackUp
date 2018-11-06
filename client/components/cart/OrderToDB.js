@@ -67,4 +67,4 @@ const mapDispatch = dispatch => ({
   getUser: () => dispatch(me())
 })
 
-export default connect(mapState, mapDispatch)(OrderToDB)
+export default connect(mapState, mapDispatch)(OrderToDB);

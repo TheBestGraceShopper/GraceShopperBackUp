@@ -17,6 +17,7 @@ import PaymentCheckout from './components/cart/PaymentCheckout'
 import OrderToDB from './components/cart/OrderToDB';
 import Help from './components/Help'
 import OrderHistory from '../client/components/OrderHist'
+import AdminOrderHistory from '../client/components/AdminOrderHist'
 
 /**
  * COMPONENT
@@ -45,6 +46,7 @@ class Routes extends Component {
         <Route path="/our-story/" component={OurStory} />
         <Route path="/contact-us/" component={Help} />
         <Route exact path="/cart/" component={CartPage} />
+        <Route exact path="/admin/orders/" component={AdminOrderHistory} />
 
         {isLoggedIn && (
           <Switch>

@@ -1,74 +1,58 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-class OurStory extends Component {
+const OurStory = () => {
+  return (
 
+    <div className="about">
+      <div className="ourStory">
+      <h1>How The Board Came To Be</h1>
+      <p> Here is a little story about how we came to be!
 
-    render(){
-        return (
-        
-        <div>
-         <h3>A little story about how four ladies found a love of wood, cheese, meats, and bread.
-              And Wine. Lots of wine!
-          </h3>
+        Insert Team Photo
+      </p>
+      </div>
+      <div className="Team">
+        <h1>Meat the Team</h1>
+        <div className="teamContainer">
+        <figure>
+        <a href="https://www.linkedin.com/in/ayemachowdhury/">
+          <img src="https://media.licdn.com/dms/image/C4E03AQGm63zdAMZgzw/profile-displayphoto-shrink_200_200/0?e=1547078400&v=beta&t=KV60swP_LMJjoAWopH8R45rDXPAjVblAWPKoISPu3UM" />
+          </a> 
+          <h5>Ayema Chowdhury</h5>
+          <span>Chief Pun Officer</span>
+          <p>Ayema spends most of her day thinking of cheese puns.
+          </p>
+        </figure>
+        <figure>
+        <a href="https://www.linkedin.com/in/summerdeehan/">
+          <img src="https://media.licdn.com/dms/image/C4E03AQFmiPq7kPBeQQ/profile-displayphoto-shrink_800_800/0?e=1547078400&v=beta&t=IFxyhItzy_0bwd2B-OeNFMMekkncZHIvcqkc_i6fc1A" />
+       </a> 
+          <h5>Summer Deehan</h5>
+          <span>Chief Expat Officer</span>
+          <p>Summer is British and hails from under Prince Charles. 
+          </p>
+        </figure>
+        <figure>
+        <a href="https://www.linkedin.com/in/conniejiayeelim/">
+          <img src="https://media.licdn.com/dms/image/C4E03AQE8Avr6dmZOPw/profile-displayphoto-shrink_800_800/0?e=1547078400&v=beta&t=SARPsH328KWi1G0DsQKvoyXr8MNgDXtjFOdKD8bH9mY" />
+        </a>
+          <h5>Connie Lim</h5>
+          <span>Chief Rind Officer</span>
+          <p>Connie spends painstaking hours to make sure the cheeses in our inventory are of the highest-quality. She also has the least knowledge of cheeses.
+          </p>
+        </figure>
+        <figure>
+        <a href="https://www.linkedin.com/in/bethany-m-walker/"> 
+          <img src="https://media.licdn.com/dms/image/C4E03AQFqKWiDTMcuag/profile-displayphoto-shrink_800_800/0?e=1547078400&v=beta&t=qRX_i69mm0MlSi6IgfYiAi61GP9FWLWXnM_zbYCpO1o" />
+          </a> 
+         <h5>Bethany Walker</h5>
+          <span>Chief Food Officer</span>
+          <p>Bethany is prim and proper. She makes sure that your boards are perfect!</p>
+        </figure>
         </div>
- 
-        )
-    }
-
+      </div>
+    </div>
+  )
 }
-export default OurStory;
 
-
-{/* <div className="row">
-  <div className="column">
-    <div className="card">
-      <img src="img1.jpg" alt="Jane" style="width:100%"> </img>
-      <div className="container">
-        <h2>Ayema Chowdhury</h2>
-        <p className="title">CEO &amp; Founder</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-        <p>example@example.com</p>
-        <p><button className="button">Contact</button></p>
-      </div>
-    </div>
-  </div>
-
-  <div className="column">
-    <div className="card">
-      <img src="img2.jpg" alt="Mike" style="width:100%"></img>
-      <div className="container">
-        <h2>Summer Deehan</h2>
-        <p className="title">CEO</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-        <p>example@example.com</p>
-        <p><button className="button">Contact</button></p>
-      </div>
-    </div>
-  </div>
-
-  <div className="column">
-    <div className="card">
-      <img src="img3.jpg" alt="John" style="width:100%"> </img>
-      <div className="container">
-        <h2>Connie Lim</h2>
-        <p className="title">CEO</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-        <p>example@example.com</p>
-        <p><button className="button">Contact</button></p>
-      </div>
-    </div>
-  </div>
-
- <div className="column">
-    <div className="card">
-      <img src="img2.jpg" alt="Mike" style="width:100%"></img>
-      <div className="container">
-        <h2>Bethany walker</h2>
-        <p className="title">CEO</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-        <p>example@example.com</p>
-        <p><button className="button">Contact</button></p>
-      </div>
-    </div>
-  </div>
-</div> */}
+export default OurStory

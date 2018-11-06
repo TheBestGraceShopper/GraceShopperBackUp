@@ -9,6 +9,7 @@ img {
 
 body {
   font-family: sans-serif;
+
 }
 
 a {
@@ -82,14 +83,45 @@ form div {
 
 } */
 
+.cart-link {
+  float: right;
+  margin-right: 2%;
+  background-color:palegoldenrod;
+  /* margin-bottom: 120px; */
+  position: relative;
+  bottom: 0;
+  right: 105px;
+}
+
 #shopping-cart-image {
   width: 60px;
   height: 60px;
   border-radius: 5px;
-  position: absolute;
   z-index: 2;
-  top: 90px;
-  right: 65px;
+  position: absolute;
+  bottom: 1%;
+}
+
+#shopping-cart-image2 {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  z-index: 3;
+  position: absolute;
+  bottom: 1%;
+  opacity: 0;
+}
+
+#shopping-cart-image2:hover {
+  opacity: 0.5;
+}
+
+#shopping-cart-image2:active,
+#shopping-cart-image:active
+ {
+  border-style: solid;
+  border-color: #F5F5F5;
+  border-width: 1px;
 }
 
 .cart-number {
@@ -101,9 +133,9 @@ form div {
   font-size: 20px;
   color: black;
   line-height: 1.6;
-  position: absolute;
-  top: 87px;
-  right: 63px;
+   position: absolute;
+  bottom: 33.5px;
+  left: 31px;
   z-index: 3;
 }
 
@@ -135,12 +167,8 @@ form div {
   justify-content: space-around;
 }
 
-.cart-link {
-  float: right;
-}
-
 .footer {
-  position: relative;
+  position: static;
   bottom: 0;
   width: 100%;
   height: 30px;
@@ -148,8 +176,9 @@ form div {
 }
 
 .footer-text{
-  color: burlywood;
-  text-align: center
+  color: white;
+  text-align: center;
+  line-height: 2;
 }
 
 .our-story{
@@ -267,6 +296,11 @@ html, body, #container, .carousel {
   margin-top: 12px;
 }
 
+.nav-text:hover {
+  color: #B8B8B8;
+  margin-top: 12px;
+}
+
 #nav-text {
   background-color: black;
   height: 40px;
@@ -274,18 +308,33 @@ html, body, #container, .carousel {
 }
 
 .main-title {
-  margin-top: 35px;
-  margin-left: 2%;
+  margin-top: 3.6%;
+  margin-left: 2.1%;
   font-family: 'Great Vibes', cursive;
-  font-size: 80px;
+  font-size: 8vw;
 }
 
 .group-logo {
   margin-left: 2%;
-  height: 150px;
-  width: 150px;
+  height: 15vw;
+  width: 15vw;
+}
+.banner-div {
+  display: flex;
+  justify-content: space-between;
 }
 
 .logo-and-title-div {
   display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.login-signup-div {
+  display: flex;
+}
+
+#nav-text-line {
+  color: white;
+  margin-top: 12px;
 }

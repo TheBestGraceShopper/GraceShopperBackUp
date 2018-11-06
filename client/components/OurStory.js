@@ -17,7 +17,7 @@ const OurStory = () => {
         <figure>
         <a href="https://www.linkedin.com/in/ayemachowdhury/">
           <img src="https://media.licdn.com/dms/image/C4E03AQGm63zdAMZgzw/profile-displayphoto-shrink_200_200/0?e=1547078400&v=beta&t=KV60swP_LMJjoAWopH8R45rDXPAjVblAWPKoISPu3UM" />
-          </a> 
+          </a>
           <h5>Ayema Chowdhury</h5>
           <span>Chief Pun Officer</span>
           <p>Ayema spends most of her day thinking of cheese puns.
@@ -26,10 +26,10 @@ const OurStory = () => {
         <figure>
         <a href="https://www.linkedin.com/in/summerdeehan/">
           <img src="https://media.licdn.com/dms/image/C4E03AQFmiPq7kPBeQQ/profile-displayphoto-shrink_800_800/0?e=1547078400&v=beta&t=IFxyhItzy_0bwd2B-OeNFMMekkncZHIvcqkc_i6fc1A" />
-       </a> 
+       </a>
           <h5>Summer Deehan</h5>
           <span>Chief Expat Officer</span>
-          <p>Summer is British and hails from under Prince Charles. 
+          <p>Summer is British and hails from under Prince Charles.
           </p>
         </figure>
         <figure>
@@ -42,9 +42,9 @@ const OurStory = () => {
           </p>
         </figure>
         <figure>
-        <a href="https://www.linkedin.com/in/bethany-m-walker/"> 
-          <img src="https://media.licdn.com/dms/image/C4E03AQFqKWiDTMcuag/profile-displayphoto-shrink_800_800/0?e=1547078400&v=beta&t=qRX_i69mm0MlSi6IgfYiAi61GP9FWLWXnM_zbYCpO1o" />
-          </a> 
+        <a href="https://www.linkedin.com/in/bethany-m-walker/">
+          <img src="https://image.ibb.co/hK7DCq/profile-pic.jpg" />
+          </a>
          <h5>Bethany Walker</h5>
           <span>Chief Food Officer</span>
           <p>Bethany is prim and proper. She makes sure that your boards are perfect!</p>
@@ -54,5 +54,4 @@ const OurStory = () => {
     </div>
   )
 }
-
 export default OurStory

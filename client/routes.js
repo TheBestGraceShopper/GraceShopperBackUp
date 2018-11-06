@@ -16,6 +16,7 @@ import Account from './components/Account'
 import PaymentCheckout from './components/cart/PaymentCheckout'
 import OrderToDB from './components/cart/OrderToDB';
 import Help from './components/Help'
+import OrderHistory from '../client/components/OrderHist'
 
 /**
  * COMPONENT
@@ -49,6 +50,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/account/order-history" component={OrderHistory} />
             <Route path="/account" component={Account} />
           </Switch>
         )}

@@ -15,14 +15,19 @@ const Navbar = ({ handleClick, isLoggedIn, user }) => {
           <h1 className="main-title">Let it Brie</h1>
         </div>
         <div className="cart-link">
-        <CartButton />
-      </div>
+          <CartButton />
+        </div>
       </div>
 
       <div id="nav-text">
         <div id="navbar">
           <div className="nav-links">
-            {user.userType === 'admin' ? <Link to="/admin/products/">Products</Link> : <Link to="/products/" className="nav-text">Shop</Link>}
+            {user.userType === 'admin' ? (
+              <div>
+                <Link to="/admin/products/" className="nav-text">Products</Link>
+                <Link to="/admin/products/" className="nav-text">Manage Acounts</Link>
+              </div>
+            ) : <Link to="/products/" className="nav-text">Shop</Link>}
             <br />
             <Link to="/our-story" className="nav-text">Our Story</Link>
             <br />

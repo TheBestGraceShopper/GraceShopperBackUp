@@ -338,3 +338,8 @@ html, body, #container, .carousel {
   color: white;
   margin-top: 12px;
 }
+
+.order-hist-img {
+  height: 70px;
+  width: 70px;
+}

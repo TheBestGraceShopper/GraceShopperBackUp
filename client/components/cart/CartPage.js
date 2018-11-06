@@ -44,9 +44,11 @@ class CartPage extends Component {
     let cart = [...this.state.cart]
     cart.push(product)
     localStorage.setItem('cart', JSON.stringify(cart))
+    console.log("cart 1", cart)
     var cartValue = localStorage.getItem('cart')
     var cartObj = JSON.parse(cartValue)
     this.setState({cart: [...cart], cartObj})
+    console.log("cart 2", this.state.cart)
   }
 
 removeFromCart(product){

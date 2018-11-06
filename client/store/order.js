@@ -6,7 +6,8 @@ const initialState = {
           quantity: ''
         }
     ],
-    prevOrder: []
+    prevOrder: [],
+    totalQ: 0
 }
 
 // ACTION TYPES
@@ -14,8 +15,9 @@ const initialState = {
 const GET_CART = 'GET_CART'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
-const INCEASE_QUANTITY = 'INCREASE_QUANTITY'
+const INCREASE_QUANTITY = 'INCREASE_QUANTITY'
 const DECREASE_QUANTITY = 'DECREASE_QUANTITY'
+const GET_QUANTITY = 'GET_QUANTITY'
 const GET_PREV_ORDER = 'GET_PREV_ORDER'
 
 // ACTION CREATORS
@@ -23,6 +25,11 @@ const GET_PREV_ORDER = 'GET_PREV_ORDER'
 const getCart = cart => ({
     type: GET_CART,
     cart
+})
+
+const getQuantity = (quantity) => ({
+  type: GET_QUANTITY,
+  quantity
 })
 
 const addProductToCart = productId => ({
@@ -35,10 +42,8 @@ const removeProductToCart = productId => ({
     productId
 })
 
-const increaseQuantity = (id, val) => ({
-    type: INCEASE_QUANTITY,
-    id,
-    up: val,
+const increaseQuantity = () => ({
+    type: INCREASE_QUANTITY
 })
 
 const decreaseQuantity = (id, val) => ({
@@ -120,6 +125,16 @@ export const fetchOrderHistory = (id) => async dispatch => {
     }
   }
 
+export const fetchQuantity = () => dispatch => {
+    const count = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')).length : 0;
+    dispatch(getQuantity(count))
+}
+
+export const addOne = () => dispatch => {
+  console.log("adding");
+  dispatch(increaseQuantity());
+}
+
 
 
 
@@ -132,11 +147,8 @@ export const fetchOrderHistory = (id) => async dispatch => {
         return {...state, cart: [...state.cart, action.product]}
       case REMOVE_PRODUCT:
         return {...state, cart: [...state.cart.filter(product => product.id !== action.productId)]}
-      case INCEASE_QUANTITY:
-        return {...state, cart:[...state.cart.map(item =>{
-            if(item.id === action.id){item.quantity += action.up}
-            return item;
-        })]}
+      case INCREASE_QUANTITY:
+        return {...state, totalQ: state.totalQ + 1}
       case DECREASE_QUANTITY:
         return {...state, cart:[...state.cart.map(item =>{
             if(item.id === action.id){item.quantity -= action.down}
@@ -144,6 +156,8 @@ export const fetchOrderHistory = (id) => async dispatch => {
         })]}
       case GET_PREV_ORDER:
       return {...state, prevOrders: action.orders}
+      case GET_QUANTITY:
+        return {...state, totalQ: action.quantity}
       default:
         return state
     }

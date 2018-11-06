@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { addOne  } from '../store';
+
  class CartButton extends Component {
   render() {
     const cartItemCount = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')).length : 0;
@@ -19,6 +21,11 @@ import { connect } from 'react-redux';
   }
 }
  const mapStateToProps = (state) => ({
-  state
-})
- export default connect(mapStateToProps)(CartButton);
+      quantity: state.ordersReducer.totalQ
+  })
+  const mapDispatchToProps = (dispatch) => ({
+      addOne: () => dispatch(addOne()),
+      fetchQuantity: () => dispatch(fetchQuantity())
+  });
+
+ export default connect(mapStateToProps, mapDispatchToProps)(CartButton);

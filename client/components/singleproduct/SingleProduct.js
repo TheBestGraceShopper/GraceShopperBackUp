@@ -16,7 +16,7 @@ class SingleProduct extends React.Component {
       rating: '',
       productId: '',
       userId: '',
-      quantity: '',
+      quantity: 1,
       cart: [],
       showForm: false
     }
@@ -109,8 +109,7 @@ class SingleProduct extends React.Component {
             <label>
               How many would you like:
               <select value={this.state.quantity} onChange={this.handleSelect}>
-                <option value="0">0</option>
-                <option value="1">1</option>
+                <option value="1" selected>1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>

@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { logout } from '../store'
+import { logout, fetchQuantity } from '../store'
 import CartButton from './CartButton'
 
-const Navbar = ({ handleClick, isLoggedIn, user }) => {
+const Navbar = ({ handleClick, isLoggedIn, user, setQuantity, quantity }) => {
+  setQuantity();
   return (
 
     <div id="banner">
@@ -15,7 +16,7 @@ const Navbar = ({ handleClick, isLoggedIn, user }) => {
           <h1 className="main-title">Let it Brie</h1>
         </div>
         <div className="cart-link">
-        <CartButton />
+        <CartButton total={quantity}/>
       </div>
       </div>
 
@@ -61,16 +62,18 @@ const Navbar = ({ handleClick, isLoggedIn, user }) => {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    user: state.user
+    user: state.user,
+    quantity: state.ordersReducer.totalQ
   }
 }
 
 const mapDispatch = dispatch => {
-  return {
+  return ({
     handleClick() {
       dispatch(logout())
-    }
-  }
+    },
+    setQuantity: () => dispatch(fetchQuantity())
+  })
 }
 
 export default connect(mapState, mapDispatch)(Navbar)

@@ -50,9 +50,9 @@ form div {
 /* ======================== each product in list ==================================== */
 
 .product-small {
-  width: 300px;
-  height: 300px;
-  outline: solid grey;
+  width: 400px;
+  height: 400px;
+  /* outline: solid grey; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,8 +60,8 @@ form div {
 }
 
 .product-image {
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
 }
 
 .product-name {
@@ -83,27 +83,34 @@ form div {
 } */
 
 #shopping-cart-image {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 5px;
-  border-style: outset;
-  border-color: #526BD4;
+  position: absolute;
+  z-index: 2;
+  top: 90px;
+  right: 65px;
 }
 
 .cart-number {
   background-color: yellow;
-  border-radius: 10px;
-  width: 20px;
-  height: 20px;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
   text-align: center;
-  line-height: 1.4;
+  font-size: 20px;
+  color: black;
+  line-height: 1.6;
+  position: absolute;
+  top: 87px;
+  right: 63px;
+  z-index: 3;
 }
 
 #banner {
-  background-image: url("https://preview.ibb.co/mS8jXf/let-it-brie-logo.jpg");
+  /* background-image: url("https://preview.ibb.co/mS8jXf/let-it-brie-logo.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: lightsalmon;
   height: 250px;
   width: 100%;
 }
@@ -123,6 +130,9 @@ form div {
 
 .nav-links {
   float: left;
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
 }
 
 .cart-link {
@@ -175,11 +185,6 @@ html, body, #container, .carousel {
 	left: 1rem;
 }
 
-.cart-number {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
 
 .ourStory{
   display: flex;
@@ -205,12 +210,14 @@ html, body, #container, .carousel {
 
 .ourStory h1{
   text-align: center;
-  color: darkolivegreen
+  color: darkolivegreen;
 }
 
 .Team{
-  text-align: center
+  text-align: center;
 }
+
+/* font-family: 'Great Vibes', cursive; */
 
 .teamContainer{
   display: flex;
@@ -255,3 +262,30 @@ html, body, #container, .carousel {
 }
 
 /* ======================== navbar  ==================================== */
+.nav-text {
+  color: white;
+  margin-top: 12px;
+}
+
+#nav-text {
+  background-color: black;
+  height: 40px;
+  margin-top: 7px;
+}
+
+.main-title {
+  margin-top: 35px;
+  margin-left: 2%;
+  font-family: 'Great Vibes', cursive;
+  font-size: 80px;
+}
+
+.group-logo {
+  margin-left: 2%;
+  height: 150px;
+  width: 150px;
+}
+
+.logo-and-title-div {
+  display: flex;
+}

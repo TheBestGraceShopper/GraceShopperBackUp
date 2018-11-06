@@ -112,7 +112,7 @@ export const removeQuantity = (userId, productId) => async dispatch =>{
     }
 }
 
-export const fetchOrders = (orders) => async dispatch => {
+export const fetchOrders = () => async dispatch => {
     try {
       const res = await axios.get('/api/orders/pastOrders')
       dispatch(getOrders(res.data))

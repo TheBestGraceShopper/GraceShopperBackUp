@@ -16,7 +16,7 @@ class SingleProduct extends React.Component {
       rating: '',
       productId: '',
       userId: '',
-      quantity: '',
+      quantity: 1,
       cart: [],
       showForm: false
     }
@@ -27,6 +27,7 @@ class SingleProduct extends React.Component {
     this.handleSelect = this.handleSelect.bind(this)
     this.showForm = this.showForm.bind(this)
   }
+
   async componentDidMount() {
     this.setState({showForm: false})
     const productId = this.props.match.params.productId
@@ -54,6 +55,7 @@ class SingleProduct extends React.Component {
 
     this.props.addReview(review)
   }
+
   handleChange(e) {
     this.setState({[e.target.name]: e.target.value})
   }
@@ -78,7 +80,7 @@ class SingleProduct extends React.Component {
 
   addToCart(product, quantity) {
     let cart = [...this.state.cart]
-    for(let i=1; i<=quantity; i++){
+    for(let i = 1; i <= quantity; i++){
       cart.push(product)
     }
     localStorage.setItem('cart', JSON.stringify(cart))
@@ -107,9 +109,8 @@ class SingleProduct extends React.Component {
             <p>{selectedProduct.description}</p>
             <h2>Price: ${selectedProduct.price}</h2>
             <label>
-              How many would you like:
+              Quantity:
               <select value={this.state.quantity} onChange={this.handleSelect}>
-                <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -155,8 +156,6 @@ const mapDispatchToProps = dispatch => ({
   getAProduct: id => dispatch(fetchAProduct(id)),
   getReviews: productId => dispatch(fetchReviews(productId)),
   addReview: review => dispatch(postReview(review))
-  // increaseQuantity: productId => dispatch(addQuantity(productId)),
-  // decreaseQuantity: productId => dispatch(removeQuantity(productId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)

@@ -7,85 +7,81 @@ import OrderToDB from './OrderToDB'
 import {Redirect} from 'react-router-dom'
 import { me } from '../../store/user'
 
-
 class StripeForm extends React.Component {
-  // constructor() {
-  //   super();
-  // }
+  
   render() {
-  const name = this.props.name;
-  const description = this.props.description;
-  const amount = this.props.amount;
-  const STRIPE_PUBLISHABLE =
-	process.env.NODE_ENV === 'production'
-		? 'pk_test_a41tEZdwchhwkDi9HhH0pc9D'
-		: 'pk_test_a41tEZdwchhwkDi9HhH0pc9D'
+    const name = this.props.name;
+    const description = this.props.description;
+    const amount = this.props.amount;
+    const STRIPE_PUBLISHABLE =
+    process.env.NODE_ENV === 'production'
+      ? 'pk_test_a41tEZdwchhwkDi9HhH0pc9D'
+      : 'pk_test_a41tEZdwchhwkDi9HhH0pc9D'
 
-const currency = 'USD'
-const monetize = num => Number(num) * 100
+    const currency = 'USD'
+    const monetize = num => Number(num) * 100
 
-function itemWithAmount(items) {
-  const uniqueWithCount = {}
-  items.forEach(item => {
-    if (!uniqueWithCount[item.name]) {
-      uniqueWithCount[item.name] = item;
-      uniqueWithCount[item.name].count = 1
-    } else {
-      uniqueWithCount[item.name].count++
+    function itemWithAmount(items) {
+      const uniqueWithCount = {}
+      items.forEach(item => {
+        if (!uniqueWithCount[item.name]) {
+          uniqueWithCount[item.name] = item;
+          uniqueWithCount[item.name].count = 1
+        } else {
+          uniqueWithCount[item.name].count++
+        }
+      })
+      return uniqueWithCount;
     }
-  })
-  return uniqueWithCount;
- }
-const successfulPayment = async () => {
-    alert('Thanks for the purchase! Have a gouda day!')
-    let cartItems = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [];
-      cartItems = itemWithAmount(cartItems);
-      let cartItemNames = Object.keys(cartItems);
+
+    const successfulPayment = async () => {
+        alert('Thanks for the purchase! Have a gouda day!')
+        let cartItems = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [];
+        cartItems = itemWithAmount(cartItems);
+        let cartItemNames = Object.keys(cartItems);
 
         cartItemNames.map(async productName => {
+          const data = { totalPrice: cartItems[productName].price * cartItems[productName].count, userId: this.props.user.id }
+          const order = await axios.post(`/api/order/add`, data);
 
-        const data = { totalPrice: cartItems[productName].price * cartItems[productName].count, userId: this.props.user.id }
-
-        const order = await axios.post(`/api/order/add`, data);
-        console.log("order", order)
-        const productData = {productId: cartItems[productName].id, productQuantity: cartItems[productName].count, orderId: order.data.id};
-
-        await axios.post(`/api/order/add_product_order`, productData);
+          const productData = {productId: cartItems[productName].id, productQuantity: cartItems[productName].count, orderId: order.data.id};
+          await axios.post(`/api/order/add_product_order`, productData);
         });
+    }
+
+    const failedPayment = data => {
+        alert('You cannot enjoy your meats and cheeses just yet. Do you have enough money? Maybe check out www.monster.com')
+    }
+
+    const withToken = (amount, description) => token =>
+      axios.post('/api/stripe', {
+        description,
+        source: token.id,
+        currency,
+        amount: monetize(amount)
+      })
+      .then(successfulPayment())
+      .then(window.localStorage.clear())
+      .then(history.push('/confirmation'))
+      .catch(failedPayment)
+
+      return (
+        <StripeCheckout
+          name={name}
+          description={description}
+          amount={monetize(amount)}
+          token={withToken(amount, description)}
+          currency={currency}
+          stripeKey={STRIPE_PUBLISHABLE}
+        />
+      );
   }
-
-
-const failedPayment = data => {
-    alert('You cannot enjoy your meats and cheeses just yet. Do you have enough money? Maybe check out www.monster.com')
 }
 
-const withToken = (amount, description) => token =>
-  axios.post('/api/stripe', {
-      description,
-      source: token.id,
-      currency,
-      amount: monetize(amount)
-  })
-  .then(successfulPayment())
-  .then(window.localStorage.clear())
-  .then(history.push('./confirmation'))
-  .catch(failedPayment)
-
-  return (<StripeCheckout
-		name={name}
-		description={description}
-		amount={monetize(amount)}
-		token={withToken(amount, description)}
-		currency={currency}
-		stripeKey={STRIPE_PUBLISHABLE}
-	/>);
-
-
-}
-}
 const mapState = state => ({
   user: state.user
 })
+
 const mapDispatch = dispatch => ({
   getUser: () => dispatch(me())
 })

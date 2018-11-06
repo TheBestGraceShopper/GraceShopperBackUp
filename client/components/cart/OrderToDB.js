@@ -68,5 +68,3 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(OrderToDB);
-
-//export to cartPage?

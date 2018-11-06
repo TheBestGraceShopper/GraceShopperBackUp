@@ -5,6 +5,7 @@ import history from '../../history'
 import {connect} from 'react-redux'
 import OrderToDB from './OrderToDB'
 
+
 const STRIPE_PUBLISHABLE =
 	process.env.NODE_ENV === 'production'
 		? 'pk_test_a41tEZdwchhwkDi9HhH0pc9D'

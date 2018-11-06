@@ -5,23 +5,9 @@ import { me } from '../../store/user'
 import {mapCartItems} from '../../store/order'
 
 class OrderToDB extends React.Component {
+
 async componentDidMount () {
 await this.props.getUser();
- //get orderId from db & add 1 for new orderId
- // async function getNextOrderId() {
- //   let id = await axios.get('/api/order/lastOrder');
- //   return id + 1;
- // }
-
- //const nextOrderId = getNextOrderId();
-
- //status is default
-
- //get userId from store
-//  const getUserId = async() => {
-//    const userId = await findUser();
-//    console.log('==========userId', userId);
-//  }
 
       let cartItems = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [];
       cartItems = itemWithAmount(cartItems);
@@ -30,15 +16,15 @@ await this.props.getUser();
         cartItemNames.map(async productName => {
 
         const data = { totalPrice: cartItems[productName].price * cartItems[productName].count, userId: this.props.user.id }
-        console.log("data", data)
-        const order = await axios.post(`/api/order/add`, data);
 
-        const productData = {productId: cartItems[productName].id, productQuantity: cartItems[productName].count, orderId: order.id};
+        const order = await axios.post(`/api/order/add`, data);
+        console.log("order", order)
+        const productData = {productId: cartItems[productName].id, productQuantity: cartItems[productName].count, orderId: order.data.id};
 
         await axios.post(`/api/order/add_product_order`, productData)
 
       });
-      }
+  }
 
   render () {
     return (<p> Thankyou for your purchase </p>)

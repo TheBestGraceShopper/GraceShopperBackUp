@@ -59,8 +59,6 @@ removeFromCart(product){
 }
 
   render() {
-    console.log("LOCAL STORAGE", JSON.parse(localStorage.getItem('cart')))
-    console.log("CARRRRT", this.state.cart)
 
     let cartItems = JSON.parse(localStorage.getItem('cart'))
       ? JSON.parse(localStorage.getItem('cart'))

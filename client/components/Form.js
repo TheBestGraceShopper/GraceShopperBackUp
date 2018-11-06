@@ -2,7 +2,8 @@ import React from 'react'
 
 
 const Form = props => {
-  console.log('props.handleSubmit', props.handleSubmit)
+  const isEnabled = props.state.category && props.state.name && props.state.description && props.state.price && props.state.imageURL
+
     return (
         <div>
             <form id="form" onSubmit={props.handleSubmit}>
@@ -67,7 +68,7 @@ const Form = props => {
                 </div>
 
                 <div>
-                    <button type="submit" className="submitButton">Submit</button>
+                    <button type="submit" className="submitButton" disabled={!isEnabled}>Submit</button>
                 </div>
             </form>
         </div>

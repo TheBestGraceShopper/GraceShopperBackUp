@@ -5,6 +5,7 @@ import { fetchReviews, postReview} from '../../store'
 class Review extends React.Component {
 
  render() {
+   const isEnabled = this.props.state.rating && this.props.state.title && this.props.state.text
    return (
    <div>
      <h3> Reviews: </h3>
@@ -19,7 +20,7 @@ class Review extends React.Component {
            <label htmlFor='text'> Review:  </label>
            <input type ='text' name='text' onChange={this.props.handleChange} value={this.props.state.text}/>
 
-           <button type="submit"> Submit Review</button>
+           <button type="submit" disabled={!isEnabled}> Submit Review</button>
        </form>
      </div>  : null }
      {this.props.reviews.map(review => (

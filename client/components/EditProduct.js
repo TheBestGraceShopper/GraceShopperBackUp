@@ -43,7 +43,7 @@ class EditProduct extends React.Component {
         // const id = this.state.id;
         return (
             <div>
-                <h3>Product Name: {this.state.name} </h3> <button onClick={this.handleDelete}>Delete</button>
+                <h3>{this.state.name}</h3> <button onClick={this.handleDelete}>Delete</button>
                 <img src={this.state.imageURL}/>
                 <h4>Current stock: {this.state.stock} units</h4>
                 <h1>Update Product: </h1>

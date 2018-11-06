@@ -72,6 +72,7 @@ class EditUserForm extends React.Component {
 
     render () {
         const {user} = this.props
+        const isEnabled = this.state.email && this.state.firstName && this.state.lastName && this.state.address && this.state.city && this.state.country && this.state.city && this.state.zipCode && this.state.phoneNumber
 
         return (
             <div>
@@ -81,7 +82,7 @@ class EditUserForm extends React.Component {
                       this.state.showForm
                       ? <div>
                           <AddressForm state={this.state} handleChange={this.handleChange}/>
-                          <button type="submit" onClick={this.handleSubmit}>Submit</button>
+                          <button type="submit" onClick={this.handleSubmit} disabled={!isEnabled}>Submit</button>
                         </div>
                       : <div>
                           <ul>

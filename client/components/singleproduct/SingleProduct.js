@@ -51,13 +51,13 @@ class SingleProduct extends React.Component {
       userId: this.state.userId,
       productId: this.state.productId
     }
-  
+
     this.props.addReview(review)
   }
   handleChange(e) {
     this.setState({[e.target.name]: e.target.value})
   }
-   
+
   handleSelect(event) {
     this.setState({quantity: event.target.value})
   }
@@ -86,7 +86,7 @@ class SingleProduct extends React.Component {
     var cartObj = JSON.parse(cartValue)
     this.setState({cart: [...cart], cartObj})
   }
-  
+
   showForm() {
     const currentState = this.state.showForm;
     this.setState({showForm : !currentState});
@@ -102,9 +102,9 @@ class SingleProduct extends React.Component {
       selectedProduct.id && (
         <div>
           <div className="single-product">
-            <h1>Name: {selectedProduct.name}</h1>
+            <h1>{selectedProduct.name}</h1>
             <img src={selectedProduct.imageURL} />
-            <p>Description: {selectedProduct.description}</p>
+            <p>{selectedProduct.description}</p>
             <h2>Price: ${selectedProduct.price}</h2>
             <label>
               How many would you like:

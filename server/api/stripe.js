@@ -9,12 +9,13 @@ router.get('/', (req, res) => {
 
 router.post('/', async (req, res, next) => {
     try {
-        await stripe.charges.create({
+        const response = await stripe.charges.create({
             description: req.body.description,
             source: req.body.source,
             currency: req.body.currency,
-            amount: req.body.total
+            amount: req.body.amount
         })
+        res.json(response.status)
     }
     catch (err) {
         next(err)

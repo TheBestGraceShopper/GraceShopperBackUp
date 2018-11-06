@@ -17,15 +17,18 @@ class SingleProduct extends React.Component {
       productId: '',
       userId: '',
       quantity: '',
-      cart: []
+      cart: [],
+      showForm: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getLocalStorage = this.getLocalStorage.bind(this)
     this.addToCart = this.addToCart.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
+    this.showForm = this.showForm.bind(this)
   }
   async componentDidMount() {
+    this.setState({showForm: false})
     const productId = this.props.match.params.productId
     await this.props.getAProduct(productId)
     await this.props.getReviews(productId)
@@ -39,6 +42,8 @@ class SingleProduct extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault(e)
+    const currentState = this.state.showForm;
+    this.setState({showForm: !currentState})
     const review = {
       text: this.state.text,
       title: this.state.title,
@@ -54,7 +59,6 @@ class SingleProduct extends React.Component {
   }
    
   handleSelect(event) {
-    console.log(this.state.quantity)
     this.setState({quantity: event.target.value})
   }
 
@@ -81,6 +85,11 @@ class SingleProduct extends React.Component {
     var cartValue = localStorage.getItem('cart')
     var cartObj = JSON.parse(cartValue)
     this.setState({cart: [...cart], cartObj})
+  }
+  
+  showForm() {
+    const currentState = this.state.showForm;
+    this.setState({showForm : !currentState});
   }
 
   render() {
@@ -127,6 +136,7 @@ class SingleProduct extends React.Component {
               handleSubmit={this.handleSubmit}
               reviews={this.props.reviews}
               productId={selectedProduct.id}
+              showForm={this.showForm}
             />
           </div>
         </div>

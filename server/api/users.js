@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
       res.status(401).send('Login required')
     }
     if (req.user.userType !== 'admin') {
-      res.status(401).send('User does not have privelages to access admin page')
+      res.status(401).send('User does not have privileges to access admin page')
     }
     const users = await User.findAll({
       // explicitly select only the id and email fields - even though
@@ -42,7 +42,7 @@ router.put('/:userId', async (req, res, next) => {
       res.status(401).send('Login required')
     }
     if (req.user.userType !== 'admin') {
-      res.status(401).send('User does not have privelages to access admin page')
+      res.status(401).send('User does not have privileges to access admin page')
     }
     const user = await User.findOne({
       where: {

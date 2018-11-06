@@ -6,7 +6,7 @@ module.exports = router;
 // GET /api/order/pastOrders
 router.get('/pastOrders', async(req, res, next) => {
   try {
-    const allOrders = await Order.findAll({include: [{model: Product}]);
+    const allOrders = await Order.findAll({include: [{model: Product}]});
     res.status(200).send(allOrders);
   }
   catch(err) {

@@ -1,38 +1,36 @@
-// import React from 'react'
-// import {connect} from 'react-redux'
-// import {fetchOrderHistory} from '../store/order'
-// import {Link} from 'react-router-dom'
+import React from 'react'
+import { connect } from 'react-redux'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+import Order from './Order'
 
-// class OrderHistory extends React.Component {
 
-//   componentDidMount() {
-//     this.props.fetchOrderHistory(this.props.match.params.id)
-//   }
+class OrderHistory extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      orderHistory: []
+    }
+  }
 
-//   render() {
-//     return (
-//       this.props.prevOrders ?
-//       <div>
-//         <h2>ORDER HISTORY</h2>
-//           <br/>
-//           {this.props.prevOrders.map(order => (
-//             <div key={order.id}>
-//               <Link to={`/orders/${order.id}`}>{order.id}</Link>
-//               <br />
-//             </div>
-//           ))}
-//       </div> :
-//       <h1>Loading...</h1>
-//     )
-//   }
-// }
+  async componentDidMount() {
+    const userId = this.props.userId;
+    let { data: orders } = await axios.get(`/api/users/pastOrders/${userId}`);
+    this.setState({ orderHistory: orders });
+  }
 
-// const mapStatetoProps = state => ({
-//   prevOrders: state.order.prevOrders,
-// })
+  render() {
+    return (
+    <div>
+        <h2>ORDER HISTORY</h2>
+        {this.state.orderHistory.map(order => <Order key={order.id} order={order}/>)}
+    </div>)
 
-// const mapDispatchToProps = dispatch => ({
-//   fetchOrderHistory: (userId) => dispatch(fetchOrderHistory(userId)),
-// })
+}
+}
+const mapStateToProps = (state) => ({
+  userId: state.user.id
+});
 
-// export default connect(mapStatetoProps, mapDispatchToProps)(OrderHistory)
+export default connect(mapStateToProps)(OrderHistory);
+

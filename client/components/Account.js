@@ -1,10 +1,9 @@
 import React from 'react'
 import EditUserForm from '../components/cart/EditUserForm'
 import {Link} from 'react-redux'
-import OrderHistory from './OrderHist'
+import OrderHistory from './OrderHistory'
 
 const Account = (props) => {
-    console.log('Do I have access to history?', props)
     return (
       <div>
         <h1> Account Information </h1>

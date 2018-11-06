@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import history from '../../history'
-import FillOrder from '../cart/OrderToDB'
+import fillOrder from '../cart/OrderToDB'
 
 const STRIPE_PUBLISHABLE =
 	process.env.NODE_ENV === 'production'
@@ -14,7 +14,7 @@ const monetize = amount => Number(amount) * 100
 
 const successfullPayment = data => {
     alert('Thanks for the purchase! Have a gouda day!');
-    return <FillOrder />
+    fillOrder();
 
 }
 

@@ -1,27 +1,27 @@
 const router = require('express').Router()
-const {Product, User, Order, ProductOrder} = require('../db/models')
+const { Product, User, Order, ProductOrder } = require('../db/models')
 
 module.exports = router;
 
 // GET for '/api/order/lastOrder'
-router.get('/lastOrder', async(req, res, next) => {
+router.get('/lastOrder', async (req, res, next) => {
   try {
     let product = await Order.max('orderId') || 0;
-    res.status(202).send({max: product});
+    res.status(202).send({ max: product });
   } catch (err) {
     next(err)
   }
 })
 
 // GET for '/api/order/:userId'
-router.get('/:userId', async(req, res, next) => {
+router.get('/:userId', async (req, res, next) => {
   const id = req.params.userId;
   try {
     // const cart = await Product.findAll({include: [{model: User}], where: {userId: id} })
     const user = await User.findById(id);
     const products = await user.getProducts();
     res.status(200).send(products);
-  } catch(err) {
+  } catch (err) {
     next(err)
   }
 })
@@ -30,18 +30,10 @@ router.get('/:userId', async(req, res, next) => {
 // POST for '/api/order/add'
 router.post('/add', async (req, res, next) => {
   try {
-    // const productId = Number(req.params.productId);
-    // const productQuantity = Number(req.params.quantity);
-
     const order = await Order.create({
       totalPrice: req.body.totalPrice,
       userId: req.body.userId
     })
-
-
-
-    // order.addProduct({productId, productQuantity})
-
     res.status(201).send(order)
   }
   catch (err) {
@@ -81,7 +73,7 @@ router.post('/add_product_order', async (req, res, next) => {
 // })
 
 //POST for '/api/order/delete/:userId'
-router.post('/delete/:userId', async(req, res, next) => {
+router.post('/delete/:userId', async (req, res, next) => {
   const id = req.params.userId;
   const productId = req.body.id;
   try {
@@ -109,8 +101,3 @@ router.post('/delete/:userId', async(req, res, next) => {
 //   }
 // })
 
-
-
-// add to order X
-// remove from order
-// adjust get all for user ID

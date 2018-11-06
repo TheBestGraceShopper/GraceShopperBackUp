@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'
+import { findUser } from '../../store/user'
 
-const fillOrder = (props) => {
+const fillOrder = () => {
 
   //get orderId from db & add 1 for new orderId
   // async function getNextOrderId() {
@@ -15,8 +16,15 @@ const fillOrder = (props) => {
   //status is default
 
   //get userId from store
-  console.log(props.userId);
-  const userId = props.userId
+  // const getUserId = async() => {
+  //   const userId = await findUser();
+  //   console.log('==========userId', userId);
+  // }
+
+  //const userId = getUserId();
+
+ let user  = JSON.parse(localStorage.getItem('lsid'));
+ console.log('==========userId', user);
 
   //productsList comes from Local Storage & gets filtered to be productId & total
   let cartItems = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [];
@@ -49,12 +57,6 @@ function itemWithAmount(items) {
   return uniqueWithCount;
 }
 
-
-// export default fillOrder;
+export default fillOrder;
 
 //export to cartPage?
-function order () {
-  console.log('DOES IT WORK THIS WAY?')
-}
-
-export default order

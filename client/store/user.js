@@ -35,6 +35,11 @@ export const me = () => async dispatch => {
   }
 }
 
+// export const findUser = async() => {
+//   const user = await axios.get('/auth/me')
+//   return user
+// }
+
 export const auth = (email, password, method) => async dispatch => {
   let res
   try {

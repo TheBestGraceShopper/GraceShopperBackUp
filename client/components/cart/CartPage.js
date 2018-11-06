@@ -94,7 +94,7 @@ removeFromCart(product){
                   disabled={cartItems.stock <= 0}
                 >
                   {' '}
-                  + Add Item
+                  Want another one?
                 </button>
                 <button
                   className="QuantityButton"

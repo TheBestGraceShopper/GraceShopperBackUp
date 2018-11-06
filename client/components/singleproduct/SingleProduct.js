@@ -16,15 +16,16 @@ class SingleProduct extends React.Component {
       rating: '',
       productId: '',
       userId: '',
+      quantity: '',
       cart: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getLocalStorage = this.getLocalStorage.bind(this)
     this.addToCart = this.addToCart.bind(this)
+    this.handleSelect = this.handleSelect.bind(this)
   }
   async componentDidMount() {
-    // this.props.getAProduct(this.props.match.params.productId);
     const productId = this.props.match.params.productId
     await this.props.getAProduct(productId)
     await this.props.getReviews(productId)
@@ -34,7 +35,6 @@ class SingleProduct extends React.Component {
       this.setState({
         cart: JSON.parse(localStorage.getItem('cart'))
       })
-    // this.addToCart(this.props.selectedProduct)
   }
 
   handleSubmit(e) {
@@ -46,11 +46,16 @@ class SingleProduct extends React.Component {
       userId: this.state.userId,
       productId: this.state.productId
     }
-    // console.log(review)
+  
     this.props.addReview(review)
   }
   handleChange(e) {
     this.setState({[e.target.name]: e.target.value})
+  }
+   
+  handleSelect(event) {
+    console.log(this.state.quantity)
+    this.setState({quantity: event.target.value})
   }
 
   getLocalStorage() {
@@ -67,10 +72,11 @@ class SingleProduct extends React.Component {
     }
   }
 
-  addToCart(product) {
+  addToCart(product, quantity) {
     let cart = [...this.state.cart]
-    cart.push(product)
-    // localStorage.getItem('cart', JSON.parse(cart))
+    for(let i=1; i<=quantity; i++){
+      cart.push(product)
+    }
     localStorage.setItem('cart', JSON.stringify(cart))
     var cartValue = localStorage.getItem('cart')
     var cartObj = JSON.parse(cartValue)
@@ -78,8 +84,6 @@ class SingleProduct extends React.Component {
   }
 
   render() {
-    console.log("LOCAL STORAGE", localStorage)
-    //  console.log("localStorage", JSON.parse(localStorage.getItem('cart')))
     const {selectedProduct} = this.props
     if (!selectedProduct.id) {
       return 'Loading the product...'
@@ -92,11 +96,28 @@ class SingleProduct extends React.Component {
             <h1>Name: {selectedProduct.name}</h1>
             <img src={selectedProduct.imageURL} />
             <p>Description: {selectedProduct.description}</p>
-            <h2>Price: {selectedProduct.price}</h2>
+            <h2>Price: ${selectedProduct.price}</h2>
+            <label>
+              How many would you like:
+              <select value={this.state.quantity} onChange={this.handleSelect}>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </label>
             <AddToCart
               selectedProduct={selectedProduct}
               cart={this.state.cart}
               addToCart={this.addToCart}
+              quantity={this.state.quantity}
             />
           </div>
           <div>

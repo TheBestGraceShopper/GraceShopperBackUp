@@ -15,6 +15,7 @@ import OurStory from './components/OurStory'
 import Account from './components/Account'
 import PaymentCheckout from './components/cart/PaymentCheckout'
 import OrderToDB from './components/cart/OrderToDB';
+import Help from './components/Help'
 
 /**
  * COMPONENT
@@ -38,10 +39,12 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path='/cart/checkout/payment' component={PaymentCheckout} />
-        <Route exact path="/cart/checkout" render={routeProps => <CheckoutForm {...routeProps} user={this.props.user} />} />
-        <Route path="/our-story" component={OurStory} />
-        <Route exact path="/cart" component={CartPage} />
-        <Route exact path="/confirmation" component={OrderToDB} />
+        <Route exact path="/confirmation/" component={OrderToDB} />
+        <Route exact path="/cart/checkout/" render={routeProps => <CheckoutForm {...routeProps} user={this.props.user} />} />
+        <Route path="/our-story/" component={OurStory} />
+        <Route path="/contact-us/" component={Help} />
+        <Route exact path="/cart/" component={CartPage} />
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

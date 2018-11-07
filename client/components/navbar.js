@@ -24,8 +24,8 @@ const Navbar = ({ handleClick, isLoggedIn, user }) => {
           <div className="nav-links">
             {user.userType === 'admin' ? (
               <div>
-                <Link to="/admin/products" className="nav-text">Products</Link>
-                <Link to="/admin/orders" className="nav-text">Manage Orders</Link>
+                <Link to="/admin/products" className="nav-text">Products  | </Link>
+                <Link to="/admin/orders" className="nav-text">  Manage Orders</Link>
               </div>
             ) : <Link to="/products" className="nav-text">Shop</Link>}
             <br />

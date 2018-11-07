@@ -43,6 +43,7 @@ form div {
 
 #outer-products-div {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin-bottom: 20px;
 }
@@ -62,6 +63,31 @@ form div {
   display: inline-block;
 }
 
+.filter-search-outer {
+  width: 100%;
+  height: 70px;
+}
+
+.filter-search {
+  margin-right: 0;
+  background: #570000;
+  width: 100%;
+  display: flex;
+}
+
+.search{
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+}
+
+.filter-bar {
+  margin-top: 16px;
+  position: absolute;
+  right: 0;
+  margin-right: 200px;
+}
+
 .main-products-page {
   height: 100vw;
   padding: 0;
@@ -69,6 +95,8 @@ form div {
 
 .background {
 }
+
+
 
 /* ========================== each product in list ================================ */
 
@@ -83,10 +111,21 @@ form div {
   text-align: center;
 }
 
+.filter-title-outer {
+  width: 100%
+}
+
+.filter-title-div {
+  width: 100%;
+}
+
 .filter-title {
+  float: left;
+  display: block;
   color: #570000;
   font-size: 50px;
-  margin-left: 2%;
+  margin-left: 5%;
+  margin-top: 0;
   text-transform: capitalize;
 }
 
@@ -251,6 +290,10 @@ html, body, #container, .carousel {
   margin-top: 12px;
 }
 
+.nav-other {
+  margin-top: 40px;
+}
+
 .nav-text:hover {
   color: #B8B8B8;
   margin-top: 12px;
@@ -403,3 +446,135 @@ html, body, #container, .carousel {
 .teamContainer span{
   font-size: 1.5em
 }
+
+/* ======================== Login ==================================== */
+
+.form-page {
+  margin-top: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.form-square {
+  border-style: groove;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.form-square2 {
+  border-style: groove;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-page input {
+  background-color: #EDF0FC;
+  width: 100%;
+  border: none;
+  font-size: 15px;
+  padding: 5px;
+}
+
+.black-button {
+  color: white;
+  background-color: black;
+  margin-top: 5%;
+  font-size: 15px;
+  padding: 10px;
+}
+
+.google-button {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+.google {
+  font-size: 20px;
+}
+
+.account {
+  margin-left: 5%;
+}
+
+.account-edit {
+  display: flex;
+}
+
+.edit-button {
+  width: 20px;
+  height: 20px;
+}
+
+/* ======================== order history =================================== */
+
+.status-title {
+  margin-top: 5%;
+  color: #570000;
+}
+
+.history-div {
+  /* width: 100%;
+  display: flex;
+  align-content: center;
+  background-color: yellow; */
+}
+
+.history-div-inner {
+  margin: auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.each-order {
+  border-style: solid;
+  border-color: grey;
+}
+
+.order-num {
+  position: relative;
+  right: 0;
+}
+
+.order-text {
+  color: black;
+}
+
+.status {
+  margin-top: 20px;
+}
+
+.order-price {
+  margin-bottom: 20px;
+}
+
+.margin-left {
+  margin-left: 20px;
+}
+
+.single-product {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+button {
+  color: white;
+  background-color: black;
+}
+
+.cart-item-name {
+  color: black;
+}
+
+#slideshow {
+  margin-top: 2px;
+  padding-top: 2px;
+ }

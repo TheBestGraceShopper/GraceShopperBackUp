@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {addProductToCart, removeProductToCart} from '../../store/order'
-import {fetchAProduct, fetchReviews, postReview} from '../../store'
+import { connect } from 'react-redux'
+import { addProductToCart, removeProductToCart } from '../../store/order'
+import { fetchAProduct, fetchReviews, postReview } from '../../store'
 
 import Review from './Review'
 import AddToCart from '../cart/AddToCart'
@@ -29,11 +29,11 @@ class SingleProduct extends React.Component {
   }
 
   async componentDidMount() {
-    this.setState({showForm: false})
+    this.setState({ showForm: false })
     const productId = this.props.match.params.productId
     await this.props.getAProduct(productId)
     await this.props.getReviews(productId)
-    this.setState({userId: this.props.userId, productId: productId})
+    this.setState({ userId: this.props.userId, productId: productId })
     this.getLocalStorage()
     localStorage.getItem('cart') &&
       this.setState({
@@ -44,7 +44,7 @@ class SingleProduct extends React.Component {
   handleSubmit(e) {
     e.preventDefault(e)
     const currentState = this.state.showForm;
-    this.setState({showForm: !currentState})
+    this.setState({ showForm: !currentState })
     const review = {
       text: this.state.text,
       title: this.state.title,
@@ -57,11 +57,11 @@ class SingleProduct extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({[e.target.name]: e.target.value})
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleSelect(event) {
-    this.setState({quantity: event.target.value})
+    this.setState({ quantity: event.target.value })
   }
 
   getLocalStorage() {
@@ -70,9 +70,9 @@ class SingleProduct extends React.Component {
         let value = localStorage.getItem(key)
         try {
           value = JSON.parse(value)
-          this.setState([{[key]: value}])
+          this.setState([{ [key]: value }])
         } catch (e) {
-          this.setState([{[key]: value}])
+          this.setState([{ [key]: value }])
         }
       }
     }
@@ -80,22 +80,22 @@ class SingleProduct extends React.Component {
 
   addToCart(product, quantity) {
     let cart = [...this.state.cart]
-    for(let i = 1; i <= quantity; i++){
+    for (let i = 1; i <= quantity; i++) {
       cart.push(product)
     }
     localStorage.setItem('cart', JSON.stringify(cart))
     var cartValue = localStorage.getItem('cart')
     var cartObj = JSON.parse(cartValue)
-    this.setState({cart: [...cart], cartObj})
+    this.setState({ cart: [...cart], cartObj })
   }
 
   showForm() {
     const currentState = this.state.showForm;
-    this.setState({showForm : !currentState});
+    this.setState({ showForm: !currentState });
   }
 
   render() {
-    const {selectedProduct} = this.props
+    const { selectedProduct } = this.props
     if (!selectedProduct.id) {
       return 'Loading the product...'
     }
@@ -105,8 +105,10 @@ class SingleProduct extends React.Component {
         <div>
           <div className="single-product">
             <h1>{selectedProduct.name}</h1>
-            <img src={selectedProduct.imageURL} />
-            <p>{selectedProduct.description}</p>
+            <div className="name-desc">
+              <img src={selectedProduct.imageURL} />
+              <p>{selectedProduct.description}</p>
+            </div>
             <h2>Price: ${selectedProduct.price}</h2>
             <label>
               Quantity:
@@ -129,17 +131,18 @@ class SingleProduct extends React.Component {
               addToCart={this.addToCart}
               quantity={this.state.quantity}
             />
+            <div>
+              <Review
+                state={this.state}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+                reviews={this.props.reviews}
+                productId={selectedProduct.id}
+                showForm={this.showForm}
+              />
+            </div>
           </div>
-          <div>
-            <Review
-              state={this.state}
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-              reviews={this.props.reviews}
-              productId={selectedProduct.id}
-              showForm={this.showForm}
-            />
-          </div>
+
         </div>
       )
     )

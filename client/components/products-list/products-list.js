@@ -31,9 +31,7 @@ class ProductsListComp extends Component {
     this.setState({ filteredProducts: `Search Results For: ${searchVal}` })
   }
 
-  productSearchMatch (searchVal, product) {
-    if (!searchVal) return true;
-    
+  productSearchMatch(searchVal, product) {
     const searchLowerCase = searchVal.toLowerCase();
     const productArr = product.description.toLowerCase().split(' ').concat(product.name.toLowerCase().split(" ")).concat(product.category.split(" "));
     if (productArr.includes(searchLowerCase)) return true;
@@ -58,17 +56,16 @@ class ProductsListComp extends Component {
   render() {
     return (
 
-      <div className="main-products-page">
-        {/* <button type="submit" form="test" value="Submit">Submit</button> */}
-        <div className="filter-search">
-        <div >
-          <FilterBar handleChange={this.handleChange} products={this.state.products} />
-          <SearchBar searchOnChange={this.searchOnChange} />
+      <div >
+        <div className="filter-search-outer">
+          <div className="filter-search">
+            <FilterBar handleChange={this.handleChange} products={this.state.products} />
+            <SearchBar searchOnChange={this.searchOnChange} />
+          </div>
         </div>
-        </div>
-        <h2 className="filter-title">{this.state.filteredProducts === 'all' ?
-          'All' : `All ${this.state.filteredProducts}s`}</h2>
         <div id="outer-products-div">
+        <h2 className="filter-title">{this.state.filteredProducts === 'all' ?
+              'All' : `All ${this.state.filteredProducts}s`}</h2>
           <div className="products">
             {this.state.searchVal.length ? this.props.products.filter(product => this.productSearchMatch(this.state.searchVal, product)).map(product => <Product key={product.id} history={this.props.history} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser} />)
               : (this.state.filteredProducts === 'all' ? this.props.products

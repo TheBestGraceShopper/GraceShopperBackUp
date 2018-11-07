@@ -21,18 +21,20 @@ class OrderHistory extends React.Component {
 
   render() {
     return (
-    <div>
-        <h2>ORDER HISTORY</h2>
-        {this.state.orderHistory.map(order => (
-            <div key={order.id}>
-              <h3>STATUS {order.status}</h3>
-              <Order order={order}/>
-            </div>
-          ))}
-
-    </div>)
-
-}
+      <div className="history-div">
+        <div className="history-div-inner">
+          <h2 className="status-title margin-left">ORDER HISTORY</h2>
+          <div>
+            {this.state.orderHistory.map(order => (
+              <div className="each-order" key={order.id}>
+                <h3 className="status margin-left">STATUS {order.status}</h3>
+                <Order order={order} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>)
+  }
 }
 const mapStateToProps = (state) => ({
   userId: state.user.id

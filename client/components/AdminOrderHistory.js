@@ -16,7 +16,8 @@ class AdminOrderHistory extends React.Component {
   }
   render() {
     return (
-      <div>
+      this.props.user.userType === 'admin' 
+      ? <div>
         <h2>ORDERS</h2>
         {
           this.props.orders.map(order => {
@@ -35,13 +36,14 @@ class AdminOrderHistory extends React.Component {
             )
           })
         }
-      </div>
+      </div> : 'Admin access only. Users not permitted.'
     )
   }
 }
 
 const mapStateToProps = state => ({
-  orders: state.ordersReducer.orders
+  orders: state.ordersReducer.orders,
+  user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({

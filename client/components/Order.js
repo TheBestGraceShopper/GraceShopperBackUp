@@ -9,16 +9,16 @@ const Order = ({order}) => {
       return (
         order.id ?
       <div key={order.id} onClick={() => { }}>
-          <h3>{date}</h3>
-          <h3>ORDER# {order.id}</h3>
+          <h3 className="margin-left">{date}</h3>
+          <h3 className="order margin-left" >ORDER# {order.id}</h3>
           {order.products.map(item => {
             return (
               <div key={item.id}>
                 <Link to={`/products/${item.id}`}>
-                  <img className="order-hist-img" src={item.imageURL} />
+                  <img className="margin-left order-hist-img" src={item.imageURL} />
                   <div>
-                    <p>{item.name}</p>
-                    <p>${item.price}</p>
+                    <p className="margin-left order-text">{item.name}</p>
+                    <p className="margin-left order-text order-price">${item.price}</p>
                   </div>
                 </Link>
               </div>

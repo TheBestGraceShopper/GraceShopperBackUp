@@ -1,35 +1,42 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth} from '../store'
+import { auth } from '../store'
 
 /**
  * COMPONENT
  */
 const AuthForm = props => {
-  const {name, displayName, handleSubmit, error} = props
+  const { name, displayName, handleSubmit, error } = props
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" required />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
+    <div className="form-page">
+      <div className="form-square">
+        <form onSubmit={handleSubmit} name={name}>
+          <div className="a">
+          <div>
+            <div>
+              <label htmlFor="email">
+                {/* <small>Email</small> */}
+              </label>
+              <input name="email" type="text" required placeholder="Email" />
+            </div>
+            <div>
+              <label htmlFor="password">
+                {/* <small>Password</small> */}
+              </label>
+              <input name="password" type="password" placeholder="Password" />
+            </div>
+          </div>
+          <div className="google-button">
+            <a  className="google" href="/auth/google">{displayName} with Google</a>
+            <button className="black-button" type="submit">{displayName}</button>
+          </div>
+          </div>
+          {error && error.response && <div> {error.response.data} </div>}
+        </form>
+
+      </div>
     </div>
   )
 }

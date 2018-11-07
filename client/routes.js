@@ -15,7 +15,8 @@ import OurStory from './components/OurStory'
 import Account from './components/Account'
 import PaymentCheckout from './components/cart/PaymentCheckout'
 import Confirmation from './components/Confirmation';
-import Help from './components/Help'
+import ContactUs from './components/Help';
+// import Help from './components/Help'
 import OrderHistory from '../client/components/OrderHistory'
 import AdminOrderHistory from '../client/components/AdminOrderHistory'
 
@@ -38,15 +39,16 @@ class Routes extends Component {
         <Route path='/admin/products/:productId' component={EditProduct} />
         <Route exact path='/products/:productId' component={SingleProduct} />
         <Route path="/products" render={routeProps => <ProductsList {...routeProps} admin={false} />} />
-        <Route path="/admin/products" render={routeProps => <ProductsListAdmin {...routeProps} admin={true} />} />
+        <Route path="/admin/products" render={routeProps => <ProductsListAdmin {...routeProps} user={this.props.user} />} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path='/cart/checkout/payment' component={PaymentCheckout} />
         <Route exact path="/confirmation" component={Confirmation} />
         <Route exact path="/cart/checkout" render={routeProps => <CheckoutForm {...routeProps} user={this.props.user} />} />
         <Route path="/our-story" component={OurStory} />
-        <Route path="/contact-us" component={Help} />
+        <Route path="/help" component={ContactUs} />
         <Route exact path="/cart" component={CartPage} />
+      {/* <Route path="/contact-us" component={Help} /> */}
 
         {isLoggedIn && (
           <Switch>

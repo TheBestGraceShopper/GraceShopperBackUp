@@ -25,7 +25,6 @@ a {
   text-decoration: none;
 }
 
-
 label {
   display: block;
 }
@@ -57,7 +56,21 @@ form div {
   justify-content: center;
 }
 
-/* ======================== each product in list ==================================== */
+/* ======================== filter and search ==================================== */
+
+.product-small {
+  display: inline-block;
+}
+
+.main-products-page {
+  height: 100vw;
+  padding: 0;
+}
+
+.background {
+}
+
+/* ========================== each product in list ================================ */
 
 .product-small {
   width: 400px;
@@ -67,6 +80,14 @@ form div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+}
+
+.filter-title {
+  color: #570000;
+  font-size: 50px;
+  margin-left: 2%;
+  text-transform: capitalize;
 }
 
 .product-image {
@@ -78,6 +99,15 @@ form div {
   font-size: 20px;
 }
 
+.product-name {
+  color: black;
+  font-size: 30px;
+}
+
+.product-price {
+  color: black;
+}
+
 .in-stock {
   color: green;
 }
@@ -87,10 +117,6 @@ form div {
 }
 
 /* ======================== chart button ==================================== */
-
-/* #shopping-cart {
-
-} */
 
 .cart-link {
   float: right;
@@ -152,15 +178,8 @@ form div {
   /* background-image: url("https://preview.ibb.co/mS8jXf/let-it-brie-logo.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
-  height: 250px;
   width: 100%;
 }
-
-#navbar {
-  background-color: lightsalmon;
-  width: 100%;
-}
-
 .menu {
   float: left;
 }
@@ -180,9 +199,6 @@ form div {
   position: absolute;
   bottom: 0;
   width: 100%;
-  /* position: static;
-  bottom: 0;
-  width: 100%; */
   height: 30px;
   background-color: black;
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-
 const Product = ({ product, user, removeProduct }) => {
   return (
     <div className="product-small">
@@ -11,6 +10,7 @@ const Product = ({ product, user, removeProduct }) => {
         <p className="product-price">${product.price}</p>
         {product.stock ? <p className="in-stock">In Stock</p> : <p className="out-of-stock">Out Of Stock</p>}
       </Link>
+
       {user.userType === 'admin' ? <button type="button" onClick={() => {
         removeProduct(product.id)
       }}>Delete</button> : null}

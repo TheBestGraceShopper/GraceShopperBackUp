@@ -29,13 +29,31 @@ class Review extends React.Component {
        </form>
      </div>  : null }
      {this.props.reviews.map(review => {
+       const ratingSrc = () => {
+        switch (review.rating) {
+          case 1:
+          return "*";
+          case 2:
+          return "**";
+          case 3:
+          return "***";
+          case 4:
+          return '*****';
+          case 5:
+          return '*****';
+          default:
+            return '******'
+        }
+      }
        let reviewDate = review.id ? review.createdAt.slice(0, 10).split('-') : null;
        let formattedDate = review ? `${reviewDate[1]}/${reviewDate[2]}/${reviewDate[0]}` : null
        return (
          <div key={review.id}>
-           <p> {review.rating}</p>
-           {review.user ? <p> {review.user.firstName} {review.user.lastName}</p> :<p> {this.props.user.firstName} {this.props.user.lastName} </p>}
-           <p> {formattedDate} </p>
+           {/* <img src={ratingSrc()}/> */}
+           <h5>{review.title}</h5>
+           <h1>  {ratingSrc()} </h1>
+           {review.user ? <p> By User {review.user.firstName} {review.user.lastName}</p> :<p> By User {this.props.user.firstName} {this.props.user.lastName} </p>}
+           <p> on {formattedDate} </p>
            <p> {review.text}</p>
          </div>
      )})}

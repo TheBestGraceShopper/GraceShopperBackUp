@@ -15,7 +15,8 @@ import OurStory from './components/OurStory'
 import Account from './components/Account'
 import PaymentCheckout from './components/cart/PaymentCheckout'
 import Confirmation from './components/Confirmation';
-import Help from './components/Help'
+import ContactUs from './components/Help';
+// import Help from './components/Help'
 import OrderHistory from '../client/components/OrderHistory'
 import AdminOrderHistory from '../client/components/AdminOrderHistory'
 
@@ -45,8 +46,9 @@ class Routes extends Component {
         <Route exact path="/confirmation" component={Confirmation} />
         <Route exact path="/cart/checkout" render={routeProps => <CheckoutForm {...routeProps} user={this.props.user} />} />
         <Route path="/our-story" component={OurStory} />
-        <Route path="/contact-us" component={Help} />
+        <Route path="/help" component={ContactUs} />
         <Route exact path="/cart" component={CartPage} />
+//         <Route path="/contact-us" component={Help} />
 
         {isLoggedIn && (
           <Switch>

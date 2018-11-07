@@ -76,7 +76,7 @@ class EditUserForm extends React.Component {
 
         return (
             <div>
-                 <button type="submit" onClick={() => this.handleClick()}><img className="edit-button" src="https://image.ibb.co/gvwrYV/edit-button.png" /></button>
+                 <button id="no-button-color" type="submit" onClick={() => this.handleClick()}><img id="edit-button" src="https://image.ibb.co/gvwrYV/edit-button.png" /></button>
                     {
                       this.state.showForm
                       ? <div>

@@ -569,3 +569,12 @@ button {
   color: white;
   background-color: black;
 }
+
+.cart-item-name {
+  color: black;
+}
+
+#slideshow {
+  margin-top: 2px;
+  padding-top: 2px;
+ }

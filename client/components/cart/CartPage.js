@@ -125,7 +125,7 @@ class CartPage extends Component {
             <div key={cartItems[productName].id}>
               <li>
                 <Link to={`/products/${cartItems[productName].id}`}>
-                  {`${cartItems[productName].name}`}
+                  <h3 className="cart-item-name">{`${cartItems[productName].name}`}</h3>
                 </Link>
                 <br />
                 <p>

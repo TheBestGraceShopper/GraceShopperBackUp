@@ -1,7 +1,12 @@
 import React from 'react'
 import {ToastContainer, ToastStore} from 'react-toasts';
+import {me} from '../../store'
+import {connect} from 'react-redux'
 
 class Review extends React.Component {
+  componentDidMount () {
+    this.props.me();
+  }
  render() {
 
    const isEnabled = this.props.state.rating && this.props.state.title && this.props.state.text
@@ -23,16 +28,26 @@ class Review extends React.Component {
            <button type="submit" disabled={!isEnabled} onClick={() => ToastStore.success("Your review has been successfully added!")}> Submit Review</button>
        </form>
      </div>  : null }
-     {this.props.reviews.map(review => (
+     {this.props.reviews.map(review => {
+       let reviewDate = review.id ? review.createdAt.slice(0, 10).split('-') : null;
+       let formattedDate = review ? `${reviewDate[1]}/${reviewDate[2]}/${reviewDate[0]}` : null
+       return (
          <div key={review.id}>
            <p> {review.rating}</p>
-           <p> {review.title}</p>
+           {review.user ? <p> {review.user.firstName} {review.user.lastName}</p> :<p> {this.props.user.firstName} {this.props.user.lastName} </p>}
+           <p> {formattedDate} </p>
            <p> {review.text}</p>
          </div>
-     ))}
+     )})}
    </div>
    )
  }
 }
+const mapState = (state) => {
+    return ({user: state.user})
+}
+const mapDispatch = (dispatch) => ({
+  me : () => dispatch(me())
+})
 
-export default Review;
+export default connect(mapState, mapDispatch)(Review);

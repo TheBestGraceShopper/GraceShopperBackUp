@@ -81,6 +81,12 @@ export const updatedAProduct = (id, updates) => {
     dispatch(updateProduct(id, response.data))
   }
 }
+export const updateQuantity = (id, updates) => {
+  return async (dispatch) => {
+    const response = await axios.put(`/api/products/checkout/${id}`, updates);
+    dispatch(updateProduct(id, response.data))
+  }
+}
 
 export const removeAProduct = (id) => {
   return async (dispatch) =>{

@@ -3,15 +3,14 @@ import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import history from '../../history'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
 import { me } from '../../store/user'
+import { updateQuantity } from '../../store/'
 
-class StripeForm extends React.Component {
+const StripeForm = (props) => {
 
-  render() {
-    const name = this.props.name;
-    const description = this.props.description;
-    const amount = this.props.amount;
+    const name = props.name;
+    const description = props.description;
+    const amount = props.amount;
     const STRIPE_PUBLISHABLE =
     process.env.NODE_ENV === 'production'
       ? 'pk_test_a41tEZdwchhwkDi9HhH0pc9D'
@@ -34,20 +33,34 @@ class StripeForm extends React.Component {
     }
 
     const successfulPayment = async () => {
+        //cart from store
         let cartItems = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [];
         cartItems = itemWithAmount(cartItems);
         let cartItemNames = Object.keys(cartItems);
+        //finding total products
         let total = 0
         cartItemNames.map( (productName) =>  {
           total += (cartItems[productName].price * cartItems[productName].count)
         });
-        const data = { totalPrice: total, userId: this.props.user.id }
+        //posting to order table for all
+        const data = { totalPrice: total, userId: props.user.id }
         const order = await axios.post(`/api/order/add`, data);
-
+        //posting to order-product table for each product
         cartItemNames.map(async productName => {
         const productData = {productId: cartItems[productName].id, productQuantity: cartItems[productName].count, orderId: order.data.id};
         await axios.post(`/api/order/add_product_order`, productData);
         });
+        //Decrementing Product Quantity in db
+        cartItemNames.map(async (item) => {
+          let newStock = cartItems[item].stock - cartItems[item].count
+          const productId = cartItems[item].id
+          if (newStock < 0) {
+              console.log(`${cartItems[item].name} under stock ${newStock}`)
+              newStock = 0;
+          }
+          await props.updateProduct(productId, {stock: newStock});
+        });
+
     }
 
     const failedPayment = data => {
@@ -77,14 +90,14 @@ class StripeForm extends React.Component {
         />
       );
   }
-}
 
 const mapState = state => ({
   user: state.user
 })
 
 const mapDispatch = dispatch => ({
-  getUser: () => dispatch(me())
+  getUser: () => dispatch(me()),
+  updateProduct: (id, updates) => dispatch(updateQuantity(id, updates))
 })
 
 export default connect(mapState, mapDispatch)(StripeForm);

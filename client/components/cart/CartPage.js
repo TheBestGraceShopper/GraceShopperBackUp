@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
-import {Link, Redirect} from 'react-router-dom'
-import {connect} from 'react-redux'
-import CheckoutForm from './CheckoutForm'
+import {Link} from 'react-router-dom'
 import axios from 'axios'
+import {ToastContainer, ToastStore} from 'react-toasts';
 
 class CartPage extends Component {
   constructor() {
@@ -116,12 +115,14 @@ class CartPage extends Component {
     let cartItemNames = Object.keys(cartItems)
 
     return (
+
       <div>
-        <h2>Your Shopping Cart</h2>
+        <ToastContainer lightBackground position={ToastContainer.POSITION.TOP_RIGHT} store={ToastStore}/>
+        <h2>Your Cart</h2>
         <ol>
-          {cartItemNames.map( (productName) => {
-            console.log('Right?',this.state.cartItems.name)
-            return (<div key={cartItems[productName].name} >
+          {cartItemNames.length ?
+          cartItemNames.map(productName => (
+            <div key={cartItems[productName].id}>
               <li>
                 <Link to={`/products/${cartItems[productName].id}`}>
                   {`${cartItems[productName].name}`}
@@ -154,7 +155,8 @@ class CartPage extends Component {
                     if (stock >= cartItems[productName].count + 1) {
                       this.increaseQuantity(cartItems[productName], this.state.quantity)
                     } else {
-                      alert(`Sorry, there ${stock === 1 ? 'is' : 'are'} only ${stock} left in stock.`)
+                      // alert(`Sorry, there ${stock === 1 ? 'is' : 'are'} only ${stock} left in stock.`)
+                      return () => ToastStore.error(`Sorry, there are ${stock === 1 ? 'is' : 'are'} only ${stock} left in stock.`)
                     }
                   }}
 
@@ -177,19 +179,17 @@ class CartPage extends Component {
               </li>
               <br />
             </div>
-          )})}
-        </ol>
-        <Link to="/cart/checkout">
-          <button type="button"
-          // onClick={
-          //     this.itemWithAmount(this.state.cart).map(item => {
-          //       if(item.count > ------- ) {
 
-          //       }
-          //     })
-          //   }
-            >Checkout</button>
-        </Link>
+          ))
+          :
+          <div>
+            <p>Your cart is currently empty</p>
+            <Link to="/products">Cheese Please!!</Link>
+          </div>}
+        </ol>
+        {cartItemNames.length ? <Link to="/cart/checkout">
+          <button type="button">Checkout</button>
+        </Link> : null}
       </div>
     )
   }

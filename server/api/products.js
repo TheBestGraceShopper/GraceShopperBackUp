@@ -56,6 +56,16 @@ router.put('/admin/:productId', authorize, async (req, res, next) => {
         next(err)
     }
 })
+router.put('/checkout/:productId', async (req, res, next) => {
+  try {
+      const productToUpdate = await Product.findById(req.params.productId)
+      const updatedProduct = await productToUpdate.update(req.body)
+      res.status(200).json(updatedProduct);
+  }
+  catch (err) {
+      next(err)
+  }
+})
 
 
 // DELETE /products/admin/:productId

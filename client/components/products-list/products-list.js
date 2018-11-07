@@ -31,7 +31,9 @@ class ProductsListComp extends Component {
     this.setState({ filteredProducts: `Search Results For: ${searchVal}` })
   }
 
-  productSearchMatch(searchVal, product) {
+  productSearchMatch (searchVal, product) {
+    if (!searchVal) return true;
+    
     const searchLowerCase = searchVal.toLowerCase();
     const productArr = product.description.toLowerCase().split(' ').concat(product.name.toLowerCase().split(" ")).concat(product.category.split(" "));
     if (productArr.includes(searchLowerCase)) return true;

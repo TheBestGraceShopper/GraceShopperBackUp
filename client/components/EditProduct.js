@@ -42,9 +42,9 @@ class EditProduct extends React.Component {
   render () {
         // const id = this.state.id;
         return (
-            <div>
-                <h3>{this.state.name}</h3> <button onClick={this.handleDelete}>Delete</button>
+            <div className="status margin-left" >
                 <img src={this.state.imageURL}/>
+                <h3>{this.state.name}</h3> <button onClick={this.handleDelete}>Delete</button>
                 <h4>Current stock: {this.state.stock} units</h4>
                 <h1>Update Product: </h1>
                 <Form state={this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>

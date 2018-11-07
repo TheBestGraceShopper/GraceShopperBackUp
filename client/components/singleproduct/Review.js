@@ -11,9 +11,9 @@ class Review extends React.Component {
 
    const isEnabled = this.props.state.rating && this.props.state.title && this.props.state.text
    return (
-   <div>
+   <div className="review-pad">
      <ToastContainer lightBackground position={ToastContainer.POSITION.TOP_RIGHT} store={ToastStore}/>
-     <h3> Reviews: </h3>
+     <h3 className="review-pad"> Reviews: </h3>
      {this.props.state.showForm ? null: <button type="button" onClick={this.props.showForm}> Add Review </button> }
      { this.props.state.showForm ? <div>
        <form onSubmit={this.props.handleSubmit}>
@@ -50,7 +50,7 @@ class Review extends React.Component {
        return (
          <div key={review.id}>
            {/* <img src={ratingSrc()}/> */}
-           <h5>{review.title}</h5>
+           <h3>{review.title}</h3>
            <h1>  {ratingSrc()} </h1>
            {review.user ? <p> By User {review.user.firstName} {review.user.lastName}</p> :<p> By User {this.props.user.firstName} {this.props.user.lastName} </p>}
            <p> on {formattedDate} </p>

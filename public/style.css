@@ -128,6 +128,15 @@ form div {
   margin-top: 0;
   text-transform: capitalize;
 }
+.flex-ver {
+  flex-direction: column;
+}
+
+.flex-central {
+  display: flex;
+  justify-content: center;
+
+}
 
 .product-image {
   height: 300px;
@@ -568,7 +577,6 @@ html, body, #container, .carousel {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
-
 }
 
 .single-product-inner {
@@ -589,6 +597,11 @@ button {
 
 #slideshow {
   margin-top: 2px;
+  padding-top: 2px;
+ }
+
+ #review-pad {
+  margin-top: 10px;
   padding-top: 2px;
  }
 

@@ -12,7 +12,7 @@ class ContactUs extends React.Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
-  
+
       handleChange (e) {
           this.setState({
               [e.target.name]: e.target.value
@@ -30,9 +30,9 @@ class ContactUs extends React.Component {
 
   render() {
     const isEnabled = this.state.email && this.state.fullName && this.state.question
-  
+
     return (
-      <div>
+      <div className="flex-central" className="status margin-left">
           <form>
               <h1>Contact us with any questions!</h1>
 

@@ -16,15 +16,16 @@ class AdminOrderHistory extends React.Component {
   }
   render() {
     return (
-      this.props.user.userType === 'admin' 
-      ? <div>
-        <h2>ORDERS</h2>
-        {
+      this.props.user.userType === 'admin'
+      ? <div className="history-div">
+         <div className="history-div-inner">
+          <h2 className="status-title margin-left">ORDERS</h2>
+         {
           this.props.orders.map(order => {
             return (
-              <div key={order.id}>
-                <p>Order Status:</p>
-                <select onChange={(e) => this.handleChange(e.target.value, order.id)}>
+              <div className="each-order" key={order.id}>
+                <p className="status margin-left">Order Status:</p>
+                <select className="status margin-left" onChange={(e) => this.handleChange(e.target.value, order.id)}>
                   <option disabled selected value={null}>{order.status}</option>
                   <option value="processing">processing</option>
                   <option value="created">created</option>
@@ -36,6 +37,7 @@ class AdminOrderHistory extends React.Component {
             )
           })
         }
+        </div>
       </div> : 'Admin access only. Users not permitted.'
     )
   }

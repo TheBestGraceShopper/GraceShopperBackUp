@@ -49,6 +49,7 @@ class Routes extends Component {
         <Route path="/help" component={ContactUs} />
         <Route exact path="/cart" component={CartPage} />
         <Route path="/home" component={UserHome} />
+        <Route path="/" component={UserHome} />
 
         {isLoggedIn && (
           <Switch>

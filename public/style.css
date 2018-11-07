@@ -343,3 +343,7 @@ html, body, #container, .carousel {
   height: 70px;
   width: 70px;
 }
+
+.out-of-stock {
+  background-color: pink;
+}

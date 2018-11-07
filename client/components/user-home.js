@@ -11,7 +11,7 @@ export const UserHome = props => {
 
   return (
     <div className="home-page">
-      <h1 className="home-page-title">Welcome, {email}</h1>
+      <h1 className="home-page-title">Welcome {email}</h1>
       {/* <img className="home-image" src="https://image.ibb.co/ftLjLA/Charcuterie-Board.png" /> */}
       <div id="slideshow">
       <SlideShow

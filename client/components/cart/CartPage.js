@@ -12,19 +12,19 @@ class CartPage extends Component {
       cartItems: {},
       productNames: []
     }
-    // this.getLocalStorage = this.getLocalStorage.bind(this)
+    this.getLocalStorage = this.getLocalStorage.bind(this)
     this.increaseQuantity = this.increaseQuantity.bind(this)
     this.decreaseQuantity = this.decreaseQuantity.bind(this)
     this.removeFromCart = this.removeFromCart.bind(this)
   }
 
   componentDidMount() {
-    // this.getLocalStorage()
+    this.getLocalStorage()
 
-    // localStorage.getItem('cart') &&
-    //   this.setState({
-    //     cart: JSON.parse(localStorage.getItem('cart'))
-    //   })
+    localStorage.getItem('cart') &&
+      this.setState({
+        cart: JSON.parse(localStorage.getItem('cart'))
+      })
 
     let cartItems = JSON.parse(localStorage.getItem('cart'))
     ? JSON.parse(localStorage.getItem('cart'))
@@ -39,19 +39,19 @@ class CartPage extends Component {
     this.setState({productNames: cartItemNames, cartItems})
   }
 
-  // getLocalStorage() {
-  //   for (let key in this.state) {
-  //     if (localStorage.hasOwnProperty(key)) {
-  //       let value = localStorage.getItem(key)
-  //       try {
-  //         value = JSON.parse(value)
-  //         this.setState([{[key]: value}])
-  //       } catch (e) {
-  //         this.setState([{[key]: value}])
-  //       }
-  //     }
-  //   }
-  // }
+  getLocalStorage() {
+    for (let key in this.state) {
+      if (localStorage.hasOwnProperty(key)) {
+        let value = localStorage.getItem(key)
+        try {
+          value = JSON.parse(value)
+          this.setState([{[key]: value}])
+        } catch (e) {
+          this.setState([{[key]: value}])
+        }
+      }
+    }
+  }
 
   increaseQuantity (product, quantity) {
     let cart = [...this.state.cart]

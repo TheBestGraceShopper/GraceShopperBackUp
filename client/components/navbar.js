@@ -11,7 +11,7 @@ const Navbar = ({ handleClick, isLoggedIn, user }) => {
     <div id="banner">
       <div className="banner-div">
         <div className="logo-and-title-div">
-          <img className="group-logo" src="https://preview.ibb.co/bUndOL/abcs-logo.png/" alt="ABCS logo" />
+          <Link to="/home"><img className="group-logo" src="https://preview.ibb.co/bUndOL/abcs-logo.png/" alt="ABCS logo" /></ Link>
           <h1 className="main-title">Let it Brie</h1>
         </div>
         <div className="cart-link">

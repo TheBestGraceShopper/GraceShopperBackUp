@@ -3,7 +3,6 @@ import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import history from '../../history'
 import {connect} from 'react-redux'
-import OrderToDB from './OrderToDB'
 import {Redirect} from 'react-router-dom'
 import { me } from '../../store/user'
 

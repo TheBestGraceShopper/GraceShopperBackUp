@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
           </div>
 
           <p className="cart-number">{cartItemCount}</p>
-        </Link> {/* currently directs to home, but will change to direct to cart*/}
+        </Link>
       </div>
     )
   }

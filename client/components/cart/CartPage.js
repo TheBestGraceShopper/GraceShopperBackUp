@@ -120,7 +120,8 @@ class CartPage extends Component {
         <h2>Your Shopping Cart</h2>
         <ol>
           {cartItemNames.map( (productName) => {
-            return (<div key={cartItems[productName].id} >
+            console.log('Right?',this.state.cartItems.name)
+            return (<div key={cartItems[productName].name} >
               <li>
                 <Link to={`/products/${cartItems[productName].id}`}>
                   {`${cartItems[productName].name}`}

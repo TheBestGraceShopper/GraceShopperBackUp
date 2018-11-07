@@ -16,6 +16,9 @@ import Account from './components/Account'
 import PaymentCheckout from './components/cart/PaymentCheckout'
 import OrderToDB from './components/cart/OrderToDB';
 import ContactUs from './components/Help';
+// import Help from './components/Help'
+import OrderHistory from '../client/components/OrderHistory'
+import AdminOrderHistory from '../client/components/AdminOrderHistory'
 
 /**
  * COMPONENT
@@ -26,11 +29,12 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props // <= Look at this!!!!!
+    const {isLoggedIn} = this.props
 
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/admin/orders" component={AdminOrderHistory} />
         <Route exact path='/admin/products/add' component={CreateProduct} />
         <Route path='/admin/products/:productId' component={EditProduct} />
         <Route exact path='/products/:productId' component={SingleProduct} />
@@ -40,15 +44,17 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path='/cart/checkout/payment' component={PaymentCheckout} />
         <Route exact path="/confirmation/" component={OrderToDB} />
-        <Route exact path="/cart/checkout/" render={routeProps => <CheckoutForm {...routeProps} user={this.props.user} />} />
-        <Route path="/our-story/" component={OurStory} />
+        <Route exact path="/cart/checkout" render={routeProps => <CheckoutForm {...routeProps} user={this.props.user} />} />
+        <Route path="/our-story" component={OurStory} />
         <Route path="/help" component={ContactUs} />
-        <Route exact path="/cart/" component={CartPage} />
+        <Route exact path="/cart" component={CartPage} />
+//         <Route path="/contact-us" component={Help} />
 
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/account/order-history" component={OrderHistory} />
             <Route path="/account" component={Account} />
           </Switch>
         )}

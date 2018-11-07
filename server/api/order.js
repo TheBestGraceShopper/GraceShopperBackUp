@@ -3,6 +3,17 @@ const { Product, User, Order, ProductOrder } = require('../db/models')
 
 module.exports = router;
 
+// GET /api/order/pastOrders
+router.get('/pastOrders', async(req, res, next) => {
+  try {
+    const allOrders = await Order.findAll({include: [{model: Product}]});
+    res.status(200).send(allOrders);
+  }
+  catch(err) {
+    next(err);
+  }
+})
+
 // GET for '/api/order/lastOrder'
 router.get('/lastOrder', async (req, res, next) => {
   try {

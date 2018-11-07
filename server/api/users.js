@@ -1,6 +1,9 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Order, Product} = require('../db/models')
 module.exports = router
+
+
+// GET /api/users
 
 router.get('/', async (req, res, next) => {
   try {
@@ -8,7 +11,7 @@ router.get('/', async (req, res, next) => {
       res.status(401).send('Login required')
     }
     if (req.user.userType !== 'admin') {
-      res.status(401).send('User does not have privelages to access admin page')
+      res.status(401).send('User does not have privileges to access admin page')
     }
     const users = await User.findAll({
       // explicitly select only the id and email fields - even though
@@ -22,13 +25,24 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// GET /api/users/pastOrders/:userId
+router.get('/pastOrders/:userId', async(req, res, next) => {
+  try {
+    const userId = req.params.userId;
+    const pastOrders = await Order.findAll({include: [{model: Product}], where: {userId}});
+    res.send(pastOrders);
+  } catch(err) {
+    next(err);
+  }
+})
+
 router.put('/:userId', async (req, res, next) => {
   try {
     if (!req.user) {
       res.status(401).send('Login required')
     }
     if (req.user.userType !== 'admin') {
-      res.status(401).send('User does not have privelages to access admin page')
+      res.status(401).send('User does not have privileges to access admin page')
     }
     const user = await User.findOne({
       where: {

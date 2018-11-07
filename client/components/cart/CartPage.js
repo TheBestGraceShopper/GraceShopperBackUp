@@ -98,9 +98,10 @@ class CartPage extends Component {
 
     return (
       <div>
-        <h2>Your Shopping Cart</h2>
+        <h2>Your Cart</h2>
         <ol>
-          {cartItemNames.map(productName => (
+          {cartItemNames.length ?
+          cartItemNames.map(productName => (
             <div key={cartItems[productName].id}>
               <li>
                 <Link to={`/products/${cartItems[productName].id}`}>
@@ -151,11 +152,17 @@ class CartPage extends Component {
               </li>
               <br />
             </div>
-          ))}
+
+          ))
+          :
+          <div>
+            <p>Your cart is currently empty</p>
+            <Link to="/products">Cheese Please!!</Link>
+          </div>}
         </ol>
-        <Link to="/cart/checkout">
+        {cartItemNames.length ? <Link to="/cart/checkout">
           <button type="button">Checkout</button>
-        </Link>
+        </Link> : null}
       </div>
     )
   }

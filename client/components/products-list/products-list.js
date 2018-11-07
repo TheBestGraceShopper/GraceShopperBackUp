@@ -32,6 +32,8 @@ class ProductsListComp extends Component {
   }
 
   productSearchMatch (searchVal, product) {
+    console.log(searchVal)
+    if (!searchVal) return true;
     const searchLowerCase = searchVal.toLowerCase();
     const productArr = product.description.toLowerCase().split(' ').concat(product.name.toLowerCase().split(" ")).concat(product.category.split(" "));
     if (productArr.includes(searchLowerCase)) return true;

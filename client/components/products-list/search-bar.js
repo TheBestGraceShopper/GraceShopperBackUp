@@ -6,7 +6,7 @@ const SearchBar = (props) => {
     props.searchOnChange(e.target.searchVal.value);
   }
   return (
-  <form onSubmit={handleSubmit} >
+  <form className="search"onSubmit={handleSubmit} >
             <div>
               <input onChange={e => props.searchOnChange(e.target.value)} name="searchVal" type="text" placeholder="Search for.."/>
             </div>

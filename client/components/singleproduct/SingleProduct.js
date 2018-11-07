@@ -104,10 +104,12 @@ class SingleProduct extends React.Component {
       selectedProduct.id && (
         <div>
           <div className="single-product">
-            <h1>{selectedProduct.name}</h1>
             <div className="name-desc">
               <img src={selectedProduct.imageURL} />
-              <p>{selectedProduct.description}</p>
+              <div className="text-indiv-prod">
+                <h1>{selectedProduct.name}</h1>
+                <p>{selectedProduct.description}</p>
+              </div>
             </div>
             <h2>Price: ${selectedProduct.price}</h2>
             <label>

@@ -564,10 +564,19 @@ html, body, #container, .carousel {
 }
 
 .single-product {
+  margin-top: 5%;
   margin-left: auto;
   margin-right: auto;
   width: 80%;
+
 }
+
+.single-product-inner {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
 
 button {
   color: white;
@@ -582,3 +591,12 @@ button {
   margin-top: 2px;
   padding-top: 2px;
  }
+
+.name-desc {
+  display: flex;
+  align-content: center;
+}
+
+.text-indiv-prod {
+  margin-left: 2%;
+}

@@ -10,9 +10,9 @@ export const UserHome = props => {
   const {email} = props
 
   return (
-    <div>
-      <h3>Welcome, {email}</h3>
-  
+    <div className="home-page">
+      <h1 className="home-page-title">Welcome, {email}</h1>
+      <img className="home-image" src="https://image.ibb.co/ftLjLA/Charcuterie-Board.png" />
     </div>
   )
 }

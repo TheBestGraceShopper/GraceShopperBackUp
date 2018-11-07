@@ -7,12 +7,6 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    if (!req.user) {
-      res.status(401).send('Login required')
-    }
-    if (req.user.userType !== 'admin') {
-      res.status(401).send('User does not have privileges to access admin page')
-    }
     const users = await User.findAll({
       // explicitly select only the id and email fields - even though
       // users' passwords are encrypted, it won't help if we just
@@ -69,7 +63,8 @@ router.post('/', async (req, res, next) => {
         city: req.body.city,
         country: req.body.country,
         zipCode: req.body.zipCode,
-        phoneNumber: req.body.phoneNumber
+        phoneNumber: req.body.phoneNumber,
+        userType: 'guest'
       })
       res.status(201).send(newUser)
   }

@@ -8,7 +8,7 @@ import {Redirect} from 'react-router-dom'
 import { me } from '../../store/user'
 
 class StripeForm extends React.Component {
-  
+
   render() {
     const name = this.props.name;
     const description = this.props.description;
@@ -35,17 +35,19 @@ class StripeForm extends React.Component {
     }
 
     const successfulPayment = async () => {
-        alert('Thanks for the purchase! Have a gouda day!')
         let cartItems = JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [];
         cartItems = itemWithAmount(cartItems);
         let cartItemNames = Object.keys(cartItems);
+        let total = 0
+        cartItemNames.map( (productName) =>  {
+          total += (cartItems[productName].price * cartItems[productName].count)
+        });
+        const data = { totalPrice: total, userId: this.props.user.id }
+        const order = await axios.post(`/api/order/add`, data);
 
         cartItemNames.map(async productName => {
-          const data = { totalPrice: cartItems[productName].price * cartItems[productName].count, userId: this.props.user.id }
-          const order = await axios.post(`/api/order/add`, data);
-
-          const productData = {productId: cartItems[productName].id, productQuantity: cartItems[productName].count, orderId: order.data.id};
-          await axios.post(`/api/order/add_product_order`, productData);
+        const productData = {productId: cartItems[productName].id, productQuantity: cartItems[productName].count, orderId: order.data.id};
+        await axios.post(`/api/order/add_product_order`, productData);
         });
     }
 

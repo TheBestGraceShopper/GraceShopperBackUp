@@ -23,7 +23,13 @@ class OrderHistory extends React.Component {
     return (
     <div>
         <h2>ORDER HISTORY</h2>
-        {this.state.orderHistory.map(order => <Order key={order.id} order={order}/>)}
+        {this.state.orderHistory.map(order => (
+            <div key={order.id}>
+              <h3>STATUS {order.status}</h3>
+              <Order order={order}/>
+            </div>
+          ))}
+
     </div>)
 
 }

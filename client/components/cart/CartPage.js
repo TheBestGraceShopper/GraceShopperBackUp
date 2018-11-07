@@ -125,12 +125,11 @@ class CartPage extends Component {
                 </button>
 
                 {cartItems[productName].count}
-                
+
                 <button
                   className="button"
                   type="button"
                   onClick={() => {
-                    console.log('hi');
                     this.increaseQuantity(cartItems[productName], this.state.quantity)}
                   }
                   disabled={cartItems.stock <= 0}

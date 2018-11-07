@@ -14,7 +14,7 @@ import CheckoutForm from './components/cart/CheckoutForm'
 import OurStory from './components/OurStory'
 import Account from './components/Account'
 import PaymentCheckout from './components/cart/PaymentCheckout'
-import OrderToDB from './components/cart/OrderToDB';
+import Confirmation from './components/Confirmation';
 import Help from './components/Help'
 import OrderHistory from '../client/components/OrderHistory'
 import AdminOrderHistory from '../client/components/AdminOrderHistory'
@@ -42,7 +42,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path='/cart/checkout/payment' component={PaymentCheckout} />
-        <Route exact path="/confirmation" component={OrderToDB} />
+        <Route exact path="/confirmation" component={Confirmation} />
         <Route exact path="/cart/checkout" render={routeProps => <CheckoutForm {...routeProps} user={this.props.user} />} />
         <Route path="/our-story" component={OurStory} />
         <Route path="/contact-us" component={Help} />

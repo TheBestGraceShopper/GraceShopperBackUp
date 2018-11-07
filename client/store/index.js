@@ -9,7 +9,7 @@ import review from './review'
 
 const reducer = combineReducers({user, productsReducer, ordersReducer, review})
 const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
+  applyMiddleware(thunkMiddleware)
 )
 const store = createStore(reducer, middleware)
 

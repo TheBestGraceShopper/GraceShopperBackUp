@@ -71,7 +71,6 @@ export const fetchAProduct = (id) => {
 export const addAProduct = (newProductData) => {
   return async (dispatch) => {
     const {data: newProduct} = await axios.post('/api/products/admin', newProductData)
-    console.log("newProduct!!!", newProduct)
     dispatch(addProduct(newProduct))
   }
 }

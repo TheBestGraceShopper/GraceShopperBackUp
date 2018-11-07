@@ -1,20 +1,39 @@
 import React from 'react'
 import Order from './Order'
 import {connect} from 'react-redux'
-import {fetchOrders} from '../store'
+import {fetchOrders, updateStatus } from '../store'
 
 class AdminOrderHistory extends React.Component {
-
+  constructor() {
+    super();
+    this.handleChange = this.handleChange.bind(this)
+  }
   componentDidMount() {
     this.props.getOrders();
   }
-
+  handleChange(val, id) {
+    this.props.sendStatus(val, id);
+  }
   render() {
     return (
       <div>
-        <h2>PAST ORDERS</h2>
+        <h2>ORDERS</h2>
         {
-          this.props.orders.map(order => <Order key={order.id} order={order}/>)
+          this.props.orders.map(order => {
+            return (
+              <div key={order.id}>
+                <p>Order Status:</p>
+                <select onChange={(e) => this.handleChange(e.target.value, order.id)}>
+                  <option disabled selected value={null}>{order.status}</option>
+                  <option value="processing">processing</option>
+                  <option value="created">created</option>
+                  <option value="completed">completed</option>
+                  <option value="cancelled">cancelled</option>
+                </select>
+                <Order order={order}/>
+              </div>
+            )
+          })
         }
       </div>
     )
@@ -26,7 +45,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getOrders: () => dispatch(fetchOrders())
+  getOrders: () => dispatch(fetchOrders()),
+  sendStatus: (val,id) => dispatch(updateStatus(val, id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminOrderHistory);

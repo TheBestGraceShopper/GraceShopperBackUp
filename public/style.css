@@ -9,13 +9,21 @@ img {
 
 body {
   font-family: sans-serif;
+  height: 100%;
+  position: relative;
+}
 
+.main-container {
+  min-height: 100vh;
+  padding-bottom: 100px;
+  overflow: hidden;
+  display: block;
+  position: relative;
 }
 
 a {
   text-decoration: none;
 }
-
 
 label {
   display: block;
@@ -48,7 +56,21 @@ form div {
   justify-content: center;
 }
 
-/* ======================== each product in list ==================================== */
+/* ======================== filter and search ==================================== */
+
+.product-small {
+  display: inline-block;
+}
+
+.main-products-page {
+  height: 100vw;
+  padding: 0;
+}
+
+.background {
+}
+
+/* ========================== each product in list ================================ */
 
 .product-small {
   width: 400px;
@@ -58,6 +80,14 @@ form div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+}
+
+.filter-title {
+  color: #570000;
+  font-size: 50px;
+  margin-left: 2%;
+  text-transform: capitalize;
 }
 
 .product-image {
@@ -69,6 +99,15 @@ form div {
   font-size: 20px;
 }
 
+.product-name {
+  color: black;
+  font-size: 30px;
+}
+
+.product-price {
+  color: black;
+}
+
 .in-stock {
   color: green;
 }
@@ -78,10 +117,6 @@ form div {
 }
 
 /* ======================== chart button ==================================== */
-
-/* #shopping-cart {
-
-} */
 
 .cart-link {
   float: right;
@@ -143,15 +178,8 @@ form div {
   /* background-image: url("https://preview.ibb.co/mS8jXf/let-it-brie-logo.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
-  height: 250px;
   width: 100%;
 }
-
-#navbar {
-  background-color: lightsalmon;
-  width: 100%;
-}
-
 .menu {
   float: left;
 }
@@ -168,7 +196,7 @@ form div {
 }
 
 .footer {
-  position: static;
+  position: absolute;
   bottom: 0;
   width: 100%;
   height: 30px;
@@ -215,80 +243,7 @@ html, body, #container, .carousel {
 }
 
 
-.ourStory{
-  display: flex;
-  margin: 5%;
-  margin-top: 0;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0.083em;
-  justify-content: space-evenly;
-  flex-direction: column;
-}
 
-.ourStory{
-  text-align: justify;
-}
-
-.ourStory p{
-  text-align: center;
-  font-size: 1em;
-  padding-top: 0;
-  margin-top: 0
-}
-
-.ourStory h1{
-  text-align: center;
-  color: darkolivegreen;
-}
-
-.Team{
-  text-align: center;
-}
-
-/* font-family: 'Great Vibes', cursive; */
-
-.teamContainer{
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  align-items: flex-start;
-  justify-content: space-evenly;
-  justify-items: flex-start;
-  padding-top: 0;
-  margin-top:0
-}
-
-
-.teamContainer figure{
-  width: 20%;
-  height: auto;
-  padding: 2%;
-  margin: 0;
-  padding-top:0;
-  margin-top:0
-}
-
-.teamContainer img{
-  width: 100%;
-  height: auto;
-  border-radius: 37%;
-  box-sizing: border-box;
-}
-
-.teamContainer h5{
-  padding:0;
-  font-size: 2em;
-  margin:0;
-}
-
-.teamContainer p{
-  text-align: center
-}
-
-.teamContainer span{
-  font-size: 1.5em
-}
 
 /* ======================== navbar  ==================================== */
 .nav-text {
@@ -344,6 +299,107 @@ html, body, #container, .carousel {
   width: 70px;
 }
 
-.out-of-stock {
-  background-color: pink;
+.home-page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+.home-image {
+  width: 70%;
+  height: auto;
+  display: flex;
+  align-self: center;
+  margin-bottom: 10%;
+}
+
+.home-page-title {
+  font-size: 4.5vw;
+  display: flex;
+  align-self: center;
+}
+
+/* ======================== our story ==================================== */
+
+.team {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
+.ourStory{
+  display: flex;
+  width: 100%;
+  margin-top: 0;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.083em;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.meet-the-title {
+  margin-bottom: 2%;
+  font-family: 'Great Vibes', cursive;
+  color: #570000;
+  font-size: 4vw;
+}
+
+.ourStory{
+  text-align: justify;
+}
+
+.ourStory p{
+  text-align: center;
+  font-size: 1em;
+  padding-top: 0;
+  margin-top: 0
+}
+
+.how-title {
+  text-align: center;
+  color: black;
+}
+
+.teamContainer{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  justify-items: flex-start;
+  padding-top: 0;
+  margin-top:0
+}
+
+.teamContainer figure{
+  width: 20%;
+  height: auto;
+  padding: 2%;
+  margin: 0;
+  padding-top:0;
+  margin-top:0
+}
+
+.teamContainer img{
+  width: 100%;
+  height: auto;
+  border-radius: 37%;
+  box-sizing: border-box;
+}
+
+.teamContainer h5{
+  padding:0;
+  font-size: 2em;
+  margin:0;
+}
+
+.teamContainer p{
+  text-align: center
+}
+
+.teamContainer span{
+  font-size: 1.5em
 }

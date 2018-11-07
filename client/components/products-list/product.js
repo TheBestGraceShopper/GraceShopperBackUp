@@ -8,7 +8,7 @@ const Product = ({ product, admin, removeProduct }) => {
       <Link to={admin ? `/admin/products/${product.id}` : `/products/${product.id}`}>
         <img className="product-image" src={product.imageURL} />
         <h2 className="product-name">{product.name}</h2>
-        <p>${product.price}</p>
+        <p className="product-price">${product.price}</p>
         {product.stock ? <p className="in-stock">In Stock</p> : <p className="out-of-stock">Out Of Stock</p>}
       </Link>
       {admin ? <button type="button" onClick={() => {

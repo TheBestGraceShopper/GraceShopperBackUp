@@ -5,7 +5,7 @@ const FilterBar = ({handleChange, products}) => {
   const unique =  categories.sort().filter((prev, i, product) => !i || prev !== product[i - 1])
 
   return (
-    <div className="filter-bar">
+    <div >
       <select onChange={function(ev) { handleChange(ev.target.value)}}>
         <option>all</option>
         {unique.map((category) =>  <option key={category}>{category}</option>)}

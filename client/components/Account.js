@@ -8,7 +8,7 @@ const Account = (props) => {
       <div>
         <h1> Account Information </h1>
         <EditUserForm />
-        <button type="button" onClick={() => {props.history.push('/account/order-history')}}>History</button>
+        <button type="button" onClick={() => {props.history.push('/account/order-history')}}>Order History</button>
       </div>
     )
 }

@@ -22,6 +22,7 @@ class ProductsListComp extends Component {
 
   async componentDidMount() {
     await this.props.fetchProducts();
+    await this.props.me();
     this.setState({
       products: this.props.products
     })
@@ -33,7 +34,7 @@ class ProductsListComp extends Component {
 
   productSearchMatch (searchVal, product) {
     if (!searchVal) return true;
-    
+
     const searchLowerCase = searchVal.toLowerCase();
     const productArr = product.description.toLowerCase().split(' ').concat(product.name.toLowerCase().split(" ")).concat(product.category.split(" "));
     if (productArr.includes(searchLowerCase)) return true;
@@ -70,10 +71,10 @@ class ProductsListComp extends Component {
           'All' : `All ${this.state.filteredProducts}s`}</h2>
         <div id="outer-products-div">
           <div className="products">
-            {this.state.searchVal.length ? this.props.products.filter(product => this.productSearchMatch(this.state.searchVal, product)).map(product => <Product key={product.id} history={this.props.history} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser} />)
+            {this.state.searchVal.length ? this.props.products.filter(product => this.productSearchMatch(this.state.searchVal, product)).map(product => <Product user={this.props.user} key={product.id} history={this.props.history} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser} />)
               : (this.state.filteredProducts === 'all' ? this.props.products
                 : this.props.products.filter(product => product.category === this.state.filteredProducts)).map(product =>
-                  <Product key={product.id} history={this.props.history} product={product} user={this.props.user} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser} />)}
+                  <Product user={this.props.user} key={product.id} history={this.props.history} product={product} user={this.props.user} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser} />)}
           </div>
         </div>
       </div>
@@ -91,6 +92,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  me: () => dispatch(me()),
   fetchProducts: () => dispatch(fetchProducts()),
   removeProduct: (id) => dispatch(removeAProduct(id)),
   addProduct: (product, userId) => dispatch(addProduct(product, userId))

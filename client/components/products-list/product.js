@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-const Product = ({ product, admin, removeProduct }) => {
+const Product = ({ user, product, admin, removeProduct }) => {
   return (
     <div className="product-small">
       <Link to={admin ? `/admin/products/${product.id}` : `/products/${product.id}`}>
@@ -11,7 +11,7 @@ const Product = ({ product, admin, removeProduct }) => {
         <p className="product-price">${product.price}</p>
         {product.stock ? <p className="in-stock">In Stock</p> : <p className="out-of-stock">Out Of Stock</p>}
       </Link>
-      {admin ? <button type="button" onClick={() => {
+      {admin || user.userType === "admin" ? <button type="button" onClick={() => {
         removeProduct(product.id)
       }}>Delete</button> : null}
 

@@ -8,7 +8,6 @@ import { updateQuantity } from '../../store/'
 
 const StripeForm = (props) => {
 
-
     const name = props.name;
     const description = props.description;
     const amount = props.amount;

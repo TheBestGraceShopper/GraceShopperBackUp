@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
-import {Link, Redirect} from 'react-router-dom'
-import {connect} from 'react-redux'
-import CheckoutForm from './CheckoutForm'
+import {Link} from 'react-router-dom'
 import axios from 'axios'
+import {ToastContainer, ToastStore} from 'react-toasts';
 
 class CartPage extends Component {
   constructor() {
@@ -116,7 +115,9 @@ class CartPage extends Component {
     let cartItemNames = Object.keys(cartItems)
 
     return (
+
       <div>
+        <ToastContainer lightBackground position={ToastContainer.POSITION.TOP_RIGHT} store={ToastStore}/>
         <h2>Your Cart</h2>
         <ol>
           {cartItemNames.length ?
@@ -154,7 +155,8 @@ class CartPage extends Component {
                     if (stock >= cartItems[productName].count + 1) {
                       this.increaseQuantity(cartItems[productName], this.state.quantity)
                     } else {
-                      alert(`Sorry, there ${stock === 1 ? 'is' : 'are'} only ${stock} left in stock.`)
+                      // alert(`Sorry, there ${stock === 1 ? 'is' : 'are'} only ${stock} left in stock.`)
+                      return () => ToastStore.error(`Sorry, there are ${stock === 1 ? 'is' : 'are'} only ${stock} left in stock.`)
                     }
                   }}
 

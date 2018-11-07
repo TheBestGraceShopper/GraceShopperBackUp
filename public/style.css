@@ -506,9 +506,13 @@ html, body, #container, .carousel {
   display: flex;
 }
 
-.edit-button {
+#edit-button {
   width: 20px;
   height: 20px;
+}
+
+#no-button-color {
+  background-color: white;
 }
 
 /* ======================== order history =================================== */

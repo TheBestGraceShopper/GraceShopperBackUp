@@ -39,7 +39,7 @@ class Routes extends Component {
         <Route path='/admin/products/:productId' component={EditProduct} />
         <Route exact path='/products/:productId' component={SingleProduct} />
         <Route path="/products" render={routeProps => <ProductsList {...routeProps} admin={false} />} />
-        <Route path="/admin/products" render={routeProps => <ProductsListAdmin {...routeProps} admin={true} />} />
+        <Route path="/admin/products" render={routeProps => <ProductsListAdmin {...routeProps} user={this.props.user} />} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path='/cart/checkout/payment' component={PaymentCheckout} />
@@ -48,7 +48,7 @@ class Routes extends Component {
         <Route path="/our-story" component={OurStory} />
         <Route path="/help" component={ContactUs} />
         <Route exact path="/cart" component={CartPage} />
-//         <Route path="/contact-us" component={Help} />
+      {/* <Route path="/contact-us" component={Help} /> */}
 
         {isLoggedIn && (
           <Switch>

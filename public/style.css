@@ -89,6 +89,11 @@ form div {
   margin-right: 200px;
 }
 
+.filter-bar select {
+  border: 1px solid darkgray;
+  background-color: white;
+}
+
 .main-products-page {
   height: 100vw;
   padding: 0;
@@ -611,4 +616,5 @@ button {
 .text-indiv-prod {
   margin-left: 2%;
 }
+
 

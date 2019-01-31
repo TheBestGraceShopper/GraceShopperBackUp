@@ -2,7 +2,6 @@ import React from 'react'
 
 const OurStory = () => {
   return (
-
     <div className="ourStory">
       <div className="team">
         <h1 className="how-title" >How The Board Came To Be</h1>
@@ -13,7 +12,7 @@ const OurStory = () => {
         <div className="teamContainer">
           <figure>
             <a href="https://www.linkedin.com/in/ayemachowdhury/">
-              <img src="https://media.licdn.com/dms/image/C4E03AQGm63zdAMZgzw/profile-displayphoto-shrink_200_200/0?e=1547078400&v=beta&t=KV60swP_LMJjoAWopH8R45rDXPAjVblAWPKoISPu3UM" />
+              <img src="https://i.ibb.co/M1TdNgx/Ayema.png" />
             </a>
             <h5>Ayema Chowdhury</h5>
             <span>Chief Pun Officer</span>
@@ -22,7 +21,7 @@ const OurStory = () => {
           </figure>
           <figure>
             <a href="https://www.linkedin.com/in/summerdeehan/">
-              <img src="https://media.licdn.com/dms/image/C4E03AQFmiPq7kPBeQQ/profile-displayphoto-shrink_800_800/0?e=1547078400&v=beta&t=IFxyhItzy_0bwd2B-OeNFMMekkncZHIvcqkc_i6fc1A" />
+              <img src="https://i.ibb.co/5vkZDLW/Summer.png" />
             </a>
             <h5>Summer Deehan</h5>
             <span>Chief Expat Officer</span>
@@ -31,7 +30,7 @@ const OurStory = () => {
           </figure>
           <figure>
             <a href="https://www.linkedin.com/in/conniejiayeelim/">
-              <img src="https://media.licdn.com/dms/image/C4E03AQE8Avr6dmZOPw/profile-displayphoto-shrink_800_800/0?e=1547078400&v=beta&t=SARPsH328KWi1G0DsQKvoyXr8MNgDXtjFOdKD8bH9mY" />
+              <img src="https://i.ibb.co/bK30fdb/Connie.png" />
             </a>
             <h5>Connie Lim</h5>
             <span>Chief Rind Officer</span>

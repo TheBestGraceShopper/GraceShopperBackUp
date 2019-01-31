@@ -63,9 +63,9 @@ const StripeForm = (props) => {
 
     }
 
-    const failedPayment = data => {
-        alert('You cannot enjoy your meats and cheeses just yet. Do you have enough money? Maybe check out www.monster.com')
-    }
+    // const failedPayment = data => {
+    //     alert('You cannot enjoy your meats and cheeses just yet. Do you have enough money? Maybe check out www.monster.com')
+    // }
 
     const withToken = (amount, description) => token =>
       axios.post('/api/stripe', {

@@ -28,6 +28,11 @@ async function seed() {
     Product.create({category: 'charcuterie board', name: 'Charcuterie Board', description: 'Pre-packaged charcuterie board to wow your guests for under $100!', price: 99, stock: 1, imageURL: 'https://cdn.shopify.com/s/files/1/1115/5612/products/REY273LN2-Large-Round-Beech-Pizza-Board-1.jpg'})
   ])
 
+  const reviews = await Promise.all([
+    Review.create({text: 'This was by far the tastiest blue I have experienced in my life. Mind blowing', title: 'Definitely Coming Back For More', rating: 5}),
+    Review.create({text: `I can't stop eating this cheese. Someone come take it from me.`, title: 'I Am Now A Cheese', rating: 4})
+  ])
+
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }

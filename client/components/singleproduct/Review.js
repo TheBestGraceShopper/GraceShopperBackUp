@@ -11,9 +11,9 @@ class Review extends React.Component {
 
    const isEnabled = this.props.state.rating && this.props.state.title && this.props.state.text
    return (
-   <div>
+   <div className="review-pad">
      <ToastContainer lightBackground position={ToastContainer.POSITION.TOP_RIGHT} store={ToastStore}/>
-     <h3> Reviews: </h3>
+     <h3 className="review-pad"> Reviews: </h3>
      {this.props.state.showForm ? null: <button type="button" onClick={this.props.showForm}> Add Review </button> }
      { this.props.state.showForm ? <div>
        <form onSubmit={this.props.handleSubmit}>
@@ -29,13 +29,31 @@ class Review extends React.Component {
        </form>
      </div>  : null }
      {this.props.reviews.map(review => {
+       const ratingSrc = () => {
+        switch (review.rating) {
+          case 1:
+          return "*";
+          case 2:
+          return "**";
+          case 3:
+          return "***";
+          case 4:
+          return '*****';
+          case 5:
+          return '*****';
+          default:
+            return '******'
+        }
+      }
        let reviewDate = review.id ? review.createdAt.slice(0, 10).split('-') : null;
        let formattedDate = review ? `${reviewDate[1]}/${reviewDate[2]}/${reviewDate[0]}` : null
        return (
          <div key={review.id}>
-           <p> {review.rating}</p>
-           {review.user ? <p> {review.user.firstName} {review.user.lastName}</p> :<p> {this.props.user.firstName} {this.props.user.lastName} </p>}
-           <p> {formattedDate} </p>
+           {/* <img src={ratingSrc()}/> */}
+           <h3>{review.title}</h3>
+           <h1>  {ratingSrc()} </h1>
+           {review.user ? <p> By User {review.user.firstName} {review.user.lastName}</p> :<p> By User {this.props.user.firstName} {this.props.user.lastName} </p>}
+           <p> on {formattedDate} </p>
            <p> {review.text}</p>
          </div>
      )})}

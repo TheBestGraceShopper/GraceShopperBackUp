@@ -15,13 +15,23 @@ export const UserHome = props => {
       {/* <img className="home-image" src="https://image.ibb.co/ftLjLA/Charcuterie-Board.png" /> */}
       <div id="slideshow">
       <SlideShow
-      images = {['https://static.vinepair.com/wp-content/uploads/2017/02/board-garlicbread.jpg','https://static.vinepair.com/wp-content/uploads/2017/02/board-eggplant.jpg', 'https://static.vinepair.com/wp-content/uploads/2017/02/board-glutenfree.jpg', 'https://static.vinepair.com/wp-content/uploads/2017/02/board-sepearte.jpg', 'https://static.vinepair.com/wp-content/uploads/2017/02/board-bloodorange.jpg']}
-      width = "100%"
-      imagesWidth = "75%"
-      imagesHeight= "90%"
+      images = {[
+        'https://i.ibb.co/xzWVJBB/tray.jpg',
+        'https://i.ibb.co/D476fmV/tray2.jpg',
+        'https://i.ibb.co/TtK29Hz/tray3.jpg'
+      ]}
+      width = "920px"
+      imagesWidth = "100%"
       imagesHeightMobile="56vw"
       infinite indicators
-    />
+      />
+      {/* <SlideShow
+      images = {['https://static.vinepair.com/wp-content/uploads/2017/02/board-garlicbread.jpg','https://static.vinepair.com/wp-content/uploads/2017/02/board-eggplant.jpg', 'https://static.vinepair.com/wp-content/uploads/2017/02/board-glutenfree.jpg', 'https://static.vinepair.com/wp-content/uploads/2017/02/board-sepearte.jpg', 'https://static.vinepair.com/wp-content/uploads/2017/02/board-bloodorange.jpg']}
+      width = "920px"
+      imagesWidth = "100%"
+      imagesHeightMobile="56vw"
+      infinite indicators
+    /> */}
     </div>
 
     </div>

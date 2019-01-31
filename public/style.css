@@ -49,6 +49,7 @@ form div {
 }
 
 .products {
+  margin: auto;
   width: 90%;
   height: 100%;
   display: grid;
@@ -101,9 +102,6 @@ form div {
 /* ========================== each product in list ================================ */
 
 .product-small {
-  width: 400px;
-  height: 400px;
-  /* outline: solid grey; */
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -13,8 +13,7 @@ class ProductsListComp extends Component {
     this.state = {
       products: [],
       searchVal: '',
-      filteredProducts: 'all',
-      filtered: []
+      filteredProducts: 'all'
     }
     this.handleChange = this.handleChange.bind(this);
     this.searchOnChange = this.searchOnChange.bind(this);
@@ -66,7 +65,7 @@ class ProductsListComp extends Component {
         </div>
         <div id="outer-products-div">
         <h2 className="filter-title">{this.state.filteredProducts === 'all' ?
-              'All' : `All ${this.state.filteredProducts}s`}</h2>
+              'All' : `All ${this.state.filteredProducts}`}</h2>
           <div className="products">
             {this.state.searchVal.length ? this.props.products.filter(product => this.productSearchMatch(this.state.searchVal, product)).map(product => <Product user={this.props.user} key={product.id} history={this.props.history} product={product} admin={this.props.admin} removeProduct={this.props.removeProduct} addProductToCart={this.props.addProduct} userId={this.props.currentUser} />)
               : (this.state.filteredProducts === 'all' ? this.props.products

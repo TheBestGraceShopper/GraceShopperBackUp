@@ -49,6 +49,7 @@ form div {
 }
 
 .products {
+  margin: auto;
   width: 90%;
   height: 100%;
   display: grid;
@@ -88,6 +89,11 @@ form div {
   margin-right: 200px;
 }
 
+.filter-bar select {
+  border: 1px solid darkgray;
+  background-color: white;
+}
+
 .main-products-page {
   height: 100vw;
   padding: 0;
@@ -101,9 +107,6 @@ form div {
 /* ========================== each product in list ================================ */
 
 .product-small {
-  width: 400px;
-  height: 400px;
-  /* outline: solid grey; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -613,3 +616,5 @@ button {
 .text-indiv-prod {
   margin-left: 2%;
 }
+
+
